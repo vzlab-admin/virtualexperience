@@ -1,0 +1,67 @@
+*{
+    padding:0px;
+    margin:0px;
+    border:none;
+}
+
+body{
+    background-image: url(bg.jpg);
+    background-size: cover;
+    padding: 41px;
+}
+
+.checker{
+    
+}
+
+.container{
+    top:40px;
+    left:40px;
+    position: absolute;
+    width:calc(100% - 80px);
+    height:calc(100% - 80px);
+    background-color: rgba(0,0,0,.2);
+}
+
+.comp1{
+    position: absolute;
+    top:410px;
+    height: 57px;
+}
+
+.comp1 input{
+    display:inline;
+    height: 57px;
+    padding: 0px;
+    margin: 0px;
+    border:none;
+}
+
+.comp1 input.text{
+    width: 518px;
+    float:left;
+}
+
+.comp1 input.btn{
+    background-color: #e86623;
+    outline: none;
+    border:none;
+    width:153px;
+    float:right;
+}
+
+.comp1 .termos {
+    margin-top:24px;
+    float:left;
+    display:block;
+    font-size: 20px;
+    font-family: "VW Text";
+    color: rgb(255, 255, 255);
+    line-height: 1.2;
+    text-align: left;
+}
+
+.comp1 .termos a{
+    color: #e86623;
+    font-weight: bold;
+}
