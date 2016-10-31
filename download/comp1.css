@@ -1,0 +1,63 @@
+.area{
+    padding-top:50px;
+}
+
+input{
+    display:inline;
+    margin: 0px;
+    margin-bottom:23px;
+    border:none;
+}
+
+input.text{
+    display:block;
+    width:100%;
+    /*float:left;*/
+    font-size: 21px;
+    margin-top:30px;
+}
+
+
+
+.termos {
+    top:-23px;
+    position: relative;
+    margin-top:50px;
+    /*float:left;*/
+    display:inline-block;
+    font-size: 15px;
+    font-family: "VW Text";
+    color: black;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.termos a{
+    color: #e86623;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .area{
+        padding-top:20px;
+        font-size:15px;
+    }
+    
+    input.text{
+        margin-top:20px;
+        margin-bottom:20px;
+        height:35px;
+    }
+    
+    .termos{
+        display: block;
+        margin-top: 40px;
+        text-align: center;
+    }
+    
+    input.btn{
+        display: inline-block;
+        float:none;
+    }
+}

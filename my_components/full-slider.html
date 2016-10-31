@@ -1,0 +1,197 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="exit-button.html">
+<link rel="import" href="vz-slider.html" />
+
+<dom-module id="full-slider">
+    <style>
+        :host{
+            display:none;
+            opacity:0;
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0px;
+            left:0px;
+            
+            background-image: url(/assets/slider.jpg);
+            background-color:#304c8b;
+            background-size:100% auto;
+            background-repeat:no-repeat;
+            background-position: center bottom;
+            
+            transition:opacity .5s ease-in-out;
+        }
+        
+        :host.ativo{
+            opacity:1;
+        }
+        
+        vz-slider{
+            width:400px;
+        }
+        
+        .container{
+            background-color: rgba(0,0,0,.5);
+            position: absolute;
+            height: calc(100vw * 0.475 / 1.4183);
+            width: 47.5%;
+            display: block;
+            bottom: 14.2vw;
+            left: 3.2%;
+        }
+        
+        .container .img{
+            position:absolute;
+            top:0px;
+            left:0px;
+            width:100%;
+            height:100%;
+            background-repeat:no-repeat;
+            background-size:100% 100%;
+            background-position: center center;
+            opacity:0;
+        }
+
+    </style>
+    
+
+    
+   <template>
+        <vz-slider on-slide="slideUpdate"></vz-slider>
+        <div id="container" class="container">
+            <div class="img" style="background-image:url(/assets/sliderImages/1.png)"></div>
+            <div class="img" style="background-image:url(/assets/sliderImages/2.png)"></div>
+            <div class="img" style="background-image:url(/assets/sliderImages/3.png)"></div>
+            <div class="img" style="background-image:url(/assets/sliderImages/4.png)"></div>
+        </div>
+        <exit-button on-tap="hide"></exit-button>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "full-slider",
+    
+        properties: {
+            imgs:{
+                type:Array,
+                value:undefined
+            },
+            
+            trans:{
+                type:Object,
+                value:undefined,
+            }
+        },
+        
+        hide:function(){
+            if(this.style.display=="block"){
+                this.classList.remove("ativo");
+                
+                this.async(function(){
+                    this.style.display="none";
+                },500)
+            }
+        },
+        
+        show:function(){
+            if(this.classList.contains("ativo")==false){
+                this.style.display="block";
+                
+                this.async(function(){
+                    this.classList.add("ativo");
+                },100)
+                
+            }
+        },
+        
+        ready:function(){
+            this.imgs=this.querySelectorAll(".img")
+            
+            var trans=[];
+            
+            var pTrans=.25;
+            var nImages=this.imgs.length;
+            var nTrans=nImages-1;
+            
+            
+            var vImages=1/(nTrans*pTrans + nImages);
+            var vTrans=vImages*pTrans;
+            
+            for(var i=0; i<this.imgs.length; i++){
+                trans[i]=this.getPeriodo(i,nImages, vTrans, vImages) 
+            }
+            this.trans=trans;
+            console.log("opa", trans)
+        },
+        
+        slideUpdate:function(e){
+            var valor=parseFloat(e.detail.value)/100;
+            
+            if(this.imgs){
+                for(var i=0; i<this.imgs.length; i++){
+                    var v2=this.getAlpha(this.trans[i],valor);
+                    this.imgs[i].style.opacity=v2;
+                }
+            }
+        },
+        
+        getPeriodo:function(index, nImages, vTrans, vImages){
+            var retorno={
+                index:index,
+                inicio:undefined,
+                fim:undefined,
+                nImages:nImages,
+                aTrans:undefined,
+            }
+            
+            if(index==0){
+                retorno.inicio=0;
+                retorno.fim=vImages+vTrans;
+            }else if(index==nImages-1){
+                retorno.fim=1;
+                retorno.inicio=retorno.fim-(vImages+vTrans);
+            }else{
+                retorno.inicio=vImages+((vImages+vTrans)*(index-1));
+                retorno.fim=retorno.inicio+(vImages+vTrans*2);
+            }
+            
+            retorno.aTrans=vTrans/(retorno.fim-retorno.inicio)
+            
+            return retorno;
+        },
+        
+        getAlpha:function(valores, prop){
+            var retorno=0;
+            
+            var propLocal=(prop-valores.inicio)/(valores.fim-valores.inicio);
+            propLocal=Math.max(0, Math.min(propLocal,1));
+            
+            if(valores.index==0){
+                if(propLocal<=1-valores.aTrans){
+                    retorno=1;
+                }else{
+                    retorno=Math.abs(  (propLocal-(1-valores.aTrans))/valores.aTrans - 1);
+                }
+            }else if(valores.index==valores.nImages-1){
+                if(propLocal>=valores.aTrans){
+                    retorno=1;
+                }else{
+                    retorno = propLocal/valores.aTrans;
+                }
+            }else{
+                if(propLocal<=valores.aTrans){
+                    retorno = propLocal/valores.aTrans;
+                }else if(propLocal>=1-valores.aTrans){
+                    retorno=Math.abs(  (propLocal-(1-valores.aTrans))/valores.aTrans - 1);
+                }else{
+                    retorno=1;
+                }
+            }
+            
+            
+            return parseFloat(retorno.toFixed(2));
+        }
+    });
+</script>

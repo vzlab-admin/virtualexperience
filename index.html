@@ -1,27 +1,140 @@
-<!DOCTYPE html>
 <html>
 	<head>
 		<!--<base href="/music/teste1/teste2/on/">-->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<meta name="viewport" content="initial-scale=1.0">
+		<script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<script type="text/javascript" src="assets/pannellum.js"></script>
+		<script type="text/javascript" src="assets/libpannellum.js"></script>
 
-		<link rel="stylesheet" href="bower_components/normalize-css/normalize.css" type="text/css" />
-        <script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        
-        <link rel="import" href="my_components/botao-pilula.html">
-		
+		<link rel="import" href="my_components/main-router.html?v=1">
+		<link rel="import" href="my_components/hover-container.html">
+		<link rel="import" href="my_components/full-vr.html">
+		<link rel="import" href="my_components/full-slider.html">
+
+		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
 		<style type="text/css">
-		    body{
-		        position:absolute;
-		        width:100%;
-		        height:100%;
-		        background-color:gray;
-		    }
+            body {
+            	padding:0px;
+            	margin:0px;
+            	border:none;
+            	
+                height: 100%;
+                width: 100%;
+                position: fixed;
+            }
+            
+            
+            .container{
+        	    display: table;
+			    width: 100%;
+			    height: 100%;
+			    position: relative;
+            }
+            
+            .container .topArea{
+        	    display: table-row;
+			    background-color: blue;
+			    height: auto;
+			    background-image: url(/assets/bg0.jpg);
+			    background-size: cover;
+			    background-position: center center;
+			    height:0px;
+            }
+            
+            .container .topArea .topContent{
+        	    max-width: 1012px;
+			    position: relative;
+			    width: 100%;
+			    margin-left: auto;
+			    margin-right: auto;
+			    display: block;
+            }
+            
+            .container .topArea .topContent .info{
+				font-size: 16px;
+				font-family: "VW Text";
+				font-weight: 100;
+				color: white;
+				line-height: 1.813;
+				padding-top: 75px;
+				padding-bottom: 75px;
+				display:table-cell;
+				width:100%;
+            }
+            
+            
+            .container .topArea .topContent .info b{
+	            color:#e86623;
+            }
+            
+            
+            
 		</style>
+
+
+		<script type="text/javascript">
+			
+			var vrSettings={
+				v1:{
+					"type": "cubemap",
+	                "cubeMap": [
+	                    "assets/360s/v1/face0.jpg",
+	                    "assets/360s/v1/face1.jpg",
+	                    "assets/360s/v1/face2.jpg",
+	                    "assets/360s/v1/face3.jpg",
+	                    "assets/360s/v1/face4.jpg",
+	                    "assets/360s/v1/face5.jpg"
+	                ],
+	                "showZoomCtrl":false,
+	                "showFullscreenCtrl":false,
+	                "autoLoad":true,
+				},
+				
+				v2:{
+					"type": "cubemap",
+	                "cubeMap": [
+	                    "assets/360s/v2/posz.jpg",
+	                    "assets/360s/v2/posx.jpg",
+	                    "assets/360s/v2/negz.jpg",
+	                    "assets/360s/v2/negx.jpg",
+	                    "assets/360s/v2/posy.jpg",
+	                    "assets/360s/v2/negy.jpg"
+	                ],
+	                "showZoomCtrl":false,
+	                "showFullscreenCtrl":false,
+	                "autoLoad":true,
+				}
+			}
+			
+		</script>
+
 	</head>
 
-	<body>
-	    <botao-pilula text="marcelo"></botao-pilula>
+	<body itemscope itemtype="http://schema.org/WebSite">
+		<div class="container">
+			<div class="topArea">
+				<div class="topContent">
+					<table>
+						<tr>
+							<!--<td style="width:0%">-->
+							<!--	<img style="height: 100%;display: inline-block; position:relative; margin-left:100%" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">-->
+							<!--</td>-->
+							<td class="info">
+								A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Aqui você conhece um pouco sobre cada uma delas e não deixe de visitá-las no evento.
+								<br><br>
+								<b>Escolha a experiência abaixo.</b>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+	    	<hover-container></hover-container>
+	    </div>
+	    
+	    <full-vr settings="v1" class="pagina vr1"></full-vr>
+	    <full-vr settings="v2" class="pagina vr2"></full-vr>
+	    <full-slider class="pagina slider"></full-slider>
 	</body>
 </html>

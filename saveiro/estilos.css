@@ -11,7 +11,22 @@ body{
 }
 
 .checker{
-    
+    width: 1em;
+    height: 1em;
+    background-color: white;
+    display: inline-block;
+    position: relative;
+    top:.12em;
+}
+
+.checker.ativo:after{
+    background-color: #e86623;
+    content:"";
+    width: 60%;
+    height: 60%;
+    position: absolute;
+    left: 20%;
+    top: 20%;
 }
 
 .container{
@@ -20,19 +35,51 @@ body{
     position: absolute;
     width:calc(100% - 80px);
     height:calc(100% - 80px);
-    background-color: rgba(0,0,0,.2);
+    /*background-color: rgba(0,0,0,.2);*/
 }
 
-.comp1{
+input.text{
+    box-sizing: border-box;
+    padding: 0px 1em 0px 1em;
+}
+
+input.btn{
+    background-color: #e86623;
+    outline: none;
+    border:none;
+    width:150px;
+    float:right;
+    font-size: 21px;
+    
+    font-family: "VW Head";
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    color:white;
+}
+
+.comps{
+    top:0px;
+    left: 0px;
     position: absolute;
-    top:410px;
+    display: none;
+}
+
+.comps.ativo{
+    display: block;
+}
+
+/*///////////////////////////////////////////*/
+.comp1{
     height: 57px;
+    top:410px;
+    width: 100%;
 }
 
 .comp1 input{
     display:inline;
     height: 57px;
-    padding: 0px;
     margin: 0px;
     border:none;
 }
@@ -40,28 +87,110 @@ body{
 .comp1 input.text{
     width: 518px;
     float:left;
+    font-size: 21px;
 }
 
-.comp1 input.btn{
-    background-color: #e86623;
-    outline: none;
-    border:none;
-    width:153px;
-    float:right;
+
+
+/*///////////////////////////////////////////*/
+
+.comp2{
+    margin-top: 320px;
 }
 
-.comp1 .termos {
+.comp2 p {
+  font-size: 15px;
+  font-family: "VW Text";
+  color: white;
+  line-height: 1.2;
+  text-align: left;
+  width: 600px;
+  font-weight: 100;
+}
+
+.comp2 input{
+    margin-top: 40px;
+    float: left;
+    height:42px;
+}
+
+/*///////////////////////////////////////////*/
+
+
+.comp3{
+    margin-top: 320px;
+    width:470px;
+}
+
+.comp3 .label{
+    display: block;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: "VW Text";
+    color: white;
+    text-align: left;
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+
+.comp3 .text{
+    height: 36px;
+    display: block;
+    width: 100%;
+    margin-bottom: 36px;
+    font-size: 21px;
+}
+
+.comp3 .termos {
+    top:-23px;
+    position: relative;
     margin-top:24px;
     float:left;
     display:block;
     font-size: 20px;
     font-family: "VW Text";
-    color: rgb(255, 255, 255);
+    color: white;
     line-height: 1.2;
     text-align: left;
 }
 
-.comp1 .termos a{
+.comp3 .termos a{
     color: #e86623;
     font-weight: bold;
+}
+
+.comp3 .btn{
+    height:57px;
+    width:172px;
+    float: left;
+    margin-top: 10px;
+}
+
+/*///////////////////////////////////////////*/
+
+.comp4{
+    top:360px;
+}
+
+.comp4 p {
+  font-size: 21.5px;
+  font-family: "VW Head";
+  color: rgb(255, 255, 255);
+  line-height: 1.5;
+  text-align: left;
+  width: 430px;
+}
+
+.comp4 .espaco{
+    height:34px;
+    display: block;
+    /*background-color: red;*/
+    width: 100px;
+}
+
+.comp4 .btn{
+    width:72px;
+    height: 56px;
+    float: left;
+    margin-top:66px;
 }

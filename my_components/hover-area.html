@@ -1,0 +1,152 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="hover-area">
+    <style>
+        :host{
+            display:block;
+            position:relative;
+            height:25%;
+            background-size: cover;
+            overflow: hidden;
+            background-position:center center;
+            
+            cursor:pointer;
+        }
+        
+        :host:hover .container{
+            opacity:0;
+        }
+        
+        .container{
+            transition: opacity .3s;
+            display:block;
+            position: relative;
+            width:100%;
+            height:100%;
+            background-color:rgba(0,0,0,.5);
+        }
+        
+        
+        /*// corners*/
+        :host:hover .borders{
+            opacity:1;
+            width:100%;
+            height:100%;
+            top: 0px;
+            left: 0px;
+            
+            background-size: auto 40px;
+        }
+        
+        .borders{
+            pointer-events:none;
+            opacity:0;
+            transition: all .3s;
+            
+            display:block;
+            position:absolute;
+            top:15px;
+            left: 15px;
+            width:calc(100% - 30px);
+            height:calc(100% - 30px);
+            
+            background-image: var(--hover-image, none);
+            background-size: auto 45px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        
+        .borders div{
+            position:absolute;
+            display:block;
+            background-position: center center;
+            background-size: 100% 100%;
+        }
+        
+        .borders .corner{
+            width:35px;
+            height:35px;
+        }
+        
+        .borders .horizo{
+            width:calc(100% - 35px * 2);
+            height:13px;
+            left:35px;
+        }
+        
+        .borders .vertic{
+            width:13px;
+            height:calc(100% - 35px * 2);
+            top:35px;
+        }
+        
+        .borders .top{
+            top:0px;
+        }
+        
+        .borders .right{
+            right:0px;
+        }
+        
+        .borders .bottom{
+            bottom:0px;
+        }
+        
+        .borders .left{
+            left:0px;
+        }
+        
+        @media (max-width: 640px) {
+            .borders{
+                background-size: auto 4vh;
+            }
+            
+            .borders .corner{
+                width:5vw;
+                height:5vw;
+            }
+        
+            .borders .horizo{
+                width:calc(100% - 5vw * 2);
+                height:calc(5vw / 35 * 13);
+                left:5vw;
+            }
+            
+            .borders .vertic{
+                width:calc(5vw / 35 * 13);
+                height:calc(100% - 5vw * 2);
+                top:5vw;
+            }
+            
+            :host:hover .borders{
+                background-size: auto 3vh;
+            }
+        }
+    </style>
+    
+   <template>
+       <div class="container"></div>
+       <div class="borders">
+           <div class="corner top leFt"     style="background-image:url(/assets/bordas/Corner_TL.png)"></div>
+           <div class="horizo top"          style="background-image:url(/assets/bordas/Linha_T.png)"></div>
+           <div class="corner top right"    style="background-image:url(/assets/bordas/Corner_TR.png)"></div>
+           <div class="vertic right"        style="background-image:url(/assets/bordas/Linha_R.png)"></div>
+           <div class="corner bottom right" style="background-image:url(/assets/bordas/Corner_BR.png)"></div>
+           <div class="horizo bottom"       style="background-image:url(/assets/bordas/Linha_B.png)"></div>
+           <div class="corner bottom left"  style="background-image:url(/assets/bordas/Corner_BL.png)"></div>
+           <div class="vertic left"         style="background-image:url(/assets/bordas/Linha_L.png)"></div>
+       </div>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "hover-area",
+        
+        properties: {
+
+        },
+     
+    });       
+</script>

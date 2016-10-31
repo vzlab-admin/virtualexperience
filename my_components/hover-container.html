@@ -1,0 +1,66 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="hover-area.html" />
+
+<dom-module id="hover-container">
+    <style>
+        :host{
+            display:table-row;
+            /*position:relative;*/
+            height:auto;
+            background-color:gray;
+            overflow: hidden;
+        }
+        
+        :host:hover{
+            background-color:#ffc500;
+        }
+
+
+        #parte1{
+            background-image: url(/assets/bg1.jpg);
+            --hover-image: url(/assets/hoverImages/hover1.png);
+        }
+        
+        #parte2{
+            background-image: url(/assets/bg2.jpg);
+            --hover-image: url(/assets/hoverImages/hover2.png);
+        }
+        
+        #parte3{
+            background-image: url(/assets/bg3.jpg);
+            --hover-image: url(/assets/hoverImages/hover3.png);
+        }
+        
+        #parte4{
+            background-image: url(/assets/bg4.jpg);
+            --hover-image: url(/assets/hoverImages/hover4.png);
+        }
+        
+    </style>
+    
+
+    
+   <template>
+        <hover-area id="parte1" data="vr1" on-tap="openPagina"></hover-area>
+	    <hover-area id="parte2" data="vr2" on-tap="openPagina"></hover-area>
+	    <hover-area id="parte3" data="slider" on-tap="openPagina"></hover-area>
+	    <hover-area id="parte4"></hover-area>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "hover-container",
+    
+        properties: {
+
+        },
+        
+        openPagina:function(e) {
+            // console.log(e.target.parentElement.getAttribute("data"))
+            vr=document.querySelector(".pagina."+e.target.parentElement.getAttribute("data"))
+            vr.show()
+        }
+    });
+</script>

@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<!--<base href="/music/teste1/teste2/on/">-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<meta name="viewport" content="initial-scale=1.0">
+		
+		<link rel="stylesheet" href="estilos.css" type="text/css" />
+		<link rel="stylesheet" href="comp1.css" type="text/css" />
+
+
+		<script type="text/javascript">
+		   var checked=false;
+		   
+		   var mycheck=function(alvo){
+                alvo.classList.toggle("ativo");
+                
+                if(alvo.classList.contains("ativo")){
+                    checked=true;
+                }else{
+                    checked=false;
+                }
+            }
+            
+            var enviar=function(){
+                if(checked){
+                    window.open("comp3.html","_self")
+                }else{
+                    alert("Por favor aceite os termos e condições de uso de imagem.");
+                }
+            }
+		</script>
+
+	</head>
+
+	<body>
+        <div class="area">
+            <b>Então você conseguiu.</b>
+            <br>
+            E agora pode provar isso para todo mundo.
+            
+            <input class="text" type="text" placeholder="ID Visitante" maxlength="5">
+            <input class="text" type="password" placeholder="Senha" maxlength="5">
+            <div class="termos"> <div class="checker" onclick="mycheck(this)"></div> Li e aceito os <a href="comp2.html">termos de uso de imagem</a>.</div>
+            <input class="btn" type="submit" value="ENVIAR" onclick="enviar()">
+        </div>
+        
+        
+	</body>
+</html>
