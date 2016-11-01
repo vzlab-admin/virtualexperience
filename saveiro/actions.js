@@ -143,7 +143,7 @@ var verificaForm = function(form, callback) {
     });
 }
 
-function sendData(data, URL) {
+function sendData(data, URL, callback) {
     var XHR = new XMLHttpRequest();
     var urlEncodedData = "";
     var urlEncodedDataPairs = [];
@@ -167,6 +167,13 @@ function sendData(data, URL) {
     XHR.addEventListener('error', function(event) {
         alert('Oups! Something goes wrong.');
     });
+    
+    // avia callback quando resposta for positiva
+    XHR.onreadystatechange = function() {
+        if (XHR.readyState == XMLHttpRequest.DONE && XHR.status>=200 && XHR.status<300) {
+            callback(XHR.responseText);
+        }
+    }
 
     // We setup our request
     XHR.open('POST', URL);
