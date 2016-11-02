@@ -17,22 +17,22 @@
 
 
         #parte1{
-            background-image: url(/assets/bg1.jpg);
+            background-image: url(/assets/bgsTop/bg1.jpg);
             --hover-image: url(/assets/hoverImages/hover1.png);
         }
         
         #parte2{
-            background-image: url(/assets/bg2.jpg);
+            background-image: url(/assets/bgsTop/bg2.jpg);
             --hover-image: url(/assets/hoverImages/hover2.png);
         }
         
         #parte3{
-            background-image: url(/assets/bg3.jpg);
+            background-image: url(/assets/bgsTop/bg3.jpg);
             --hover-image: url(/assets/hoverImages/hover3.png);
         }
         
         #parte4{
-            background-image: url(/assets/bg4.jpg);
+            background-image: url(/assets/bgsTop/bg4.jpg);
             --hover-image: url(/assets/hoverImages/hover4.png);
         }
         
@@ -40,12 +40,13 @@
     
 
     
-   <template>
+    <template>
         <hover-area id="parte1" data="vr1" on-tap="openPagina"></hover-area>
-	    <hover-area id="parte2" data="vr2" on-tap="openPagina"></hover-area>
-	    <hover-area id="parte3" data="slider" on-tap="openPagina"></hover-area>
-	    <hover-area id="parte4"></hover-area>
-   </template>
+        <hover-area id="parte2" data="vr2" on-tap="openPagina"></hover-area>
+        <hover-area id="parte3" data="vr3" on-tap="openPagina"></hover-area>
+        <!--<hover-area id="parte3" data="slider" on-tap="openPagina"></hover-area>-->
+        <hover-area id="parte4" data="montagem" on-tap="openPagina"></hover-area>
+    </template>
     
 </dom-module>
 
@@ -54,13 +55,20 @@
         is: "hover-container",
     
         properties: {
-
+            data:{
+                type:Object,
+                observe:'getData'
+            }
         },
         
         openPagina:function(e) {
             // console.log(e.target.parentElement.getAttribute("data"))
             vr=document.querySelector(".pagina."+e.target.parentElement.getAttribute("data"))
             vr.show()
+        },
+        
+        getData:function(e){
+            console.log(e)
         }
     });
 </script>

@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html" />
-<link rel="import" href="exit-button.html">
+<link rel="import" href="info-bar.html">
 <link rel="import" href="vz-slider.html" />
+<link rel="import" href="exit-button.html">
 
 <dom-module id="full-slider">
     <style>
@@ -50,21 +51,29 @@
             background-size:100% 100%;
             background-position: center center;
             opacity:0;
+        },
+        
+        
+        info-bar{
+            --my-background-image:url(/assets/montagem.jpg);
         }
-
+        
     </style>
     
 
     
    <template>
-        <vz-slider on-slide="slideUpdate"></vz-slider>
+        <vz-slider id="slider" on-slide="slideUpdate"></vz-slider>
         <div id="container" class="container">
             <div class="img" style="background-image:url(/assets/sliderImages/1.png)"></div>
             <div class="img" style="background-image:url(/assets/sliderImages/2.png)"></div>
             <div class="img" style="background-image:url(/assets/sliderImages/3.png)"></div>
             <div class="img" style="background-image:url(/assets/sliderImages/4.png)"></div>
         </div>
-        <exit-button on-tap="hide"></exit-button>
+        <info-bar id="info">
+            <content select=".infoBar" class="infoBar"></content>
+        </info-bar>
+        <exit-button  on-tap="hide"></exit-button>
    </template>
     
 </dom-module>
@@ -91,11 +100,13 @@
                 
                 this.async(function(){
                     this.style.display="none";
+                    this.$.info.classList.remove("ativo")
                 },500)
             }
         },
         
         show:function(){
+            this.$.slider.value=0;
             if(this.classList.contains("ativo")==false){
                 this.style.display="block";
                 
@@ -104,6 +115,8 @@
                 },100)
                 
             }
+            
+            this.slideUpdate({detail:{value:this.$.slider.value}});
         },
         
         ready:function(){
@@ -111,7 +124,7 @@
             
             var trans=[];
             
-            var pTrans=.25;
+            var pTrans=.4;
             var nImages=this.imgs.length;
             var nTrans=nImages-1;
             
@@ -123,7 +136,6 @@
                 trans[i]=this.getPeriodo(i,nImages, vTrans, vImages) 
             }
             this.trans=trans;
-            console.log("opa", trans)
         },
         
         slideUpdate:function(e){
@@ -189,8 +201,7 @@
                     retorno=1;
                 }
             }
-            
-            
+
             return parseFloat(retorno.toFixed(2));
         }
     });

@@ -1,0 +1,209 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="hit-content">
+    <style>
+        :host{
+            display:block;
+            opacity:1;
+            position:absolute;
+            width:910px;
+            height:252px;
+            top:0px;
+            left:0px;
+            transition:opacity .5s ease-in-out;
+            
+            top:50%;
+            left:50%;
+            
+            padding:70px;
+            padding-left: 350px;
+            box-sizing:border-box;
+            
+            cursor:pointer;
+            
+            transform: translateY(-50%) translateX(-50%);
+        }
+        
+        :host.inativo{
+            opacity:0;
+        }
+        
+        .borders{
+            pointer-events:none;
+            opacity:1;
+            transition: all .3s;
+            
+            display:block;
+            position:absolute;
+            top:0px;
+            left: 0px;
+            width:100%;
+            height:100%;
+            
+            background-image: var(--hover-image, none);
+            background-size: auto 45px;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+        
+        .borders:after{
+            content: " ";
+            position:absolute;
+            display:block;
+            top: -40px;
+            left: -13px;
+            
+            width:100%;
+            height:100%;
+            
+            /*background-color: rgba(255,0,0,.2);*/
+            
+            background-image: var(--my-background-image, none);
+            background-position:top left;
+            background-repeat: no-repeat;
+            background-size: auto 90%;
+        }
+        
+        .borders div{
+            position:absolute;
+            display:block;
+            background-position: center center;
+            background-size: 100% 100%;
+        }
+        
+        .borders .corner{
+            width:90px;
+            height:90px;
+        }
+        
+        .borders .horizo{
+            width:calc(100% - 90px * 2);
+            height:90px;
+            left:90px;
+        }
+        
+        .borders .vertic{
+            width:90px;
+            height:calc(100% - 90px * 2);
+            top:90px;
+        }
+        
+        .borders .top{
+            top:0px;
+        }
+        
+        .borders .right{
+            right:0px;
+        }
+        
+        .borders .bottom{
+            bottom:0px;
+        }
+        
+        .borders .left{
+            left:0px;
+        }
+        
+        .borders .meio{
+            position:absolute;
+            top:90px;
+            left:90px;
+            display:block;
+            width: calc(100% - 180px);
+            height: calc(100% - 180px);
+            background-color: rgba(33,78,92,.8);
+        }
+        
+        .borders .corner.bottom.left:after{
+            content:" ";
+            display: block;
+            position:absolute;
+            left:100%;
+            top:56.34%;
+            width:165%;
+            height:9.25%;
+            background-image: url(/assets/hitArea/branco.png);
+        }
+        
+        .content{
+            position:relative;
+            width:100%;
+            height:100%;
+            text-align:center;
+
+            font-size: 22px;
+            font-family: "VW Head";
+            color: rgb(255, 255, 255);
+            line-height: 1.2;
+            pointer-events: none;
+        }
+        
+        .content .previa{
+            font-size: 18px;
+            font-family: "VW Head";
+            color: rgb(46, 174, 227);
+            font-weight: bold;
+            line-height: 1.2;
+            margin-top:30px;
+        }
+    </style>
+    
+   <template>
+        <div class="borders">
+           <div class="corner top leFt"     style="background-image:url(/assets/hitArea/Corner_TL.png)"></div>
+           <div class="horizo top"          style="background-image:url(/assets/hitArea/Linha_T.png)"></div>
+           <div class="corner top right"    style="background-image:url(/assets/hitArea/Corner_TR.png)"></div>
+           <div class="vertic right"        style="background-image:url(/assets/hitArea/Linha_R.png)"></div>
+           <div class="corner bottom right" style="background-image:url(/assets/hitArea/Corner_BR.png)"></div>
+           <div class="horizo bottom"       style="background-image:url(/assets/hitArea/Linha_B.png)"></div>
+           <div class="corner bottom left"  style="background-image:url(/assets/hitArea/Corner_BL.png)"></div>
+           <div class="vertic left"         style="background-image:url(/assets/hitArea/Linha_L.png)"></div>
+           <div class="meio"></div>
+       </div>
+       
+       <div class="content">
+           <content select=".contentText"></content>
+           <div class="previa">Clique e veja uma prévia da experiência.</div>
+       </div>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "hit-content",
+        
+        listeners: {
+            'tap': 'hide',
+        },
+    
+        
+        properties: {
+            
+        },
+        
+        ready:function(){
+
+        },
+
+        
+        show:function(){
+            if(this.style.display=="block"){
+                this.style.display="block";
+                
+                this.async(function(){
+                    this.classList.remove("inativo");    
+                },50)
+            }
+        },
+        
+        hide:function(){
+            if(this.classList.contains("inativo")==false){
+                this.classList.add("inativo");  
+                 this.async(function(){
+                     this.style.display="none"; 
+                },500)
+            }
+        }
+    });       
+</script>
