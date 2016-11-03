@@ -1,13 +1,9 @@
 <link rel="import" href="../bower_components/polymer/polymer.html" />
-<link rel="import" href="info-bar.html">
-<link rel="import" href="exit-button.html">
-<link rel="import" href="hit-content.html">
 
 <dom-module id="full-vr">
     <style>
         :host{
-            display:none;
-            opacity:0;
+            display:block;
             position:absolute;
             width:100%;
             height:100%;
@@ -15,10 +11,6 @@
             left:0px;
             background-color:pink;
             transition:opacity .5s ease-in-out;
-        }
-        
-        :host.ativo{
-            opacity:1;
         }
         
         #panorama{
@@ -32,23 +24,11 @@
         }
         
         
-        hit-content{
-            --my-background-image: var(--hit-logo, url(/assets/hitArea/logos/VWeVC.png));
-        }
-
     </style>
     
    <template>
         <div id="panorama"></div>
-        
-        <hit-content id="hit">
-            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
-        </hit-content>
-        
-        <info-bar id="info">
-            <content select=".infoBar" class="infoBar"></content>
-        </info-bar>
-        <exit-button  on-tap="hide"></exit-button>
+        <content select=".overlay" id="overlay"></content>
    </template>
     
 </dom-module>
@@ -63,12 +43,13 @@
                 value:null
             },
 
-            
             settings:{
                 type:String,
                 value:undefined,
             }
         },
+        
+        
         
         ready:function(){
             this.setVR(vrSettings[this.settings]);
@@ -78,29 +59,73 @@
         setVR:function(settings){
             // console.log(this.$.panorama)
             this.vr=pannellum.viewer(this.$.panorama, settings);
+            this.vr.parouCallback=function(){
+                this.async(this.showOverlay,2000);
+            }.bind(this);
+            
+            this.vr.startCallback=function(){
+                this.hideOverlay();
+            }.bind(this);
         },
         
-        hide:function(){
-            if(this.style.display=="block"){
-                this.classList.remove("ativo");
-                
-                this.async(function(){
-                    this.style.display="none";
-                    this.$.info.classList.remove("ativo")
-                },500)
+        update:function(){
+            var renderer=this.vr.getRenderer();
+            renderer.resize();
+            this.vr.animate();
+        },
+        
+        close:function(){
+            // this.showOverlay();
+        },
+        
+        showOverlay:function(){
+            var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
+            if(overlay && typeof overlay["show"]=="function"){
+                overlay["show"].apply(overlay, undefined);
             }
         },
         
-        show:function(){
-            if(this.classList.contains("ativo")==false){
-                this.style.display="block";
-                
-                var renderer=this.vr.getRenderer();
-                renderer.resize();
-                this.vr.animate();
-                
-                this.classList.add("ativo");
+        hideOverlay:function(){
+            var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
+            if(overlay && typeof overlay["hide"]=="function"){
+                overlay["hide"].apply(overlay, undefined);
             }
-        }
+        },
+        
+        
+        
+        
+        // ready:function(){
+        //     this.setVR(vrSettings[this.settings]);
+        //     // this.style.display="none";
+        // },
+        
+        // setVR:function(settings){
+        //     // console.log(this.$.panorama)
+        //     this.vr=pannellum.viewer(this.$.panorama, settings);
+        // },
+        
+        // hide:function(){
+        //     if(this.style.display=="block"){
+        //         this.classList.remove("ativo");
+                
+        //         this.async(function(){
+        //             this.style.display="none";
+        //             this.$.info.classList.remove("ativo")
+        //         },500)
+        //     }
+        // },
+        
+        // show:function(){
+        //     if(this.classList.contains("ativo")==false){
+        //         this.style.display="block";
+                
+        //         var renderer=this.vr.getRenderer();
+        //         renderer.resize();
+        //         this.vr.animate();
+                
+        //         this.classList.add("ativo");
+        //     }
+        // }
     });       
 </script>

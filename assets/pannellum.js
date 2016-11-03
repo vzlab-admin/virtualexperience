@@ -35,6 +35,7 @@ window.pannellum = (function(window, document, undefined) {
 function Viewer(container, initialConfig) {
 
 // Declare variables
+
 var config,
     renderer,
     oldRenderer,
@@ -82,6 +83,9 @@ var defaultConfig = {
     dynamic: false,
     keyboardZoom: true
 };
+
+//marcelo
+var eu=this;
 
 // Initialize container
 container = typeof container === 'string' ? document.getElementById(container) : container;
@@ -564,6 +568,8 @@ function onDocumentMouseDown(event) {
     config.autoRotate = false;
     
     isUserInteracting = true;
+    // marcelo
+    comeca()
     latestInteraction = Date.now();
     
     onPointerDownPointerX = pos.x;
@@ -631,6 +637,9 @@ function onDocumentMouseUp() {
         return;
     }
     isUserInteracting = false;
+    // marcelo
+    parou()
+    
     if (Date.now() - latestInteraction > 15) {
         // Prevents jump when user rapidly moves mouse, stops, and then
         // releases the mouse button
@@ -667,6 +676,10 @@ function onDocumentTouchStart(event) {
                                              (pos0.y - pos1.y) * (pos0.y - pos1.y));
     }
     isUserInteracting = true;
+    
+    // marcelo
+    comeca()
+    
     latestInteraction = Date.now();
     
     onPointerDownYaw = config.yaw;
@@ -718,6 +731,8 @@ function onDocumentTouchMove(event) {
  */
 function onDocumentTouchEnd() {
     isUserInteracting = false;
+    // marcelo
+    parou()
     if (Date.now() - latestInteraction > 150) {
         pitchSpeed = yawSpeed = 0;
     }
@@ -1113,6 +1128,26 @@ function animate() {
         animating = false;
     }
 }
+
+// marcelo
+function parou(){
+    // console.log("para")
+    if(eu.parouCallback && typeof eu.parouCallback=="function"){
+        eu.parouCallback();
+    }
+}
+
+function comeca(){
+    // console.log("comeca")
+    if(eu.startCallback && typeof eu.startCallback=="function"){
+        eu.startCallback();
+    }
+}
+
+this.startCallback=undefined,
+this.parouCallback=undefined,
+this.animate=animateInit;
+
 
 /**
  * Renders panorama view.
@@ -1820,8 +1855,7 @@ this.getRenderer = function() {
 };
 
 
-// marcelo
-this.animate=animateInit;
+
 
 /**
  * Sets update flag for dynamic content.

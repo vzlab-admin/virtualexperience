@@ -1,0 +1,120 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="sub-pagina">
+    <style>
+        :host{
+            display:block;
+            position:absolute;
+            height:100%;
+            width:100%;
+            top:0px;
+            transform: translateY(calc(100% - 95px));
+            transition: transform .5s ease-in-out;
+        }
+        
+        :host.ativo{
+            transform: translateY(0px);
+        }
+        
+    
+        .barra{
+            display:block;
+            position:absolute;
+            top:0px;
+            width:100%;
+            height:95px;
+            
+            box-sizing:border-box;
+            
+            border-top:2px solid transparent;
+            border-bottom:2px solid #e86623;
+            
+            transition: border-bottom .5s ease-in-out;
+            text-align:center;
+        }
+        
+        :host.ativo .barra{
+            border-top:2px solid #e86623;
+            border-bottom:2px solid transparent;
+        }
+        
+        
+        .barra .seta{
+            cursor:pointer;
+            margin-top:25px;
+            margin-bottom:25px;
+            width:45px;
+            height:45px;
+            display:inline-block;
+            background-image:url(../assets/images/shared/seta.png);
+            background-size:cover;
+            background-repeat: no-repeat;
+            transition: transform .5s ease-in-out;
+        }
+        
+        :host.ativo .barra .seta{
+            transform: rotate(180deg);
+        }
+        
+        .container{
+            display:block;
+            position:absolute;
+            width:100%;
+            height:100%;
+            background-color:rgba(0,255,0,.5);
+            transform: translateY(95px);
+            transition: transform .5s ease-in-out;
+            
+            background-image:  var(--meu-bg);
+            background-size:  cover;
+            background-position:  center center;
+            background-repeat:  no-repeat;
+        }
+        
+        :host.ativo .container{
+            transform: translateY(0px);
+        }
+        
+
+    </style>
+    
+
+    
+   <template>
+        <div class="container">
+            <content select=".subContent"></content>
+        </div>
+        <div class="barra">
+            <div class="seta" on-tap="meuTap"></div>
+        </div>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "sub-pagina",
+    
+        properties: {
+            meuBg:{
+                type:String,
+                observer:"updateEstilos"
+            }
+        },
+        
+        meuTap:function(){
+            this.classList.toggle("ativo")
+        },
+
+        ready:function(){
+            if(this.meuBg!=undefined){
+                this.updateEstilos();
+            }
+        },
+        
+        updateEstilos:function(){
+            this.customStyle['--meu-bg'] = "url("+this.meuBg+")";
+            this.updateStyles();
+        },
+    });
+</script>

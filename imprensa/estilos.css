@@ -1,0 +1,124 @@
+body{
+    background-color: #030d13;
+    
+    background-image: url(assets/bg.png);
+    background-repeat: no-repeat;
+    /*background-size: 100% auto;*/
+    background-position: center top;
+}
+
+.container{
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+    padding-right: 40px;
+    padding-left: 40px;
+    
+    font-size: 20px;
+}
+
+.logoContainer{
+    height:315px;
+    
+    background-image: url(assets/logo.png);
+    background-repeat: no-repeat;
+    background-size: auto 71%;
+    background-position: center center;
+}
+
+
+.chamada {
+    margin-top: 50px;
+    margin-bottom: 25px;
+    
+    font-size: 1em;
+    font-family: "VW Head";
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.433;
+    text-align: center;
+}
+
+.infos {
+    margin-bottom: 35px;
+    
+    font-size: 1em;
+    font-family: "VW Text";
+    color: rgb(44, 92, 129);
+    line-height: 1.5;
+    text-align: center;
+}
+
+.box{
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+}
+
+.videoInfo {
+    margin-bottom: 160px;
+    
+    font-size: 1em;
+    font-family: "VW Text";
+    color: rgb(255, 255, 255);
+    line-height: 1.5;
+    text-align: center;
+    font-weight: lighter;
+}
+
+.videoInfo a{
+    color:#e86623;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+
+.divisao{
+  font-size: 1.1em;
+  font-family: "VW Head";
+  color: rgb(232, 102, 35);
+  text-transform: uppercase;
+  line-height: 1.364;
+  text-align: left;
+  
+  padding-bottom: 22px;
+  border-bottom: 2px solid #e86623;
+}
+
+
+.espaco{
+    height: 100px;
+}
+
+@media (max-width:600px){
+    .logoContainer{
+        height:220px;
+    }
+    
+    .chamada{
+        margin-top: 25px;
+        margin-bottom: 12px;
+    }
+    
+    .container{
+        padding-right: 20px;
+        padding-left: 20px;
+        font-size: 3vw;
+    }
+    
+    .box{
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    
+    
+    .videoInfo {
+        margin-bottom: 60px;
+    }
+}

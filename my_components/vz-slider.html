@@ -111,11 +111,11 @@
             value:{
                 type:Number,
                 value:0,
-                observer: '_porra'
+                observer: 'updateValue'
             },
         },
         
-        _porra:function(){
+        updateValue:function(){
             this.fire('slide', {value: this.value});
         }
     });

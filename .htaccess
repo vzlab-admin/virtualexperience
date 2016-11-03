@@ -1,1 +1,0 @@
-RewriteRule ^/landing/(.*)$ /$1  [R]

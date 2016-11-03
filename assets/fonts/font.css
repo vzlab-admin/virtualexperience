@@ -23,7 +23,7 @@
 }
 
 @font-face {
-  font-family: 'VW Head ExtraBold';
+  font-family: 'VW Head';
   src: url('VWHead-ExtraBold.eot'); /* IE9 Compat Modes */
   src: url('VWHead-ExtraBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('VWHead-ExtraBold.woff') format('woff'), /* Modern Browsers */
@@ -35,7 +35,7 @@
 }
 
 @font-face {
-  font-family: 'VW Head Light';
+  font-family: 'VW Head';
   src: url('VWHead-Light.eot'); /* IE9 Compat Modes */
   src: url('VWHead-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('VWHead-Light.woff') format('woff'), /* Modern Browsers */
@@ -95,7 +95,7 @@
 }
 
 @font-face {
-  font-family: 'VW Text Light';
+  font-family: 'VW Text';
   src: url('VWText-Light.eot'); /* IE9 Compat Modes */
   src: url('VWText-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
        url('VWText-Light.woff') format('woff'), /* Modern Browsers */

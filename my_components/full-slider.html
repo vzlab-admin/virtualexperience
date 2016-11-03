@@ -1,20 +1,17 @@
 <link rel="import" href="../bower_components/polymer/polymer.html" />
-<link rel="import" href="info-bar.html">
 <link rel="import" href="vz-slider.html" />
-<link rel="import" href="exit-button.html">
 
 <dom-module id="full-slider">
     <style>
         :host{
-            display:none;
-            opacity:0;
+            display:block;
             position:absolute;
             width:100%;
             height:100%;
             top:0px;
             left:0px;
             
-            background-image: url(/assets/slider.jpg);
+            background-image: url(../assets/images/CROSS/slider.jpg);
             background-color:#304c8b;
             background-size:100% auto;
             background-repeat:no-repeat;
@@ -22,17 +19,13 @@
             
             transition:opacity .5s ease-in-out;
         }
-        
-        :host.ativo{
-            opacity:1;
-        }
-        
+
         vz-slider{
+            top:400px;
             width:400px;
         }
         
         .container{
-            background-color: rgba(0,0,0,.5);
             position: absolute;
             height: calc(100vw * 0.475 / 1.4183);
             width: 47.5%;
@@ -58,22 +51,25 @@
             --my-background-image:url(/assets/montagem.jpg);
         }
         
+        vz-descricao{
+            top:25%;
+        }
+        
     </style>
     
 
     
    <template>
-        <vz-slider id="slider" on-slide="slideUpdate"></vz-slider>
         <div id="container" class="container">
-            <div class="img" style="background-image:url(/assets/sliderImages/1.png)"></div>
-            <div class="img" style="background-image:url(/assets/sliderImages/2.png)"></div>
-            <div class="img" style="background-image:url(/assets/sliderImages/3.png)"></div>
-            <div class="img" style="background-image:url(/assets/sliderImages/4.png)"></div>
+            <div class="img" style="background-image:url(../assets/images/CROSS/slider/1.png)"></div>
+            <div class="img" style="background-image:url(../assets/images/CROSS/slider/2.png)"></div>
+            <div class="img" style="background-image:url(../assets/images/CROSS/slider/3.png)"></div>
+            <div class="img" style="background-image:url(../assets/images/CROSS/slider/4.png)"></div>
         </div>
-        <info-bar id="info">
-            <content select=".infoBar" class="infoBar"></content>
-        </info-bar>
-        <exit-button  on-tap="hide"></exit-button>
+        
+        <vz-descricao class="overlay" com-slider="true" on-slide="slideUpdate">
+        	<content select=".contentText"></content>
+        </vz-descricao>
    </template>
     
 </dom-module>
@@ -94,37 +90,12 @@
             }
         },
         
-        hide:function(){
-            if(this.style.display=="block"){
-                this.classList.remove("ativo");
-                
-                this.async(function(){
-                    this.style.display="none";
-                    this.$.info.classList.remove("ativo")
-                },500)
-            }
-        },
-        
-        show:function(){
-            this.$.slider.value=0;
-            if(this.classList.contains("ativo")==false){
-                this.style.display="block";
-                
-                this.async(function(){
-                    this.classList.add("ativo");
-                },100)
-                
-            }
-            
-            this.slideUpdate({detail:{value:this.$.slider.value}});
-        },
-        
         ready:function(){
             this.imgs=this.querySelectorAll(".img")
             
             var trans=[];
             
-            var pTrans=.4;
+            var pTrans=10;
             var nImages=this.imgs.length;
             var nTrans=nImages-1;
             
@@ -136,6 +107,8 @@
                 trans[i]=this.getPeriodo(i,nImages, vTrans, vImages) 
             }
             this.trans=trans;
+            
+            this.slideUpdate({detail:{value:0}})
         },
         
         slideUpdate:function(e){

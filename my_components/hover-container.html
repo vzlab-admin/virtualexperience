@@ -17,23 +17,23 @@
 
 
         #parte1{
-            background-image: url(/assets/bgsTop/bg1.jpg);
-            --hover-image: url(/assets/hoverImages/hover1.png);
+            background-image: url(../assets/images/home/bgsAreas/bg1.jpg);
+            --hover-image: url(../assets/images/home/hoverImages/hover1.png);
         }
         
         #parte2{
-            background-image: url(/assets/bgsTop/bg2.jpg);
-            --hover-image: url(/assets/hoverImages/hover2.png);
+            background-image: url(../assets/images/home/bgsAreas/bg2.jpg);
+            --hover-image: url(../assets/images/home/hoverImages/hover2.png);
         }
         
         #parte3{
-            background-image: url(/assets/bgsTop/bg3.jpg);
-            --hover-image: url(/assets/hoverImages/hover3.png);
+            background-image: url(../assets/images/home/bgsAreas/bg3.jpg);
+            --hover-image: url(../assets/images/home/hoverImages/hover3.png);
         }
         
         #parte4{
-            background-image: url(/assets/bgsTop/bg4.jpg);
-            --hover-image: url(/assets/hoverImages/hover4.png);
+            background-image: url(../assets/images/home/bgsAreas/bg4.jpg);
+            --hover-image: url(../assets/images/home/hoverImages/hover4.png);
         }
         
     </style>
@@ -41,11 +41,10 @@
 
     
     <template>
-        <hover-area id="parte1" data="vr1" on-tap="openPagina"></hover-area>
-        <hover-area id="parte2" data="vr2" on-tap="openPagina"></hover-area>
-        <hover-area id="parte3" data="vr3" on-tap="openPagina"></hover-area>
-        <!--<hover-area id="parte3" data="slider" on-tap="openPagina"></hover-area>-->
-        <hover-area id="parte4" data="montagem" on-tap="openPagina"></hover-area>
+        <hover-area id="parte1" data="0" on-tap="openPagina"></hover-area>
+        <hover-area id="parte2" data="1" on-tap="openPagina"></hover-area>
+        <hover-area id="parte3" data="2" on-tap="openPagina"></hover-area>
+        <hover-area id="parte4" data="3" on-tap="openPagina"></hover-area>
     </template>
     
 </dom-module>
@@ -55,20 +54,17 @@
         is: "hover-container",
     
         properties: {
-            data:{
-                type:Object,
-                observe:'getData'
-            }
+            
         },
         
         openPagina:function(e) {
-            // console.log(e.target.parentElement.getAttribute("data"))
-            vr=document.querySelector(".pagina."+e.target.parentElement.getAttribute("data"))
-            vr.show()
-        },
-        
-        getData:function(e){
-            console.log(e)
+            var alvo=e.target;
+            if(e.target.tagName!="HOVER-AREA"){
+                alvo=e.target.parentElement
+            }
+            
+            var pagina=document.querySelectorAll("vz-pagina")[parseInt(alvo.getAttribute("data"))];
+            pagina.show()
         }
     });
 </script>

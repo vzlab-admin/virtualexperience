@@ -1,21 +1,17 @@
 <link rel="import" href="../bower_components/polymer/polymer.html" />
 <link rel="import" href="../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="info-bar.html">
-<link rel="import" href="vz-slider.html" />
-<link rel="import" href="exit-button.html">
 
 <dom-module id="full-montagem">
     <style>
         :host{
-            display:none;
-            opacity:0;
+            display:block;
             position:absolute;
             width:100%;
             height:100%;
             top:0px;
             left:0px;
             
-            background-image: url(/assets/montagem.jpg);
+            background-image: url(../assets/images/Concierge/montagem.jpg);
             background-size:cover;
             background-repeat:no-repeat;
             background-position: center center;
@@ -24,7 +20,7 @@
         }
         
         :host.ativo{
-            opacity:1;
+            
         }
         
         .meio{
@@ -50,32 +46,33 @@
         }
         
         .meio #freio{
-            background-image: url(/assets/montagem_freio.png);
+            background-image: url(../assets/images/Concierge/montagem_freio.png);
             
         }
         
         .meio #disco{
-            background-image: url(/assets/montagem_disco.png);
+            background-image: url(../assets/images/Concierge/montagem_disco.png);
+        }
+        
+        vz-slider{
+            width:50%;
+            left:25%;
+            position:absolute;
+            bottom:calc(20% + 100px);
         }
 
     </style>
     
     
    <template>
-        <vz-slider id="slider" on-slide="slideUpdate"></vz-slider>
         <div id="container" class="container">
             <div class="meio">
                 <div id="freio" class="dentro"></div>
                 <div id="disco" class="dentro"></div>
             </div>
         </div>
-        <info-bar id="info">
-            <content select=".infoBar" class="infoBar"></content>
-        </info-bar>
-        <exit-button  on-tap="hide"></exit-button>
-        
-        
-        
+        <vz-slider id="slider" on-slide="slideUpdate"></vz-slider>
+        <content select=".overlay" id="overlay"></content>
    </template>
     
 </dom-module>
@@ -98,31 +95,6 @@
         
         meuResize:function(){
             this.slideUpdate({detail:{value:this.$.slider.value}});
-        },
-        
-        hide:function(){
-            if(this.style.display=="block"){
-                this.classList.remove("ativo");
-                
-                this.async(function(){
-                    this.style.display="none";
-                    this.$.info.classList.remove("ativo")
-                },500)
-            }
-        },
-        
-        show:function(){
-            this.$.slider.value=0;
-            if(this.classList.contains("ativo")==false){
-                this.style.display="block";
-                
-                this.async(function(){
-                    this.classList.add("ativo");
-                },100)
-                
-            }
-            
-            // this.slideUpdate({detail:{value:this.$.slider.value}});
         },
         
         ready:function(){
@@ -149,5 +121,12 @@
                 this.$.freio.style.backgroundPositionY="calc(50% - " + ((18/1926)*this.clientWidth*valor) +"px)"
             }
         },
+        
+        close:function(){
+            var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
+            if(overlay && typeof overlay["show"]=="function"){
+                overlay["show"].apply(overlay, undefined);
+            }
+        }
     });
 </script>

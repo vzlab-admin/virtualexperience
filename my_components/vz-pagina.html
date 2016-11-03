@@ -1,0 +1,119 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="sub-pagina.html">
+<link rel="import" href="exit-button.html">
+
+<dom-module id="vz-pagina">
+    <style>
+        :host{
+            display:none;
+            opacity:0;
+            position:fixed;
+            width:100%;
+            height:100%;
+            overflow:hidden;
+            top:0px;
+            left:0px;
+            transition:opacity .5s ease-in-out;
+            
+            overflow:hidden;
+        }
+        
+        :host.ativo{
+            opacity:1;
+        }
+
+        .myContent{
+            position:absolute;
+            width:100%;
+            height:100%;
+            top:0px;
+            left:0px;
+            
+            display:block;
+        }
+        
+        sub-pagina{
+            --meu-bg: url(../assets/images/Concierge/bgInferior.jpg)
+        }
+
+        
+        
+        
+    </style>
+    
+   <template>
+        <div class="myContent">
+            <content select=".topContent" id="topContent"></content>
+        </div>
+        
+        <sub-pagina id="info" meu-bg$="{{subBg}}">
+            <content select=".subContent" id="subContent"></content>
+        </sub-pagina>
+        
+        <exit-button  on-tap="hide"></exit-button>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "vz-pagina",
+        
+        properties: {
+            cascade:{
+                type:Array,
+                value:[],
+            },
+            
+            
+            subBg:{
+                type:String,
+                value:undefined,
+            }
+        },
+        
+        ready:function(){
+            
+        },
+        
+        hide:function(){
+            if(this.style.display=="block"){
+                this.classList.remove("ativo");
+                
+                this.async(function(){
+                    this.style.display="none";
+                    this.$.info.classList.remove("ativo")
+                },500);
+            }
+            
+            this.forwardFunction("close");
+        },
+        
+        show:function(){
+            if(this.classList.contains("ativo")==false){
+                this.style.display="block";
+                
+                this.async(function(){
+                    this.classList.add("ativo");
+                },50)
+            }
+            
+            this.forwardFunction("update");
+        },
+        
+        forwardFunction:function(nome, args){
+            var cascade=this.getCascadeElements();
+            
+            for(var i=0; i<cascade.length; i++){
+                if(cascade[i] && typeof cascade[i][nome] == "function"){
+                    cascade[i][nome].apply(cascade[i], args);
+                }
+            }
+        },
+        
+        getCascadeElements:function(){
+            return [Polymer.dom(this.$.topContent).getDistributedNodes()[0],
+            Polymer.dom(this.$.subContent).getDistributedNodes()[0]]
+        }
+    });       
+</script>

@@ -1,6 +1,5 @@
 <html>
 	<head>
-		<!--<base href="/music/teste1/teste2/on/">-->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<meta name="viewport" content="initial-scale=1.0">
@@ -8,13 +7,17 @@
 		<script type="text/javascript" src="assets/pannellum.js"></script>
 		<script type="text/javascript" src="assets/libpannellum.js"></script>
 
-		<link rel="import" href="my_components/main-router.html?v=1">
+		<link rel="import" href="my_components/vz-pagina.html">
 		<link rel="import" href="my_components/hover-container.html">
+		<link rel="import" href="my_components/hit-content.html">
+		<link rel="import" href="my_components/vz-descricao.html">
+		
 		<link rel="import" href="my_components/full-vr.html">
 		<link rel="import" href="my_components/full-slider.html">
 		<link rel="import" href="my_components/full-montagem.html">
-
+		
 		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
+		
 		<style type="text/css">
             body {
             	padding:0px;
@@ -23,9 +26,11 @@
             	
                 height: 100%;
                 width: 100%;
-                position: fixed;
+                position: absolute;
+                overflow:auto;
+                width:100%;
+                height:100%;
             }
-            
             
             .container{
         	    display: table;
@@ -38,7 +43,7 @@
         	    display: table-row;
 			    background-color: blue;
 			    height: auto;
-			    background-image: url(/assets/bgsTop/bg0.jpg);
+			    background-image: url(assets/images/home/bgsAreas/bg0.jpg);
 			    background-size: cover;
 			    background-position: center center;
 			    height:0px;
@@ -51,6 +56,14 @@
 			    margin-left: auto;
 			    margin-right: auto;
 			    display: block;
+            }
+            
+            .topTable{
+            	display:table;
+            }
+            
+            .topTable .topParts{
+            	display:table-cell;
             }
             
             .container .topArea .topContent .info{
@@ -70,11 +83,61 @@
 	            color:#e86623;
             }
             
-            .pagina.vr1{
-            	/*--hit-logo:url(/assets/hitArea/logos/VWeVC.png);*/
+            .logoArea{
+            	width:30%;
+            	position:relative;
             }
             
+            .logo{
+            	position:absolute;
+            	display:block;
+            	top:0px;
+            	left:0px;
+            	width:100%;
+            	height:100%;
+            	background-image: url("assets/images/home/logo.png");
+            	background-repeat:no-repeat;
+            	background-size:contain;
+            	background-position:center center;
+            }
             
+            @media (max-width: 1010px){
+            	.container .topArea .topContent{
+	        	    max-width: calc(100% - 40px);
+            	}
+            }
+            
+            @media (max-width: 600px){
+            	
+            	
+            	.logo{
+            		height:100%;
+            		width:100%;
+            	}
+            	
+            	.topTable .topParts{
+	            	display:block;
+	            	height:100%;
+	            	width:100%;
+	            	position:relative;
+	            }
+	            
+	            .topTable .topParts.logoArea{
+            		width:100%;
+            		height:150px;
+            	}
+	            
+	            .topTable{
+	            	display:block;
+	            	position:relative;
+	            }
+	            
+	            .container .topArea .topContent .info {
+	            	padding:20px;
+	            	text-align:center;
+	            	font-size: .6em;
+	            }
+            }
             
 		</style>
 
@@ -82,30 +145,30 @@
 		<script type="text/javascript">
 			
 			var vrSettings={
-				v1:{
+				fabrica1:{
 					"type": "cubemap",
 	                "cubeMap": [
-	                    "assets/360s/v1/face0.jpg",
-	                    "assets/360s/v1/face1.jpg",
-	                    "assets/360s/v1/face2.jpg",
-	                    "assets/360s/v1/face3.jpg",
-	                    "assets/360s/v1/face4.jpg",
-	                    "assets/360s/v1/face5.jpg"
+	                    "assets/images/360s/fabrica/tela 1/_Front_Fabrica.jpg",
+	                    "assets/images/360s/fabrica/tela 1/_Right_Fabrica.jpg",
+	                    "assets/images/360s/fabrica/tela 1/_Back_Fabrica.jpg",
+	                    "assets/images/360s/fabrica/tela 1/_Left_Fabrica.jpg",
+	                    "assets/images/360s/fabrica/tela 1/_Top_Fabrica.jpg",
+	                    "assets/images/360s/fabrica/tela 1/_Bottom_Fabrica.jpg"
 	                ],
 	                "showZoomCtrl":false,
 	                "showFullscreenCtrl":false,
 	                "autoLoad":true,
 				},
 				
-				v2:{
+				fabrica2:{
 					"type": "cubemap",
 	                "cubeMap": [
-	                    "assets/360s/v2/posz.jpg",
-	                    "assets/360s/v2/posx.jpg",
-	                    "assets/360s/v2/negz.jpg",
-	                    "assets/360s/v2/negx.jpg",
-	                    "assets/360s/v2/posy.jpg",
-	                    "assets/360s/v2/negy.jpg"
+	                    "assets/images/360s/fabrica/tela 2/_Front_Autostadt.jpg",
+	                    "assets/images/360s/fabrica/tela 2/_Right_Autostadt.jpg",
+	                    "assets/images/360s/fabrica/tela 2/_Back_Autostadt.jpg",
+	                    "assets/images/360s/fabrica/tela 2/_Left_Autostadt.jpg",
+	                    "assets/images/360s/fabrica/tela 2/_Top_Autostadt.jpg",
+	                    "assets/images/360s/fabrica/tela 2/_Bottom_Autostadt.jpg"
 	                ],
 	                
 	                "showZoomCtrl":false,
@@ -113,15 +176,48 @@
 	                "autoLoad":true,
 				},
 				
-				v3:{
+				tsi1:{
 					"type": "cubemap",
 	                "cubeMap": [
-	                    "assets/360s/v3/posz.jpg",
-	                    "assets/360s/v3/posx.jpg",
-	                    "assets/360s/v3/negz.jpg",
-	                    "assets/360s/v3/negx.jpg",
-	                    "assets/360s/v3/posy.jpg",
-	                    "assets/360s/v3/negy.jpg"
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam1-front).jpg",
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam3-back).jpg",
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam2-right).jpg",
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam4-left).jpg",
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam5-top).jpg",
+	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam6-bottom).jpg"
+	                ],
+	                
+	                "showZoomCtrl":false,
+	                "showFullscreenCtrl":false,
+	                "autoLoad":true,
+				},
+				
+				tsi2:{
+					"type": "cubemap",
+	                "cubeMap":[
+	                    "assets/images/360s/tsi/tela 2/CAM01-FULL-ok.jpg",
+	                    "assets/images/360s/tsi/tela 2/CAM02-FULL-ok.jpg",
+	                    "assets/images/360s/tsi/tela 2/CAM03-FULL-ok.jpg",
+	                    "assets/images/360s/tsi/tela 2/CAM03-FULL-ok.jpg",
+	                    "assets/images/360s/tsi/tela 2/CAM05-FULL-ok.jpg",
+	                    "assets/images/360s/tsi/tela 2/CAM06-FULL-ok.jpg"
+	                ],
+	                
+	                "showZoomCtrl":false,
+	                "showFullscreenCtrl":false,
+	                "autoLoad":true,
+				},
+				
+				saveiro:{
+					"type": "cubemap",
+	                "cubeMap":[
+	                	"assets/images/360s/saveiro/left.jpg",
+	                    "assets/images/360s/saveiro/front.jpg",
+	                    "assets/images/360s/saveiro/right.jpg",
+	                    "assets/images/360s/saveiro/back.jpg",
+	                    
+	                    "assets/images/360s/saveiro/top.jpg",
+	                    "assets/images/360s/saveiro/bottom.jpg"
 	                ],
 	                
 	                "showZoomCtrl":false,
@@ -135,54 +231,95 @@
 	</head>
 
 	<body itemscope itemtype="http://schema.org/WebSite">
+		
+		
+		<!--TOP-AREA-->
 		<div class="container">
 			<div class="topArea">
 				<div class="topContent">
-					<table>
-						<tr>
-							<!--<td style="width:0%">-->
-							<!--	<img style="height: 100%;display: inline-block; position:relative; margin-left:100%" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">-->
-							<!--</td>-->
-							<td class="info">
-								A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Aqui você conhece um pouco sobre cada uma delas e não deixe de visitá-las no evento.
-								<br><br>
-								<b>Escolha a experiência abaixo.</b>
-							</td>
-						</tr>
-					</table>
+					<div class="topTable">
+						<div class="topParts logoArea">
+							<div class="logo"></div>
+							<!--<img style="height: 100%;display: inline-block; position:relative; margin-left:100%" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">-->
+						</div>
+						<div class="topParts info">
+							A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Aqui você conhece um pouco sobre cada uma delas e não deixe de visitá-las no evento.
+							<br><br>
+							<b>Escolha a experiência abaixo.</b>
+						</div>
+					</div>
 				</div>
 			</div>
 	    	<hover-container></hover-container>
 	    </div>
 	    
-	    <full-vr settings="v1" class="pagina vr1">
-	    	<div class="infoBar">
-                Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.
-            </div>
-	    </full-vr>
 	    
-	    <full-vr settings="v2" class="pagina vr2">
-	    	<div class="infoBar">
-                Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.
-            </div>
-	    </full-vr>
+	    <!--VOLKSWAGEN E VOCE-->
+	    <vz-pagina>
+	    	<full-vr class="topContent" settings="fabrica1">
+	    		<hit-content logo="../assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
+		            <div class="contentText">Você nunca viu a Volkswagen por este ângulo. <br> <b>Ou melhor, por nenhum deles.</b></div>
+		        </hit-content>
+	    	</full-vr>
+	    	
+	    	<full-vr class="subContent" settings="fabrica2">
+	    		<vz-descricao class="overlay" side-image="assets/images/VWeVC/desc_image.png">
+	            	<div class="contentText">
+	            		Utilizando <b>realidade virtual</b> e <b>cinema 4D</b>, o visitante é transportado para o universo da montadora, começando por um tour no nascimento dos seus carros, passando pela <b>Autostadt</b>, prédio ícone da Volkswagen na Alemanha. E ainda dá uma voltinha entre os pilares da marca, com direito a uma surpresa no final da experiência. Um passeio lúdico e divertido, onde o convidado pode sentir o gostinho de estar, mais do que nunca, próximo da marca <b>inspirada na sua vida</b>.
+	            	</div>
+	            </vz-descricao>
+	    	</full-vr>
+	    </vz-pagina>
 	    
-	    <full-vr settings="v3" class="pagina vr3">
-	    	<div class="infoBar">
-                Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.
-            </div>
-	    </full-vr>
 	    
-	    <!--<full-slider class="pagina slider">-->
-	    <!--	<div class="infoBar">-->
-     <!--           Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.-->
-     <!--       </div>-->
-	    <!--</full-slider>-->
+	    <!--TSI IMMERSIVE-->
+	    <vz-pagina>
+	    	<full-vr class="topContent" settings="tsi1">
+	    		<hit-content logo="../assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
+		            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
+		        </hit-content>
+	    	</full-vr>
+	    	
+	    	<full-vr class="subContent" settings="tsi2">
+	    		<vz-descricao class="overlay">
+	            	<div class="contentText">
+	            		Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
+	            	</div>
+	            </vz-descricao>
+	    	</full-vr>
+	    </vz-pagina>
 	    
-	    <full-montagem class="pagina montagem">
-	    	<div class="infoBar">
-                Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.
-            </div>
-	    </full-montagem>
+	    
+	    <!--DESAFIO CROSS-->
+	    <vz-pagina>
+	    	<full-vr class="topContent" settings="saveiro">
+	    		<hit-content logo="../assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
+		            <div class="contentText">Desafie-se e prove que você é como a <b>Nova Saveiro Cross</b>: pronta pra tudo.</div>
+		        </hit-content>
+	    	</full-vr>
+	    	
+	    	<full-slider class="subContent" >
+            	<div class="contentText">
+            		A <b>Nova Saveiro Cross</b> é tão linda que você vai querer vê-la de perto. Mas para isso, precisa provar que tem um espírito aventureiro, como o da picape. Nesta experiência, o visitante é transportado para o alto de um canyon, onde um falcão roubou as chaves do carro. A tarefa é simples: alcance a ave no fim de uma ponte estreita e pegue as chaves de volta... a <b>40 metros de altura</b>. Topa o desafio?
+            	</div>
+	    	</full-slider>
+	    </vz-pagina>
+	    
+	    
+	    <!--DIGITAL CONCIERGE-->
+	    <vz-pagina sub-bg="../assets/images/Concierge/bgInferior.jpg">
+	    	<full-montagem class="topContent">
+	    		<hit-content logo="../assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
+		            <div class="contentText">O futuro que você imaginava, agora na sua cabeça. <b>Literalmente</b>.</div>
+		        </hit-content>
+	    	</full-montagem>
+	    	
+	    	<vz-descricao class="subContent">
+            	<div class="contentText">
+            		Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
+            	</div>
+            </vz-descricao>
+	    </vz-pagina>
+	    
 	</body>
 </html>
