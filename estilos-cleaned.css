@@ -192,7 +192,6 @@ li, ol, ul {
     -webkit-transition: background .3s;
     transition: background .3s
 }
-
 .c-hamburger:focus {
     outline: none
 }
@@ -244,6 +243,36 @@ li, ol, ul {
     transition: bottom .3s .3s, -webkit-transform .3s 0s;
     transition: bottom .3s .3s, transform .3s 0s;
     transition: bottom .3s .3s, transform .3s 0s, -webkit-transform .3s 0s
+}
+
+.c-hamburger--htx.is-active span {
+    background: none;
+    height: 2px;
+    top: 32px
+}
+
+.c-hamburger--htx.is-active span:before {
+    top: 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transition: top .3s 0s, -webkit-transform .3s .3s;
+    transition: top .3s 0s, -webkit-transform .3s .3s;
+    transition: top .3s 0s, transform .3s .3s;
+    transition: top .3s 0s, transform .3s .3s, -webkit-transform .3s .3s;
+    height: 2px
+}
+
+.c-hamburger--htx.is-active span:after {
+    bottom: 0;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transition: bottom .3s 0s, -webkit-transform .3s .3s;
+    transition: bottom .3s 0s, -webkit-transform .3s .3s;
+    transition: bottom .3s 0s, transform .3s .3s;
+    transition: bottom .3s 0s, transform .3s .3s, -webkit-transform .3s .3s;
+    height: 2px
 }
 
 #header {
@@ -409,13 +438,54 @@ li, ol, ul {
     #header .menu {
         display: none
     }
+    
+    .menu-mobile-links {
+        top: -100vh;
+        display: block;
+        height: 100%;
+        -webkit-transition: top .8s ease;
+        transition: top .8s ease;
+        background: rgba(0, 177, 235, .9);
+        width: 100%;
+        z-index: 111;
+        padding-top: 0;
+        overflow: auto;
+        position: fixed
+    }
+    .menu-mobile-links.show {
+        top: 0;
+        padding-top: 66px
+    }
+    .menu-mobile-links .center {
+        height: calc(100vh - 66px)
+    }
+    .menu-mobile-links .center ul li {
+        float: left;
+        width: 100%;
+        height: 72px;
+        line-height: 72px;
+        border-top: 1px solid #fff
+    }
+    .menu-mobile-links .center ul li:first-child {
+        border-top: 0
+    }
+    .menu-mobile-links .center ul li a {
+        display: block;
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #fff;
+        text-align: center
+    }
+    .menu-mobile-links .center .border {
+        display: none
+    }
 }
 
 
 * {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    outline: 0 solid
+    outline: none
 }
 
 *, :after, :before {
@@ -424,7 +494,7 @@ li, ol, ul {
 
 a, a:focus {
     text-decoration: none;
-    outline: 0 solid
+    outline: none
 }
 
 body, html {

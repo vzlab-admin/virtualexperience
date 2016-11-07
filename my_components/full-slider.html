@@ -17,6 +17,8 @@
             background-repeat:no-repeat;
             background-position: center bottom;
             
+            -webkit-transition:opacity .5s ease-in-out;
+            
             transition:opacity .5s ease-in-out;
         }
 
@@ -41,6 +43,7 @@
             background-size:100% 100%;
             background-position: center center;
             opacity:0;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         }
         
         vz-descricao{
@@ -51,7 +54,8 @@
         @media (max-width: 768px){
             vz-descricao{
                 top:60px;
-                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                        transform: translateX(-50%);
                 
             }
         }

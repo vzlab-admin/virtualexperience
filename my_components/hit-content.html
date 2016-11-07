@@ -5,11 +5,13 @@
         :host{
             display:block;
             opacity:1;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
             position:absolute;
             width:910px;
             /*min-height:252px;*/
             top:0px;
             left:0px;
+            -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
             
             top:50%;
@@ -21,16 +23,21 @@
             
             cursor:pointer;
             
-            transform: translateY(-50%) translateX(-50%);
+            -webkit-transform: translateY(-50%) translateX(-50%);
+            
+                    transform: translateY(-50%) translateX(-50%);
         }
         
         :host.inativo{
             opacity:0;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         }
         
         .borders{
             pointer-events:none;
             opacity:1;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            -webkit-transition:all .3s;
             transition: all .3s;
             
             display:block;

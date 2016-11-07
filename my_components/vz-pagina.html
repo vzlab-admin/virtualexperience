@@ -9,18 +9,21 @@
         :host{
             display:none;
             opacity:0;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             position:fixed;
             width:100%;
             height:calc(100% - 110px);
             overflow:hidden;
             top:110px;
             left:0px;
+            -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
             overflow:hidden;
         }
         
         :host.ativo{
             opacity:1;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
         }
 
         .myContent{
@@ -72,10 +75,6 @@
             cascade:{
                 type:Array,
                 value:[],
-            },
-            
-            data:{
-                type:Number,
             },
             
             subBg:{
@@ -156,8 +155,10 @@
         },
         
         respostaAjax:function(e){
+            
             this.loadedFiles++;
             if(this.loadedFiles==this.pacote.files.length){
+                
                 this.filesReady=true;
                 if(this.preLoad){
                     this.show();
@@ -166,13 +167,13 @@
                 this.$.chamado.url=this.pacote.files[this.loadedFiles];
             }
             
-            this.fire('load', {pageNum:this.data, progress:this.loadedFiles/this.pacote.files.length});
+            this.fire('load', {pageNum:this.pacote.index, progress:this.loadedFiles/this.pacote.files.length});
         },
         
         adicionou:function(){
             if(this.filesReady==true){
                 this.forwardFunction("update");
-                this.fire('load', {pageNum:this.data});
+                this.fire('load', {pageNum:this.pacote.index});
             }
         },
 

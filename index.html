@@ -1,5 +1,7 @@
 <html>
 	<head>
+		<title></title>
+		
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<meta name="viewport" content="initial-scale=1.0">
@@ -9,6 +11,7 @@
 
 		<link rel="import" href="my_components/main-router.html">
 		
+		<link rel="stylesheet" href="assets/fonts/font.css" type="text/css" />
 		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
 		<link rel="stylesheet" href="estilos-cleaned.css">
 		
@@ -46,8 +49,10 @@
 		<script type="text/javascript">
 			
 			var vrSettings={
-				fabrica1:{
+				vwevc1:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap": [
 	                    "assets/images/360s/fabrica/tela 1/_Front_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Right_Fabrica.jpg",
@@ -61,8 +66,10 @@
 	                "autoLoad":true,
 				},
 				
-				fabrica2:{
+				vwevc2:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap": [
 	                    "assets/images/360s/fabrica/tela 2/_Front_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Right_Autostadt.jpg",
@@ -79,6 +86,8 @@
 				
 				tsi1:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap": [
 	                    "assets/images/360s/tsi/tela1/front.jpg",
 	                    "assets/images/360s/tsi/tela1/right.jpg",
@@ -95,6 +104,8 @@
 				
 				tsi2:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap":[
 	                    "assets/images/360s/tsi/tela2/front.jpg",
 	                    "assets/images/360s/tsi/tela2/right.jpg",
@@ -109,14 +120,15 @@
 	                "autoLoad":true,
 				},
 				
-				saveiro:{
+				cross:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap":[
-	                	"assets/images/360s/saveiro/left.jpg",
-	                    "assets/images/360s/saveiro/front.jpg",
+	                	"assets/images/360s/saveiro/front.jpg",
 	                    "assets/images/360s/saveiro/right.jpg",
 	                    "assets/images/360s/saveiro/back.jpg",
-	                    
+	                    "assets/images/360s/saveiro/left.jpg",
 	                    "assets/images/360s/saveiro/top.jpg",
 	                    "assets/images/360s/saveiro/bottom.jpg"
 	                ],
@@ -126,8 +138,10 @@
 	                "autoLoad":true,
 				},
 				
-				concierge:{
+				up:{
 					"type": "cubemap",
+					"keyboardZoom" : false,
+					"mouseZoom" : false,
 	                "cubeMap":[
 	                	"assets/images/360s/Concierge/front.jpg",
 	                    "assets/images/360s/Concierge/right.jpg",
@@ -143,23 +157,31 @@
 				}
 			}
 			
+			var toogleMobile=function(){
+				console.log(1);
+				document.querySelector(".menu.menu-mobile-links").classList.toggle("show");
+				document.querySelector("button.c-hamburger").classList.toggle("is-active");
+				
+			}
+			
 		</script>
 	</head>
 
 	<body>
 		<header id="header">
+			
 	        <div class="top">
 	            <div class="center">
 	                <h1><a href="index.html#">Volkswagen</a></h1>
 	                <h2>29º Salão Internacional do Automóvel de São Paulo</h2>
-	                <div class="box-menu-mobile">
+	                <div class="box-menu-mobile" onclick="toogleMobile()">
 	                    <button class="c-hamburger c-hamburger--htx menu-mobile">
 	                        <span>menu</span>
 	                    </button>
 	                </div>
 	            </div>
 	        </div>
-	
+
 	        <nav class="menu">
 	            <div class="center">
 	                <ul>
@@ -175,6 +197,22 @@
 	            </div>
 	        </nav>
 	    </header>
+
+	    <nav class="menu menu-mobile-links">
+            <div class="center">
+                <ul>
+                    <li class="active"><a href="#ao-vivo">Ao vivo</a></li>
+                    <li><a href="#virtual-experience">Virtual Experience</a></li>
+                    <li><a href="#carros">Carros</a></li>
+                    <li><a href="#atracoes">Atrações</a></li>
+                    <li><a href="#vwevc">#VWeVC</a></li>
+                    <li><a href="#inovacoes">Inovações</a></li>
+                    <li><a href="http://vwbr.com.br/ImprensaVW/search.aspx?b=b&amp;q=salao%20do%20automovel" target="_blank">Imprensa</a></li>
+                </ul>
+                <div class="border" style="left: 0px;"></div>
+            </div>
+        </nav>
+	    
 		<main-router></main-router>
 	</body>
 </html>

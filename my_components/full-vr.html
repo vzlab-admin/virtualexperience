@@ -9,7 +9,7 @@
             height:100%;
             top:0px;
             left:0px;
-            background-color:pink;
+            -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
         }
         
@@ -58,7 +58,7 @@
         setVR:function(settings){
             this.vr=pannellum.viewer(this.$.panorama, settings);
             this.vr.parouCallback=function(){
-                console.log(this.async(this.showOverlay,2000));
+                this.async(this.showOverlay,2000);
             }.bind(this);
             
             this.vr.startCallback=function(){
@@ -69,7 +69,6 @@
         update:function(){
             var renderer=this.vr.getRenderer();
             if(renderer){
-                console.log("update")
                 renderer.resize();
                 this.vr.animate();
             }

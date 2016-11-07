@@ -16,6 +16,7 @@
             background-repeat:no-repeat;
             background-position: center center;
             background-repeat: no-repeat;
+            -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
         }
         
@@ -64,7 +65,8 @@
         @media (max-width: 768px){
             ::content.overlay{
                 top:60px;
-                transform: translateX(-50%);
+                -webkit-transform: translateX(-50%);
+                        transform: translateX(-50%);
             }
             
              vz-slider{
@@ -80,8 +82,8 @@
    <template>
         <div id="container" class="container">
             <div class="meio">
-                <div id="freio" class="dentro"></div>
                 <div id="disco" class="dentro"></div>
+                <div id="freio" class="dentro"></div>
             </div>
         </div>
         <vz-slider id="slider" on-slide="slideUpdate" info="Clique e arraste"></vz-slider>
