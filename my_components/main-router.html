@@ -216,17 +216,17 @@
 								<div class="logo"></div>
 								<img style="height: 100%;display: inline-block; position:relative;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
 							</div>
-							<a href="">
-								<div class="topParts info">
-									A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
-									<br><br>
+							<div class="topParts info">
+								A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
+								<br><br>
+								<a href="../imprensa/index.html" onclick="newPage(this)">
 									<div class="link">
 										Possui um óculos de realidade Virtual?<br>
 										Clique aqui e veja uma prévia das experiências.
 									</div>
-								</div>
-							</a>
-							
+								</a>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -359,6 +359,7 @@
                 	},
                 	
                     vwevc:{
+                        rota:"vwevc",
                         index:1,
                         files:[
                             "assets/images/VWeVC/desc_image.png",
@@ -381,6 +382,7 @@
                     },
                     
                     tsi:{
+                        rota:"tsi",
                         index:2,
                         files:[
                             "assets/images/shared/hitArea/logos/TSI.png",
@@ -402,6 +404,7 @@
                     },
                     
                     cross:{
+                        rota:"cross",
                         index:3,
                         files:[
                             "assets/images/shared/hitArea/logos/Cross.png",
@@ -424,6 +427,7 @@
                     },
                     
                     up:{
+                        rota:"up",
                         index:4,
                         files:[
                             "assets/images/shared/hitArea/logos/TSI.png",
@@ -446,14 +450,16 @@
         ready:function(){
         	this.$.chamado.url=this.allFiles.home.files[0];
         	
-        	var p=this.rota.path.toLowerCase();
-        	
-        	if(p=="vwevc" || p=="tsi" || p=="cross" || p=="up"){
-        		this.pathToLoad=p;
-        		this.allFiles.home.files=this.allFiles.home.files.concat(this.allFiles[p].files)
+        	if(this.rota && this.rota.path){
+	        	var p=this.rota.path.toLowerCase();
+	        	
+	        	if(p=="vwevc" || p=="tsi" || p=="cross" || p=="up"){
+	        		this.pathToLoad=p;
+	        		this.allFiles.home.files=this.allFiles.home.files.concat(this.allFiles[p].files)
+	        	}
         	}
         	
-        	this.$.chamado.auto=true;
+	        this.$.chamado.auto=true;
         },
         
         paginaCarregada:function(e){

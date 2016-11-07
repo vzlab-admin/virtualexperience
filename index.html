@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title></title>
+		<title>Virtual Experience no Salão do Automóvel 2016</title>
 		
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
@@ -13,7 +13,7 @@
 		
 		<link rel="stylesheet" href="assets/fonts/font.css" type="text/css" />
 		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
-		<link rel="stylesheet" href="estilos-cleaned.css">
+		<link rel="stylesheet" href="assets/menu.css" type="text/css" >
 		
 		<style type="text/css">
             body {
@@ -158,10 +158,13 @@
 			}
 			
 			var toogleMobile=function(){
-				console.log(1);
 				document.querySelector(".menu.menu-mobile-links").classList.toggle("show");
 				document.querySelector("button.c-hamburger").classList.toggle("is-active");
 				
+			}
+			
+			var newPage=function(e){
+				window.open(e.getAttribute("href"),"_self");
 			}
 			
 		</script>
@@ -186,12 +189,12 @@
 	            <div class="center">
 	                <ul>
 	                    <li><a href="index.html#ao-vivo">Ao vivo</a></li>
-	                    <li class="active"><a href="index.html#virtual-experience">Virtual Experience</a></li>
-	                    <li><a href="index.html#carros">Carros</a></li>
-	                    <li><a href="index.html#atracoes">Atrações</a></li>
-	                    <li><a href="index.html#vwevc">#VWeVC</a></li>
-	                    <li><a href="index.html#inovacoes">Inovações</a></li>
-	                    <li><a href="http://vwbr.com.br/ImprensaVW/search.aspx?b=b&amp;q=salao%20do%20automovel" target="_blank">Imprensa</a></li>
+	                    <li class="active"><a href="#">Virtual Experience</a></li>
+	                    <li><a href="http://vw.com.br/carros" onclick="newPage(this)">Carros</a></li>
+	                    <li><a href="http://vw.com.br/atracoes" onclick="newPage(this)">Atrações</a></li>
+	                    <li><a href="http://vw.com.br/vwevc" onclick="newPage(this)">#VWeVC</a></li>
+	                    <li><a href="http://vw.com.br/inovacoes" onclick="newPage(this)">Inovações</a></li>
+	                    <li><a href="../imprensa/index.html" onclick="newPage(this)">Imprensa</a></li>
 	                </ul>
 	                <div class="border"></div>
 	            </div>
@@ -202,12 +205,12 @@
             <div class="center">
                 <ul>
                     <li class="active"><a href="#ao-vivo">Ao vivo</a></li>
-                    <li><a href="#virtual-experience">Virtual Experience</a></li>
-                    <li><a href="#carros">Carros</a></li>
-                    <li><a href="#atracoes">Atrações</a></li>
-                    <li><a href="#vwevc">#VWeVC</a></li>
-                    <li><a href="#inovacoes">Inovações</a></li>
-                    <li><a href="http://vwbr.com.br/ImprensaVW/search.aspx?b=b&amp;q=salao%20do%20automovel" target="_blank">Imprensa</a></li>
+                    <li><a href="#" onclick="toogleMobile()">Virtual Experience</a></li>
+                    <li><a href="http://vw.com.br/carros" onclick="newPage(this)">Carros</a></li>
+                    <li><a href="http://vw.com.br/atracoes" onclick="newPage(this)">Atrações</a></li>
+                    <li><a href="http://vw.com.br/vwevc" onclick="newPage(this)">#VWeVC</a></li>
+                    <li><a href="http://vw.com.br/inovacoes" onclick="newPage(this)">Inovações</a></li>
+                    <li><a href="../imprensa/index.html" onclick="newPage(this)">Imprensa</a></li>
                 </ul>
                 <div class="border" style="left: 0px;"></div>
             </div>

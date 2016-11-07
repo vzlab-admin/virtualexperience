@@ -297,7 +297,7 @@ li, ol, ul {
 #header .top h1 {
     float: left;
     margin-left: 10px;
-    background: url("assets/images/menu/logo-vw.png") no-repeat 50%;
+    background: url("images/menu/logo-vw.png") no-repeat 50%;
     background-size: cover;
     width: 54px;
     height: 55px;
@@ -352,7 +352,7 @@ li, ol, ul {
     display: block;
     -webkit-transition: all .4s ease;
     transition: all .4s ease;
-    background: url("assets/images/menu/bg-menu.png") no-repeat 50%;
+    background: url("images/menu/bg-menu.png") no-repeat 50%;
     background-size: cover;
     left:calc(100% / 7);
 }
