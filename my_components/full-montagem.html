@@ -60,6 +60,19 @@
             position:absolute;
             bottom:calc(20% + 100px);
         }
+        
+        @media (max-width: 768px){
+            ::content.overlay{
+                top:60px;
+                transform: translateX(-50%);
+            }
+            
+             vz-slider{
+                 width:80%;
+                 left:10%;
+                 bottom:calc(75px);
+             }
+        }
 
     </style>
     
@@ -71,7 +84,7 @@
                 <div id="disco" class="dentro"></div>
             </div>
         </div>
-        <vz-slider id="slider" on-slide="slideUpdate"></vz-slider>
+        <vz-slider id="slider" on-slide="slideUpdate" info="Clique e arraste"></vz-slider>
         <content select=".overlay" id="overlay"></content>
    </template>
     

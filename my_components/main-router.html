@@ -1,0 +1,500 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="../bower_components/app-route/app-location.html" />
+
+<link rel="import" href="vz-pagina.html">
+<link rel="import" href="hover-container.html">
+<link rel="import" href="hit-content.html">
+<link rel="import" href="vz-descricao.html">
+<link rel="import" href="full-vr.html">
+<link rel="import" href="full-slider.html">
+<link rel="import" href="full-montagem.html">
+
+<dom-module id="main-router">
+    <style>
+        :host{
+            display:block;
+            position:fixed;
+            width:100%;
+            height:100%;
+            top:0px;
+            left:0px;
+            overflow:auto;
+            
+        }
+        
+        :host.ativo .container{
+        	opacity:1;
+        }
+        
+        .container{
+        	transition:opacity .5s ease-in-out;
+        	opacity: 0;
+        }
+        
+        .container{
+    	    display: table;
+		    width: 100%;
+		    height: 100%;
+		    position: relative;
+        }
+        
+        .container .topArea{
+    	    display: table-row;
+		    background-color: blue;
+		    height: auto;
+		    background-image: url(../assets/images/home/bgsAreas/bg0.jpg);
+		    background-size: cover;
+		    background-position: center center;
+		    height:0px;
+        }
+        
+        .container .topArea .topContent{
+    	    max-width: 1012px;
+		    position: relative;
+		    width: 100%;
+		    margin-left: auto;
+		    margin-right: auto;
+		    display: block;
+        }
+        
+        .topTable{
+        	display:table;
+        }
+        
+        .topTable .topParts{
+        	display:table-cell;
+        }
+        
+        .container .topArea .topContent .info{
+			font-size: 16px;
+			font-family: "VW Text";
+			font-weight: lighter;
+			color: white;
+			line-height: 1.813;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			display:table-cell;
+			width:100%;
+			float: right;
+        }
+        
+        
+        .container .topArea .topContent .info .link{
+            color:#e86623;
+            font-weight: bold;
+            font-size: 18px;
+            font-family: "VW Head";
+            
+            box-sizing:border-box;
+            padding-right:150px;
+            
+            background-image: url(../assets/images/home/linkImage.png);
+		    background-size: 95px;
+		    background-repeat: no-repeat;
+		    background-position: calc(100% - 30px) center;
+        }
+        
+        .logoArea{
+        	width:30%;
+        	position:relative;
+        }
+        
+        .logo{
+        	position:absolute;
+        	display:block;
+        	top:0px;
+        	left:0px;
+        	width:100%;
+        	height:100%;
+        	background-image: url("../assets/images/home/logo.png");
+        	background-repeat:no-repeat;
+        	background-size:contain;
+        	background-position:center center;
+        }
+        
+        .preloader{
+        	position:absolute;
+        	height:60%;
+        	width:100%;
+        	top:0px;
+        	left:0px;
+        	
+        	background-image: url("../assets/images/home/logo.png");
+        	background-repeat:no-repeat;
+        	background-size: auto 235px;
+        	background-position:center bottom;
+        }
+        
+        .preloader #barra{
+        	height:3px;
+        	background-color:#e86623;
+        	position:absolute;
+        	bottom:-5vh;
+        	
+        	transition: width .5s ease-in-out;
+        }
+        
+        @media (max-width: 1010px){
+        	.container .topArea .topContent{
+        	    max-width: calc(100% - 40px);
+        	}
+        }
+        
+        @media (max-width: 768px){
+        	
+        	.logo{
+        		height:100%;
+        		width:100%;
+        	}
+        	
+        	.topTable .topParts{
+            	display:block;
+            	height:100%;
+            	width:100%;
+            	position:relative;
+            }
+            
+            .topTable .topParts.logoArea{
+        		width:100%;
+        		height:150px;
+        	}
+            
+            .topTable{
+            	display:block;
+            	position:relative;
+            }
+            
+            .container .topArea .topContent .info {
+            	padding:0px 20px 0px 20px;
+            	padding-top:0px;
+            	font-size: 10px;
+            }
+            
+            .container .topArea .topContent .info .link{
+            	font-size: 10px;
+            	background-size: contain;
+			    background-repeat: no-repeat;
+			    background-position: right center;
+			    padding-top:20px;
+			    padding-bottom:0px;
+			    margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 450px){
+        	.container .topArea .topContent .info .link{
+        		padding-right:0px;
+        		background-image: none;
+        		text-align: center;
+        	}
+        }
+        
+        
+
+    </style>
+    
+   <template>
+        <app-location route="{{rota}}" use-hash-as-path></app-location>
+       
+        <iron-ajax id="chamado" handle-as="document" on-response="respostaAjax"></iron-ajax>
+
+        <div class="preloader">
+        	<div id="barra"></div>
+        </div>
+       
+       <template is="dom-if" if="{{isLoaded}}">
+	        <!--TOP-AREA-->
+			<div class="container">
+				<div class="topArea">
+					<div class="topContent">
+						<div class="topTable">
+							<div class="topParts logoArea">
+								<div class="logo"></div>
+								<img style="height: 100%;display: inline-block; position:relative;" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+							</div>
+							<a href="">
+								<div class="topParts info">
+									A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
+									<br><br>
+									<div class="link">
+										Possui um óculos de realidade Virtual?<br>
+										Clique aqui e veja uma prévia das experiências.
+									</div>
+								</div>
+							</a>
+							
+						</div>
+					</div>
+				</div>
+		    	<hover-container id="hoverContainer"></hover-container>
+		    </div>
+		    
+		    
+		    <!--VOLKSWAGEN E VOCE-->
+		    <vz-pagina carregar="{{carregarInternas}}" pacote="{{allFiles2.fabrica}}" data="1" on-load="paginaCarregada">
+		    	<full-vr class="topContent" settings="fabrica1">
+		    		<hit-content logo="../assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
+			            <div class="contentText">Você nunca viu a Volkswagen por este ângulo. <br> <b>Ou melhor, por nenhum deles.</b></div>
+			        </hit-content>
+		    	</full-vr>
+		    	
+		    	<full-vr class="subContent" settings="fabrica2">
+		    		<vz-descricao class="overlay imageBL" side-image="assets/images/VWeVC/desc_image.png">
+		            	<div class="contentText">
+		            		Utilizando <b>realidade virtual</b> e <b>cinema 4D</b>, o visitante é transportado para o universo da montadora, começando por um tour no nascimento dos seus carros, passando pela <b>Autostadt</b>, prédio ícone da Volkswagen na Alemanha. E ainda dá uma voltinha entre os pilares da marca, com direito a uma surpresa no final da experiência. Um passeio lúdico e divertido, onde o convidado pode sentir o gostinho de estar, mais do que nunca, próximo da marca <b>inspirada na sua vida</b>.
+		            	</div>
+		            </vz-descricao>
+		    	</full-vr>
+		    </vz-pagina>
+		    
+		    
+		    <!--TSI IMMERSIVE-->
+		    <vz-pagina  carregar="{{carregarInternas}}" pacote="{{allFiles2.tsi}}" data="2" on-load="paginaCarregada">
+		    	<full-vr class="topContent" settings="tsi1">
+		    		<hit-content logo="../assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
+			            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
+			        </hit-content>
+		    	</full-vr>
+		    	
+		    	<full-vr class="subContent" settings="tsi2">
+		    		<vz-descricao class="overlay imageTL" side-image="assets/images/TSI/desc_image.jpg">
+		            	<div class="contentText">
+		            		Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
+		            	</div>
+		            </vz-descricao>
+		    	</full-vr>
+		    </vz-pagina>
+		    
+		    
+		    <!--DESAFIO CROSS-->
+		    <vz-pagina  carregar="{{carregarInternas}}" pacote="{{allFiles2.cross}}" data="3" on-load="paginaCarregada">
+		    	<full-vr class="topContent" settings="saveiro">
+		    		<hit-content logo="../assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
+			            <div class="contentText">Desafie-se e prove que você é como a <b>Nova Saveiro Cross</b>: pronta pra tudo.</div>
+			        </hit-content>
+		    	</full-vr>
+		    	
+		    	<full-slider class="subContent" >
+	            	<div class="contentText">
+	            		A <b>Nova Saveiro Cross</b> é tão linda que você vai querer vê-la de perto. Mas para isso, precisa provar que tem um espírito aventureiro, como o da picape. Nesta experiência, o visitante é transportado para o alto de um canyon, onde um falcão roubou as chaves do carro. A tarefa é simples: alcance a ave no fim de uma ponte estreita e pegue as chaves de volta... a <b>40 metros de altura</b>. Topa o desafio?
+	            	</div>
+		    	</full-slider>
+		    </vz-pagina>
+		    
+		    
+		    <!--DIGITAL CONCIERGE-->
+		    <vz-pagina  carregar="{{carregarInternas}}" pacote="{{allFiles2.concierge}}" data="4" on-load="paginaCarregada" sub-bg="../assets/images/Concierge/bgInferior.jpg">
+		    	<full-montagem class="topContent">
+		    		<hit-content logo="../assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
+			            <div class="contentText">O futuro que você imaginava, agora na sua cabeça. <b>Literalmente</b>.</div>
+			        </hit-content>
+		    	</full-montagem>
+	      
+	      		<full-vr class="subContent" settings="concierge">
+		    		<vz-descricao class="overlay">
+		            	<div class="contentText">
+		            		Na <b>área VIP</b> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <b>up! TSI</b> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <b>hologramas</b> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <b>HoloLens</b>. Essa experiência vai mudar sua visão sobre tecnologia.
+		            	</div>
+		            </vz-descricao>
+		    	</full-vr>
+		    </vz-pagina>
+		</template>
+   </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "main-router",
+        
+        properties: {
+			pathToLoad:{
+				type:String,
+				value:undefined,
+			},
+			
+			loadedFiles:{
+				type:Number,
+				value:0,
+			},
+			
+			isLoaded:{
+				type:Boolean,
+				value:false,
+			},
+			
+			carregarInternas:{
+				type:Boolean,
+				value:false,
+			},
+            
+            allFiles2:{
+                type:Object,
+                value:{
+                	home:{
+                		files:[
+                			"assets/images/home/bgsAreas/bg0.jpg",
+                			"assets/images/home/bgsAreas/bg1.jpg",
+                			"assets/images/home/bgsAreas/bg2.jpg",
+                			"assets/images/home/bgsAreas/bg3.jpg",
+                			"assets/images/home/bgsAreas/bg4.jpg",
+                			
+                			"assets/images/home/bordas/Corner_BL.png",
+                			"assets/images/home/bordas/Corner_BR.png",
+                			"assets/images/home/bordas/Corner_TL.png",
+                			"assets/images/home/bordas/Corner_TR.png",
+                			
+                			"assets/images/home/bordas/Linha_B.png",
+                			"assets/images/home/bordas/Linha_T.png",
+                			"assets/images/home/bordas/Linha_R.png",
+                			"assets/images/home/bordas/Linha_L.png",
+                			
+                			"assets/images/home/logo.png",
+                			"assets/images/home/linkImage.png",
+                			
+                			"assets/images/home/hoverImages/1_vw_e_vc.png",
+                			"assets/images/home/hoverImages/2_tsi_xtreme.png",
+                			"assets/images/home/hoverImages/3_cross.png",
+                			"assets/images/home/hoverImages/4_holo_view.png",
+                		]
+                	},
+                	
+                    fabrica:{
+                        index:1,
+                        files:[
+                            "assets/images/VWeVC/desc_image.png",
+                            "assets/images/shared/hitArea/logos/VWeVC.png",
+                            
+                            "assets/images/360s/fabrica/tela 1/_Front_Fabrica.jpg",
+    	                    "assets/images/360s/fabrica/tela 1/_Right_Fabrica.jpg",
+    	                    "assets/images/360s/fabrica/tela 1/_Back_Fabrica.jpg",
+    	                    "assets/images/360s/fabrica/tela 1/_Left_Fabrica.jpg",
+    	                    "assets/images/360s/fabrica/tela 1/_Top_Fabrica.jpg",
+    	                    "assets/images/360s/fabrica/tela 1/_Bottom_Fabrica.jpg",
+    
+                            "assets/images/360s/fabrica/tela 2/_Front_Autostadt.jpg",
+    	                    "assets/images/360s/fabrica/tela 2/_Right_Autostadt.jpg",
+    	                    "assets/images/360s/fabrica/tela 2/_Back_Autostadt.jpg",
+    	                    "assets/images/360s/fabrica/tela 2/_Left_Autostadt.jpg",
+    	                    "assets/images/360s/fabrica/tela 2/_Top_Autostadt.jpg",
+    	                    "assets/images/360s/fabrica/tela 2/_Bottom_Autostadt.jpg"
+                        ]
+                    },
+                    
+                    tsi:{
+                        index:2,
+                        files:[
+                            "assets/images/shared/hitArea/logos/TSI.png",
+                            
+                            "assets/images/360s/tsi/tela1/front.jpg",
+		                    "assets/images/360s/tsi/tela1/back.jpg",
+		                    "assets/images/360s/tsi/tela1/right.jpg",
+		                    "assets/images/360s/tsi/tela1/left.jpg",
+		                    "assets/images/360s/tsi/tela1/top.jpg",
+		                    "assets/images/360s/tsi/tela1/bottom.jpg",
+    
+                            "assets/images/360s/tsi/tela2/front.jpg",
+		                    "assets/images/360s/tsi/tela2/right.jpg",
+		                    "assets/images/360s/tsi/tela2/back.jpg",
+		                    "assets/images/360s/tsi/tela2/left.jpg",
+		                    "assets/images/360s/tsi/tela2/top.jpg",
+		                    "assets/images/360s/tsi/tela2/bottom.jpg",
+                        ]
+                    },
+                    
+                    cross:{
+                        index:3,
+                        files:[
+                            "assets/images/shared/hitArea/logos/Cross.png",
+                            
+                            "assets/images/360s/saveiro/left.jpg",
+		                    "assets/images/360s/saveiro/front.jpg",
+		                    "assets/images/360s/saveiro/right.jpg",
+		                    "assets/images/360s/saveiro/back.jpg",
+		                    "assets/images/360s/saveiro/top.jpg",
+		                    "assets/images/360s/saveiro/bottom.jpg",
+		                    
+		                    "assets/images/CROSS/slider.jpg",
+		                    "assets/images/CROSS/slider/1.png",
+		                    "assets/images/CROSS/slider/2.png",
+		                    "assets/images/CROSS/slider/3.png",
+		                    "assets/images/CROSS/slider/4.png",
+		                    
+
+                        ]
+                    },
+                    
+                    concierge:{
+                        index:4,
+                        files:[
+                            "assets/images/shared/hitArea/logos/TSI.png",
+                            "assets/images/Concierge/montagem_disco.png",
+                            "assets/images/Concierge/montagem_freio.png",
+                            "assets/images/Concierge/montagem.jpg",
+                            
+                            "assets/images/360s/Concierge/front.jpg",
+		                    "assets/images/360s/Concierge/right.jpg",
+		                    "assets/images/360s/Concierge/back.jpg",
+		                    "assets/images/360s/Concierge/left.jpg",
+		                    "assets/images/360s/Concierge/top.jpg",
+		                    "assets/images/360s/Concierge/bottom.jpg"
+                        ]
+                    },
+                }
+            }
+        },
+        
+        ready:function(){
+        	this.$.chamado.url=this.allFiles2.home.files[0];
+        	
+        	var p=this.rota.path.toLowerCase();
+        	
+        	if(p=="fabrica" || p=="tsi" || p=="cross" || p=="concierge"){
+        		this.pathToLoad=p;
+        		this.allFiles2.home.files=this.allFiles2.home.files.concat(this.allFiles2[p].files)
+        	}
+        	
+        	this.$.chamado.auto=true;
+        },
+        
+        paginaCarregada:function(e){
+        	if(e.detail.progress){
+        		this.$$("#hoverContainer").progress(e.detail);
+        	}else{
+        		this.$$("#hoverContainer").loadArea(e.detail.pageNum);
+        	}
+        },
+        
+        respostaAjax:function(){
+        	this.loadedFiles++;
+        	if(this.loadedFiles==this.allFiles2.home.files.length){
+        		this.isLoaded=true;
+        		this.async(function(){
+        			this.classList.add("ativo")
+        		}.bind(this), 1500);
+        		
+        		this.async(function(){
+        			this.carregarInternas=true;
+        		}.bind(this), 1500);
+        	}else{
+        		this.$.chamado.url=this.allFiles2.home.files[this.loadedFiles]
+        	}
+        	
+        	this.loadProgress(this.loadedFiles/this.allFiles2.home.files.length);
+        },
+        
+        loadProgress:function(progress){
+        	this.$.barra.style.width=(progress*100)+"%";
+        	if(progress==1){
+        		this.async(function(){
+        			if(this.pathToLoad){
+	        			var p=document.querySelectorAll("vz-pagina")[this.allFiles2[this.pathToLoad].index -1];
+	        			p.preLoad=true;
+	        		}
+        			
+        			this.$.barra.parentElement.style.display="none";
+        		}.bind(this),2100)
+        	}
+        }
+    });       
+</script>

@@ -13,7 +13,7 @@
             color:white;
             display: block;
             font-weight: lighter;
-            max-width:60%;
+            max-width:80%;
             width:1010px;
             background-color: #214e5c;
             
@@ -28,6 +28,7 @@
             box-sizing:border-box;
             
             transition: opacity .5s ease-in-out;
+            pointer-events:none;
         }
         
         :host.inativo{
@@ -44,6 +45,10 @@
             display:block;
             
             border-bottom:2px solid #e86623;
+        }
+        
+        :host.comSlider{
+            pointer-events:auto;
         }
         
         :host.comSlider:after{
@@ -76,11 +81,36 @@
             width:30%;
         }
         
+        :host.sideImage.imageBL .image{
+            background-position: bottom left;
+        }
+        
+        :host.sideImage.imageTL .image{
+            /*background-position: top left;*/
+            background-size: cover;
+        }
+        
         vz-slider{
             position:absolute;
             width:100%;
             top:calc(100% + 3px);
             left:0px;
+        }
+        
+        @media (max-width:768px){
+            :host{
+                display:block !important;
+                padding: 20px 20px 20px 20px !important;
+            }
+            
+        	.image{
+        	    display: none !important;
+        	}
+        	
+        	::content.contentText{
+        	    font-size: 13px;
+        	    padding:0px !important;
+        	}
         }
     </style>
     
@@ -91,7 +121,7 @@
         <content select=".contentText"></content>
         
         <template is="dom-if" if="{{comSlider}}">
-            <vz-slider on-slide="slideUpdate"></vz-slider>
+            <vz-slider on-slide="slideUpdate" info="Clique e arraste"></vz-slider>
         </template>
     </template>
     

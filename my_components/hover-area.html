@@ -98,6 +98,21 @@
             left:0px;
         }
         
+        #carregando{
+            display:block;
+            width:0px;
+            height:3px;
+            position:absolute;
+            background-color:#e86623;
+            opacity:1;
+            bottom:0px;
+            transition: all .5s ease-in-out;
+        }
+        
+        #carregando.inativo{
+            opacity:0;
+        }
+        
         @media (max-width: 640px) {
             .borders{
                 background-size: auto 4vh;
@@ -137,7 +152,9 @@
            <div class="horizo bottom"       style="background-image:url(../assets/images/home/bordas/Linha_B.png)"></div>
            <div class="corner bottom left"  style="background-image:url(../assets/images/home/bordas/Corner_BL.png)"></div>
            <div class="vertic left"         style="background-image:url(../assets/images/home/bordas/Linha_L.png)"></div>
-       </div>
+        </div>
+       
+        <div id="carregando" class="ativo"></div>
    </template>
     
 </dom-module>
@@ -149,6 +166,17 @@
         properties: {
 
         },
-     
+        
+        
+        
+        loadArea:function(){
+            this.async(function(){
+              this.$.carregando.classList.add("inativo");  
+            }.bind(this),500)
+        },
+        
+        progress:function(p){
+            this.$.carregando.style.width=(p*100)+"%"
+        }
     });       
 </script>

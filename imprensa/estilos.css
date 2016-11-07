@@ -61,6 +61,31 @@ body{
     cursor: pointer;
 }
 
+.boxLink{
+    display: block;
+    position:relative;
+}
+
+.boxLink:after{
+    position: absolute;
+    width: 4.96%;
+    height: 10.08%;
+    
+    content: " ";
+    
+    display: block;
+    /*background-color: red;*/
+    
+    bottom: calc(-45px / 2);
+    right: calc(-45px / 2);
+    
+    
+    background-image: url(assets/+.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+}
+
 .videoInfo {
     margin-bottom: 160px;
     

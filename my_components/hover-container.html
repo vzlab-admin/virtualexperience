@@ -18,27 +18,25 @@
 
         #parte1{
             background-image: url(../assets/images/home/bgsAreas/bg1.jpg);
-            --hover-image: url(../assets/images/home/hoverImages/hover1.png);
+            --hover-image: url(../assets/images/home/hoverImages/1_vw_e_vc.png);
         }
         
         #parte2{
             background-image: url(../assets/images/home/bgsAreas/bg2.jpg);
-            --hover-image: url(../assets/images/home/hoverImages/hover2.png);
+            --hover-image: url(../assets/images/home/hoverImages/2_tsi_xtreme.png);
         }
         
         #parte3{
             background-image: url(../assets/images/home/bgsAreas/bg3.jpg);
-            --hover-image: url(../assets/images/home/hoverImages/hover3.png);
+            --hover-image: url(../assets/images/home/hoverImages/3_cross.png);
         }
         
         #parte4{
             background-image: url(../assets/images/home/bgsAreas/bg4.jpg);
-            --hover-image: url(../assets/images/home/hoverImages/hover4.png);
+            --hover-image: url(../assets/images/home/hoverImages/4_holo_view.png);
         }
-        
     </style>
     
-
     
     <template>
         <hover-area id="parte1" data="0" on-tap="openPagina"></hover-area>
@@ -54,7 +52,14 @@
         is: "hover-container",
     
         properties: {
-            
+            loadedPages:{
+                type:Object,
+                notify:true,
+            }
+        },
+        
+        ready:function(){
+            console.log("ready");
         },
         
         openPagina:function(e) {
@@ -65,6 +70,14 @@
             
             var pagina=document.querySelectorAll("vz-pagina")[parseInt(alvo.getAttribute("data"))];
             pagina.show()
+        },
+        
+        loadArea:function(pageNum){
+            this.$["parte"+pageNum].loadArea();
+        },
+        
+        progress:function(e){
+            this.$["parte"+e.pageNum].progress(e.progress)
         }
     });
 </script>

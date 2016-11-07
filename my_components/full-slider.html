@@ -20,11 +20,6 @@
             transition:opacity .5s ease-in-out;
         }
 
-        vz-slider{
-            top:400px;
-            width:400px;
-        }
-        
         .container{
             position: absolute;
             height: calc(100vw * 0.475 / 1.4183);
@@ -32,6 +27,8 @@
             display: block;
             bottom: 14.2vw;
             left: 3.2%;
+            
+            pointer-events:none;
         }
         
         .container .img{
@@ -44,15 +41,19 @@
             background-size:100% 100%;
             background-position: center center;
             opacity:0;
-        },
-        
-        
-        info-bar{
-            --my-background-image:url(/assets/montagem.jpg);
         }
         
         vz-descricao{
             top:25%;
+            /*--font-color: */
+        }
+        
+        @media (max-width: 768px){
+            vz-descricao{
+                top:60px;
+                transform: translateX(-50%);
+                
+            }
         }
         
     </style>
@@ -60,16 +61,16 @@
 
     
    <template>
-        <div id="container" class="container">
+        <vz-descricao class="overlay" com-slider="true" on-slide="slideUpdate">
+        	<content select=".contentText"></content>
+        </vz-descricao>
+        
+        <div id="container" class="container masking">
             <div class="img" style="background-image:url(../assets/images/CROSS/slider/1.png)"></div>
             <div class="img" style="background-image:url(../assets/images/CROSS/slider/2.png)"></div>
             <div class="img" style="background-image:url(../assets/images/CROSS/slider/3.png)"></div>
             <div class="img" style="background-image:url(../assets/images/CROSS/slider/4.png)"></div>
         </div>
-        
-        <vz-descricao class="overlay" com-slider="true" on-slide="slideUpdate">
-        	<content select=".contentText"></content>
-        </vz-descricao>
    </template>
     
 </dom-module>
@@ -176,6 +177,7 @@
             }
 
             return parseFloat(retorno.toFixed(2));
-        }
+        },
+        
     });
 </script>

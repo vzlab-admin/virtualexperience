@@ -1,5 +1,4 @@
 <link rel="import" href="../bower_components/polymer/polymer.html" />
-<link rel="import" href="../bower_components/iron-media-query/iron-media-query.html" />
 
 <dom-module id="hit-content">
     <style>
@@ -8,7 +7,7 @@
             opacity:1;
             position:absolute;
             width:910px;
-            min-height:252px;
+            /*min-height:252px;*/
             top:0px;
             left:0px;
             transition:opacity .5s ease-in-out;
@@ -159,14 +158,20 @@
             }
         }
         
-        @media (max-width:600px){
+        @media (max-width:768px){
             
             .content{
-                font-size: 18px;
+                font-size: 14px;
             }
             
             .content .previa{
                 font-size: 14px;
+                margin-top: 10px;
+            }
+            
+            :host{
+                padding:30px !important;
+                min-height:auto;
             }
             
             .borders .corner{
@@ -194,10 +199,7 @@
                 height: calc(100% - 60px);
             }
         }
-        
-        :host([mobile]){
-            opacity:.5;
-        }
+
         
     </style>
     

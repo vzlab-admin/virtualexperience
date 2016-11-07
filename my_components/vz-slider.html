@@ -92,6 +92,23 @@
         input[type=range]:focus::-ms-fill-upper {
             background: #ec8048;
         }
+        
+        .info{
+            position:absolute;
+            bottom: -1.8em;
+            right:0px;
+            font-size: 16px;
+            font-family: "VW Head";
+            color: var(--font-color, rgb(33, 78, 92));
+            font-weight: bold;
+            line-height: 1.813;
+        }
+        
+        @media (max-width:768px){
+            .info{
+                font-size: 13px;
+            }
+        }
 
     </style>
     
@@ -99,6 +116,9 @@
     
    <template>
         <input type="range" step="0.01" value="{{value::input}}"/>
+        <template is="dom-if" if="{{info}}">
+            <div class="info">{{info}}</div>
+        </template>
    </template>
     
 </dom-module>
@@ -113,6 +133,11 @@
                 value:0,
                 observer: 'updateValue'
             },
+            
+            info:{
+                type:String,
+                value:undefined
+            }
         },
         
         updateValue:function(){

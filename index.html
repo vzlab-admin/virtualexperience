@@ -7,16 +7,10 @@
 		<script type="text/javascript" src="assets/pannellum.js"></script>
 		<script type="text/javascript" src="assets/libpannellum.js"></script>
 
-		<link rel="import" href="my_components/vz-pagina.html">
-		<link rel="import" href="my_components/hover-container.html">
-		<link rel="import" href="my_components/hit-content.html">
-		<link rel="import" href="my_components/vz-descricao.html">
-		
-		<link rel="import" href="my_components/full-vr.html">
-		<link rel="import" href="my_components/full-slider.html">
-		<link rel="import" href="my_components/full-montagem.html">
+		<link rel="import" href="my_components/main-router.html">
 		
 		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
+		<link rel="stylesheet" href="estilos-cleaned.css">
 		
 		<style type="text/css">
             body {
@@ -27,121 +21,28 @@
                 height: 100%;
                 width: 100%;
                 position: absolute;
-                overflow:auto;
+                overflow:hidden;
                 width:100%;
                 height:100%;
+                
+                background-color:#02070b;
+                
+                -webkit-font-smoothing: antialiased;
             }
             
-            .container{
-        	    display: table;
-			    width: 100%;
-			    height: 100%;
-			    position: relative;
+            main-router{
+            	height: calc(100% - 110px);
+            	top:110px;
             }
             
-            .container .topArea{
-        	    display: table-row;
-			    background-color: blue;
-			    height: auto;
-			    background-image: url(assets/images/home/bgsAreas/bg0.jpg);
-			    background-size: cover;
-			    background-position: center center;
-			    height:0px;
-            }
-            
-            .container .topArea .topContent{
-        	    max-width: 1012px;
-			    position: relative;
-			    width: 100%;
-			    margin-left: auto;
-			    margin-right: auto;
-			    display: block;
-            }
-            
-            .topTable{
-            	display:table;
-            }
-            
-            .topTable .topParts{
-            	display:table-cell;
-            }
-            
-            .container .topArea .topContent .info{
-				font-size: 16px;
-				font-family: "VW Text";
-				font-weight: normal;
-				color: white;
-				line-height: 1.813;
-				padding-top: 75px;
-				padding-bottom: 75px;
-				display:table-cell;
-				width:100%;
-            }
-            
-            
-            .container .topArea .topContent .info b{
-	            color:#e86623;
-            }
-            
-            .logoArea{
-            	width:30%;
-            	position:relative;
-            }
-            
-            .logo{
-            	position:absolute;
-            	display:block;
-            	top:0px;
-            	left:0px;
-            	width:100%;
-            	height:100%;
-            	background-image: url("assets/images/home/logo.png");
-            	background-repeat:no-repeat;
-            	background-size:contain;
-            	background-position:center center;
-            }
-            
-            @media (max-width: 1010px){
-            	.container .topArea .topContent{
-	        	    max-width: calc(100% - 40px);
-            	}
-            }
-            
-            @media (max-width: 600px){
-            	
-            	
-            	.logo{
-            		height:100%;
-            		width:100%;
-            	}
-            	
-            	.topTable .topParts{
-	            	display:block;
-	            	height:100%;
-	            	width:100%;
-	            	position:relative;
-	            }
-	            
-	            .topTable .topParts.logoArea{
-            		width:100%;
-            		height:150px;
-            	}
-	            
-	            .topTable{
-	            	display:block;
-	            	position:relative;
-	            }
-	            
-	            .container .topArea .topContent .info {
-	            	padding:20px;
-	            	text-align:center;
-	            	font-size: .6em;
+            @media (max-width:768px){
+            	main-router{
+	            	height: calc(100% - 66px);
+	            	top:66px;
 	            }
             }
-            
+
 		</style>
-
-
 		<script type="text/javascript">
 			
 			var vrSettings={
@@ -179,12 +80,12 @@
 				tsi1:{
 					"type": "cubemap",
 	                "cubeMap": [
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam1-front).jpg",
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam3-back).jpg",
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam2-right).jpg",
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam4-left).jpg",
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam5-top).jpg",
-	                    "assets/images/360s/tsi/tela 1/EXPLOSOES-(cam6-bottom).jpg"
+	                    "assets/images/360s/tsi/tela1/front.jpg",
+	                    "assets/images/360s/tsi/tela1/right.jpg",
+	                    "assets/images/360s/tsi/tela1/back.jpg",
+	                    "assets/images/360s/tsi/tela1/left.jpg",
+	                    "assets/images/360s/tsi/tela1/top.jpg",
+	                    "assets/images/360s/tsi/tela1/bottom.jpg"
 	                ],
 	                
 	                "showZoomCtrl":false,
@@ -195,12 +96,12 @@
 				tsi2:{
 					"type": "cubemap",
 	                "cubeMap":[
-	                    "assets/images/360s/tsi/tela 2/CAM01-FULL-ok.jpg",
-	                    "assets/images/360s/tsi/tela 2/CAM02-FULL-ok.jpg",
-	                    "assets/images/360s/tsi/tela 2/CAM03-FULL-ok.jpg",
-	                    "assets/images/360s/tsi/tela 2/CAM03-FULL-ok.jpg",
-	                    "assets/images/360s/tsi/tela 2/CAM05-FULL-ok.jpg",
-	                    "assets/images/360s/tsi/tela 2/CAM06-FULL-ok.jpg"
+	                    "assets/images/360s/tsi/tela2/front.jpg",
+	                    "assets/images/360s/tsi/tela2/right.jpg",
+	                    "assets/images/360s/tsi/tela2/back.jpg",
+	                    "assets/images/360s/tsi/tela2/left.jpg",
+	                    "assets/images/360s/tsi/tela2/top.jpg",
+	                    "assets/images/360s/tsi/tela2/bottom.jpg"
 	                ],
 	                
 	                "showZoomCtrl":false,
@@ -223,103 +124,57 @@
 	                "showZoomCtrl":false,
 	                "showFullscreenCtrl":false,
 	                "autoLoad":true,
+				},
+				
+				concierge:{
+					"type": "cubemap",
+	                "cubeMap":[
+	                	"assets/images/360s/Concierge/front.jpg",
+	                    "assets/images/360s/Concierge/right.jpg",
+	                    "assets/images/360s/Concierge/back.jpg",
+	                    "assets/images/360s/Concierge/left.jpg",
+	                    "assets/images/360s/Concierge/top.jpg",
+	                    "assets/images/360s/Concierge/bottom.jpg"
+	                ],
+	                
+	                "showZoomCtrl":false,
+	                "showFullscreenCtrl":false,
+	                "autoLoad":true,
 				}
 			}
 			
 		</script>
-
 	</head>
 
-	<body itemscope itemtype="http://schema.org/WebSite">
-		
-		
-		<!--TOP-AREA-->
-		<div class="container">
-			<div class="topArea">
-				<div class="topContent">
-					<div class="topTable">
-						<div class="topParts logoArea">
-							<div class="logo"></div>
-							<!--<img style="height: 100%;display: inline-block; position:relative; margin-left:100%" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">-->
-						</div>
-						<div class="topParts info">
-							A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Aqui você conhece um pouco sobre cada uma delas e não deixe de visitá-las no evento.
-							<br><br>
-							<b>Escolha a experiência abaixo.</b>
-						</div>
-					</div>
-				</div>
-			</div>
-	    	<hover-container></hover-container>
-	    </div>
-	    
-	    
-	    <!--VOLKSWAGEN E VOCE-->
-	    <vz-pagina>
-	    	<full-vr class="topContent" settings="fabrica1">
-	    		<hit-content logo="../assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
-		            <div class="contentText">Você nunca viu a Volkswagen por este ângulo. <br> <b>Ou melhor, por nenhum deles.</b></div>
-		        </hit-content>
-	    	</full-vr>
-	    	
-	    	<full-vr class="subContent" settings="fabrica2">
-	    		<vz-descricao class="overlay" side-image="assets/images/VWeVC/desc_image.png">
-	            	<div class="contentText">
-	            		Utilizando <b>realidade virtual</b> e <b>cinema 4D</b>, o visitante é transportado para o universo da montadora, começando por um tour no nascimento dos seus carros, passando pela <b>Autostadt</b>, prédio ícone da Volkswagen na Alemanha. E ainda dá uma voltinha entre os pilares da marca, com direito a uma surpresa no final da experiência. Um passeio lúdico e divertido, onde o convidado pode sentir o gostinho de estar, mais do que nunca, próximo da marca <b>inspirada na sua vida</b>.
-	            	</div>
-	            </vz-descricao>
-	    	</full-vr>
-	    </vz-pagina>
-	    
-	    
-	    <!--TSI IMMERSIVE-->
-	    <vz-pagina>
-	    	<full-vr class="topContent" settings="tsi1">
-	    		<hit-content logo="../assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
-		            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
-		        </hit-content>
-	    	</full-vr>
-	    	
-	    	<full-vr class="subContent" settings="tsi2">
-	    		<vz-descricao class="overlay">
-	            	<div class="contentText">
-	            		Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
-	            	</div>
-	            </vz-descricao>
-	    	</full-vr>
-	    </vz-pagina>
-	    
-	    
-	    <!--DESAFIO CROSS-->
-	    <vz-pagina>
-	    	<full-vr class="topContent" settings="saveiro">
-	    		<hit-content logo="../assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
-		            <div class="contentText">Desafie-se e prove que você é como a <b>Nova Saveiro Cross</b>: pronta pra tudo.</div>
-		        </hit-content>
-	    	</full-vr>
-	    	
-	    	<full-slider class="subContent" >
-            	<div class="contentText">
-            		A <b>Nova Saveiro Cross</b> é tão linda que você vai querer vê-la de perto. Mas para isso, precisa provar que tem um espírito aventureiro, como o da picape. Nesta experiência, o visitante é transportado para o alto de um canyon, onde um falcão roubou as chaves do carro. A tarefa é simples: alcance a ave no fim de uma ponte estreita e pegue as chaves de volta... a <b>40 metros de altura</b>. Topa o desafio?
-            	</div>
-	    	</full-slider>
-	    </vz-pagina>
-	    
-	    
-	    <!--DIGITAL CONCIERGE-->
-	    <vz-pagina sub-bg="../assets/images/Concierge/bgInferior.jpg">
-	    	<full-montagem class="topContent">
-	    		<hit-content logo="../assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
-		            <div class="contentText">O futuro que você imaginava, agora na sua cabeça. <b>Literalmente</b>.</div>
-		        </hit-content>
-	    	</full-montagem>
-	    	
-	    	<vz-descricao class="subContent">
-            	<div class="contentText">
-            		Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
-            	</div>
-            </vz-descricao>
-	    </vz-pagina>
-	    
+	<body>
+		<header id="header">
+	        <div class="top">
+	            <div class="center">
+	                <h1><a href="index.html#">Volkswagen</a></h1>
+	                <h2>29º Salão Internacional do Automóvel de São Paulo</h2>
+	                <div class="box-menu-mobile">
+	                    <button class="c-hamburger c-hamburger--htx menu-mobile">
+	                        <span>menu</span>
+	                    </button>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <nav class="menu">
+	            <div class="center">
+	                <ul>
+	                    <li><a href="index.html#ao-vivo">Ao vivo</a></li>
+	                    <li class="active"><a href="index.html#virtual-experience">Virtual Experience</a></li>
+	                    <li><a href="index.html#carros">Carros</a></li>
+	                    <li><a href="index.html#atracoes">Atrações</a></li>
+	                    <li><a href="index.html#vwevc">#VWeVC</a></li>
+	                    <li><a href="index.html#inovacoes">Inovações</a></li>
+	                    <li><a href="http://vwbr.com.br/ImprensaVW/search.aspx?b=b&amp;q=salao%20do%20automovel" target="_blank">Imprensa</a></li>
+	                </ul>
+	                <div class="border"></div>
+	            </div>
+	        </nav>
+	    </header>
+		<main-router></main-router>
 	</body>
 </html>

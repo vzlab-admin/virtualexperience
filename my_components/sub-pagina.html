@@ -75,6 +75,23 @@
             transform: translateY(0px);
         }
         
+        
+        @media (max-width:768px){
+            :host{
+                transform: translateY(calc(100% - 60px));
+            }
+            
+            .barra{
+                height:60px;
+            }
+            
+            .barra .seta{
+                margin-top:15px;
+                margin-bottom:15px;
+                width:30px;
+                height:30px;
+            }
+        }
 
     </style>
     
@@ -99,7 +116,7 @@
             meuBg:{
                 type:String,
                 observer:"updateEstilos"
-            }
+            },
         },
         
         meuTap:function(){
@@ -111,7 +128,7 @@
                 this.updateEstilos();
             }
         },
-        
+
         updateEstilos:function(){
             this.customStyle['--meu-bg'] = "url("+this.meuBg+")";
             this.updateStyles();

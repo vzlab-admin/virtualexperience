@@ -51,16 +51,14 @@
         
         
         
-        ready:function(){
+        attached:function(){
             this.setVR(vrSettings[this.settings]);
-            // this.style.display="none";
         },
         
         setVR:function(settings){
-            // console.log(this.$.panorama)
             this.vr=pannellum.viewer(this.$.panorama, settings);
             this.vr.parouCallback=function(){
-                this.async(this.showOverlay,2000);
+                console.log(this.async(this.showOverlay,2000));
             }.bind(this);
             
             this.vr.startCallback=function(){
@@ -70,8 +68,11 @@
         
         update:function(){
             var renderer=this.vr.getRenderer();
-            renderer.resize();
-            this.vr.animate();
+            if(renderer){
+                console.log("update")
+                renderer.resize();
+                this.vr.animate();
+            }
         },
         
         close:function(){
@@ -92,40 +93,5 @@
             }
         },
         
-        
-        
-        
-        // ready:function(){
-        //     this.setVR(vrSettings[this.settings]);
-        //     // this.style.display="none";
-        // },
-        
-        // setVR:function(settings){
-        //     // console.log(this.$.panorama)
-        //     this.vr=pannellum.viewer(this.$.panorama, settings);
-        // },
-        
-        // hide:function(){
-        //     if(this.style.display=="block"){
-        //         this.classList.remove("ativo");
-                
-        //         this.async(function(){
-        //             this.style.display="none";
-        //             this.$.info.classList.remove("ativo")
-        //         },500)
-        //     }
-        // },
-        
-        // show:function(){
-        //     if(this.classList.contains("ativo")==false){
-        //         this.style.display="block";
-                
-        //         var renderer=this.vr.getRenderer();
-        //         renderer.resize();
-        //         this.vr.animate();
-                
-        //         this.classList.add("ativo");
-        //     }
-        // }
     });       
 </script>
