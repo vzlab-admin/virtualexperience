@@ -22,8 +22,6 @@
             /*height:300px;*/
             min-height:100%;
         }
-        
-        
     </style>
     
    <template>
@@ -46,36 +44,31 @@
             settings:{
                 type:String,
                 value:undefined,
+            },
+            
+            timeOut:{
+                tuype:Number,
+                value:undefined,
             }
         },
         
-        
-        
         attached:function(){
-            this.setVR(vrSettings[this.settings]);
-        },
-        
-        setVR:function(settings){
-            this.vr=pannellum.viewer(this.$.panorama, settings);
-            this.vr.parouCallback=function(){
-                this.async(this.showOverlay,2000);
+            this.vr = new Cubemap(vrSettings[this.settings],this.$.panorama, {perspective:400, width: 512,height: 512});
+            
+            this.vr.stopCallback=function(){
+                this.timeOut=this.async(this.showOverlay,2000);
             }.bind(this);
             
             this.vr.startCallback=function(){
+                this.cancelAsync(this.timeOut);
                 this.hideOverlay();
             }.bind(this);
         },
         
         update:function(){
-            var renderer=this.vr.getRenderer();
-            if(renderer){
-                renderer.resize();
-                this.vr.animate();
+            if(this.vr && this.vr.update){
+                this.vr.update();
             }
-        },
-        
-        close:function(){
-            // this.showOverlay();
         },
         
         showOverlay:function(){

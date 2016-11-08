@@ -6,13 +6,11 @@
 		<meta name="viewport" content="width=device-width">
 		<meta name="viewport" content="initial-scale=1.0">
 		<script type="text/javascript" src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-		<script type="text/javascript" src="assets/pannellum.js"></script>
-		<script type="text/javascript" src="assets/libpannellum.js"></script>
+		<script type="text/javascript" src="assets/cubeMap.js"></script>
 
 		<link rel="import" href="my_components/main-router.html">
 		
 		<link rel="stylesheet" href="assets/fonts/font.css" type="text/css" />
-		<link rel="stylesheet" href="assets/pannellum.css" type="text/css" />
 		<link rel="stylesheet" href="assets/menu.css" type="text/css" >
 		
 		<style type="text/css">
@@ -33,6 +31,12 @@
                 -webkit-font-smoothing: antialiased;
             }
             
+            *{
+            	-webkit-backface-visibility: hidden;
+            	-ms-backface-visibility: hidden;
+            	backface-visibility: hidden;
+            }
+            
             main-router{
             	height: calc(100% - 110px);
             	top:110px;
@@ -49,112 +53,59 @@
 		<script type="text/javascript">
 			
 			var vrSettings={
-				vwevc1:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap": [
+				vwevc1:[
 	                    "assets/images/360s/fabrica/tela 1/_Front_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Right_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Back_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Left_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Top_Fabrica.jpg",
 	                    "assets/images/360s/fabrica/tela 1/_Bottom_Fabrica.jpg"
-	                ],
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				},
+				],
 				
-				vwevc2:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap": [
+				vwevc2:[
 	                    "assets/images/360s/fabrica/tela 2/_Front_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Right_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Back_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Left_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Top_Autostadt.jpg",
 	                    "assets/images/360s/fabrica/tela 2/_Bottom_Autostadt.jpg"
-	                ],
-	                
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				},
+				],
 				
-				tsi1:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap": [
+				tsi1:[
 	                    "assets/images/360s/tsi/tela1/front.jpg",
 	                    "assets/images/360s/tsi/tela1/right.jpg",
 	                    "assets/images/360s/tsi/tela1/back.jpg",
 	                    "assets/images/360s/tsi/tela1/left.jpg",
 	                    "assets/images/360s/tsi/tela1/top.jpg",
 	                    "assets/images/360s/tsi/tela1/bottom.jpg"
-	                ],
-	                
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				},
+				],
 				
-				tsi2:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap":[
+				tsi2:[
 	                    "assets/images/360s/tsi/tela2/front.jpg",
 	                    "assets/images/360s/tsi/tela2/right.jpg",
 	                    "assets/images/360s/tsi/tela2/back.jpg",
 	                    "assets/images/360s/tsi/tela2/left.jpg",
 	                    "assets/images/360s/tsi/tela2/top.jpg",
 	                    "assets/images/360s/tsi/tela2/bottom.jpg"
-	                ],
-	                
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				},
+				],
 				
-				cross:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap":[
+				cross:[
 	                	"assets/images/360s/saveiro/front.jpg",
 	                    "assets/images/360s/saveiro/right.jpg",
 	                    "assets/images/360s/saveiro/back.jpg",
 	                    "assets/images/360s/saveiro/left.jpg",
 	                    "assets/images/360s/saveiro/top.jpg",
 	                    "assets/images/360s/saveiro/bottom.jpg"
-	                ],
-	                
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				},
+				],
 				
-				up:{
-					"type": "cubemap",
-					"keyboardZoom" : false,
-					"mouseZoom" : false,
-	                "cubeMap":[
+				up:[
 	                	"assets/images/360s/Concierge/front.jpg",
 	                    "assets/images/360s/Concierge/right.jpg",
 	                    "assets/images/360s/Concierge/back.jpg",
 	                    "assets/images/360s/Concierge/left.jpg",
 	                    "assets/images/360s/Concierge/top.jpg",
 	                    "assets/images/360s/Concierge/bottom.jpg"
-	                ],
-	                
-	                "showZoomCtrl":false,
-	                "showFullscreenCtrl":false,
-	                "autoLoad":true,
-				}
+				]
 			}
 			
 			var toogleMobile=function(){
@@ -166,6 +117,16 @@
 			var newPage=function(e){
 				window.open(e.getAttribute("href"),"_self");
 			}
+			
+			window.addEventListener("resize",function(){
+				var vrs=document.querySelectorAll("full-vr");
+				
+				for(var i=0; i<vrs.length; i++){
+					if(vrs[i].vr && vrs[i].vr.update){
+						vrs[i].vr.update();
+					}
+				}
+			})
 			
 		</script>
 	</head>

@@ -19,11 +19,13 @@
             -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
             overflow:hidden;
+            pointer-event:none;
         }
         
         :host.ativo{
             opacity:1;
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            pointer-event:auto;
         }
 
         .myContent{
@@ -34,10 +36,6 @@
             left:0px;
             
             display:block;
-        }
-        
-        sub-pagina{
-            --meu-bg: url(../assets/images/Concierge/bgInferior.jpg)
         }
         
         @media (max-width:768px){

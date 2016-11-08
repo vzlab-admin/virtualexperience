@@ -59,7 +59,7 @@
             width:50%;
             left:25%;
             position:absolute;
-            bottom:calc(20% + 100px);
+            bottom:calc(20% + 10px);
         }
         
         @media (max-width: 768px){
@@ -101,7 +101,10 @@
         ],
     
         properties: {
-            
+            timeOut:{
+                tuype:Number,
+                value:undefined,
+            }
         },
         
         listeners: {
@@ -110,10 +113,6 @@
         
         meuResize:function(){
             this.slideUpdate({detail:{value:this.$.slider.value}});
-        },
-        
-        ready:function(){
-
         },
         
         slideUpdate:function(e){
@@ -135,6 +134,11 @@
                 this.$.freio.style.backgroundPositionX="calc(50% - " + ((397/1926)*this.clientWidth*valor) +"px)"
                 this.$.freio.style.backgroundPositionY="calc(50% - " + ((18/1926)*this.clientWidth*valor) +"px)"
             }
+            
+            
+            this.cancelAsync(this.timeOut);
+            this.hideOverlay();
+            this.timeOut=this.async(this.showOverlay,2000);
         },
         
         close:function(){
@@ -142,6 +146,21 @@
             if(overlay && typeof overlay["show"]=="function"){
                 overlay["show"].apply(overlay, undefined);
             }
-        }
+        },
+        
+        
+        showOverlay:function(){
+            var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
+            if(overlay && typeof overlay["show"]=="function"){
+                overlay["show"].apply(overlay, undefined);
+            }
+        },
+        
+        hideOverlay:function(){
+            var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
+            if(overlay && typeof overlay["hide"]=="function"){
+                overlay["hide"].apply(overlay, undefined);
+            }
+        },
     });
 </script>
