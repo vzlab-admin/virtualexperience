@@ -12,7 +12,7 @@ function Cubemap(array, container, options)
 	this.perspective = options.perspective || 300;
 	this.speed = 0.25;
 	this.faces = {};
-	this.box_size = 512;
+	this.box_size = 1024;
 	this.border_margin = 0.4;
 
 	var root = document.createElement("div");
@@ -200,12 +200,18 @@ Cubemap.prototype.update = function()
 {
     requestAnimationFrame(function(){
     	var perspective = this.perspective;
+    	
+    	// marcelo
+    	perspective=Math.max(Math.min(window.innerWidth,window.innerHeight),400);
+    	
     	//perspective = 100 / Math.atan(0.0174532925 * this.fov);
     	var distance = perspective;
     
     	this.root.style.perspective = perspective.toFixed(0) + "px";
     	this.root.style.webkitPerspective = perspective + "px";
     	this.root.style.mozPerspective = perspective + "px";
+    	
+
         
     	var rect = this.root.getClientRects()[0];
     	
