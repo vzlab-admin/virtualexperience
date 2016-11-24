@@ -54,13 +54,13 @@ function Cubemap(array, container, options)
 
 		e.stopPropagation();
 		e.preventDefault();
-		
+
 		if(that.startCallback){
 	        that.startCallback()
 	    }
-	    
+
 	    that.interacting=true;
-		
+
 		return false;
 
 	}
@@ -68,26 +68,26 @@ function Cubemap(array, container, options)
 	function onmove(e){
 		if(that.interacting){
 		    var rect = that.root.getClientRects()[0];
-			
+
 			if(rect){
 	    		var x = (e.pageX || e.touches[0].pageX) - rect.left;
 	    		var y = (e.pageY || e.touches[0].pageY) - rect.top;
 	    		var deltax = x - last_pos[0];
 	    		var deltay = y - last_pos[1];
-	    
+
 	    		that.yaw -= (deltax * that.speed) || 0;
 	    		that.pitch += (deltay * that.speed) || 0;
-	    		
+
 	    		that.pitch=Math.min(Math.max(that.pitch,-90),90);
 	    		that.update();
 			}
-	    
+
 			/*
 			that.fov += deltay * that.speed;
 			if(this.fov < 45) this.fov = 45;
 			else if(this.fov > 100) this.fov = 100;
 			*/
-	
+
 			last_pos = [x,y];
 			e.stopPropagation();
 			e.preventDefault();
@@ -104,13 +104,13 @@ function Cubemap(array, container, options)
 
 		e.stopPropagation();
 		e.preventDefault();
-		
+
 		if(that.stopCallback){
 	        that.stopCallback()
 	    }
-	    
+
 	    that.interacting=false;
-	    
+
 		return false;
 	}
 
@@ -129,7 +129,7 @@ function Cubemap(array, container, options)
 	//this.center.style.width = this.box_size + "px";
 	//this.center.style.height = this.box_size + "px";
 
-    
+
     this.loadArray(array)
     this.update();
 }
@@ -200,22 +200,22 @@ Cubemap.prototype.update = function()
 {
     requestAnimationFrame(function(){
     	var perspective = this.perspective;
-    	
+
     	// marcelo
     	perspective=Math.max(Math.min(window.innerWidth,window.innerHeight),400);
-    	
+
     	//perspective = 100 / Math.atan(0.0174532925 * this.fov);
     	var distance = perspective;
-    
+
     	this.root.style.perspective = perspective.toFixed(0) + "px";
     	this.root.style.webkitPerspective = perspective + "px";
     	this.root.style.mozPerspective = perspective + "px";
-    	
 
-        
+
+
     	var rect = this.root.getClientRects()[0];
-    	
-    	
+
+
     	if(rect){
         	var offsetX = (rect.width - this.box_size) * 0.5;
         	var offsetY = (rect.height - this.box_size) * 0.5;

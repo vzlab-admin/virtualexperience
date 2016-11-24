@@ -12,7 +12,7 @@
             -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
         }
-        
+
         #panorama{
             width:100%;
             height:100%;
@@ -23,18 +23,18 @@
             min-height:100%;
         }
     </style>
-    
+
    <template>
         <div id="panorama"></div>
         <content select=".overlay" id="overlay"></content>
    </template>
-    
+
 </dom-module>
 
 <script>
     Polymer({
         is: "full-vr",
-        
+
         properties: {
             vr:{
                 type:Object,
@@ -45,45 +45,45 @@
                 type:String,
                 value:undefined,
             },
-            
+
             timeOut:{
                 tuype:Number,
                 value:undefined,
             }
         },
-        
+
         attached:function(){
-            this.vr = new Cubemap(vrSettings[this.settings],this.$.panorama, {perspective:400, width: 512,height: 512});
-            
+            this.vr = new Cubemap(vrSettings[this.settings],this.$.panorama, {perspective:5, width: 512,height: 512});
+
             this.vr.stopCallback=function(){
                 this.timeOut=this.async(this.showOverlay,2000);
             }.bind(this);
-            
+
             this.vr.startCallback=function(){
                 this.cancelAsync(this.timeOut);
                 this.hideOverlay();
             }.bind(this);
         },
-        
+
         update:function(){
             if(this.vr && this.vr.update){
                 this.vr.update();
             }
         },
-        
+
         showOverlay:function(){
             var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
             if(overlay && typeof overlay["show"]=="function"){
                 overlay["show"].apply(overlay, undefined);
             }
         },
-        
+
         hideOverlay:function(){
             var overlay=Polymer.dom(this.$.overlay).getDistributedNodes()[0];
             if(overlay && typeof overlay["hide"]=="function"){
                 overlay["hide"].apply(overlay, undefined);
             }
         },
-        
-    });       
+
+    });
 </script>

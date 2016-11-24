@@ -55,15 +55,15 @@
 		    margin-right: auto;
 		    display: block;
         }
-        
+
         .topTable{
         	display:table;
         }
-        
+
         .topTable .topParts{
         	display:table-cell;
         }
-        
+
         .container .topArea .topContent .info{
 			font-size: 16px;
 			font-family: "VW Text";
@@ -76,14 +76,14 @@
 			width:100%;
 			float: right;
         }
-        
-        
+
+
         .container .topArea .topContent .info .link{
             color:#e86623;
             font-weight: bold;
             font-size: 18px;
             font-family: "VW Head";
-            
+
             box-sizing:border-box;
             padding-right:150px;
 
@@ -92,12 +92,12 @@
 		    background-repeat: no-repeat;
 		    background-position: calc(100% - 30px) center;
         }
-        
+
         .logoArea{
         	width:30%;
         	position:relative;
         }
-        
+
         .logo{
         	position:absolute;
         	display:block;
@@ -105,12 +105,12 @@
         	left:0px;
         	width:100%;
         	height:100%;
-		background-image: url(assets/images/home/logo.png);
+        	background-image: url(assets/images/home/logo.png);
         	background-repeat:no-repeat;
         	background-size:contain;
         	background-position:center center;
         }
-        
+
         .preloader{
         	position:absolute;
         	height:60%;
@@ -118,59 +118,59 @@
         	top:0px;
         	left:0px;
 
-		background-image: url(assets/images/home/logo.png);
+        	background-image: url(assets/images/home/logo.png);
         	background-repeat:no-repeat;
         	background-size: auto 235px;
         	background-position:center bottom;
         }
-        
+
         .preloader #barra{
         	height:3px;
         	background-color:#e86623;
         	position:absolute;
         	bottom:-5vh;
-        	
+
         	-webkit-transition:width .5s ease-in-out;
-        	
+
         	transition: width .5s ease-in-out;
         }
-        
+
         @media (max-width: 1010px){
         	.container .topArea .topContent{
         	    max-width: calc(100% - 40px);
         	}
         }
-        
+
         @media (max-width: 768px){
-        	
+
         	.logo{
         		height:100%;
         		width:100%;
         	}
-        	
+
         	.topTable .topParts{
             	display:block;
             	height:100%;
             	width:100%;
             	position:relative;
             }
-            
+
             .topTable .topParts.logoArea{
         		width:100%;
         		height:150px;
         	}
-            
+
             .topTable{
             	display:block;
             	position:relative;
             }
-            
+
             .container .topArea .topContent .info {
             	padding:0px 20px 0px 20px;
             	padding-top:0px;
             	font-size: 13px;
             }
-            
+
             .container .topArea .topContent .info .link{
             	font-size: 13px;
             	background-size: contain;
@@ -181,7 +181,7 @@
 			    margin-bottom: 20px;
             }
         }
-        
+
         @media (max-width: 450px){
         	.container .topArea .topContent .info .link{
         		padding-right:0px;
@@ -189,20 +189,20 @@
         		text-align: center;
         	}
         }
-        
-        
+
+
 
     </style>
-    
+
    <template>
         <app-location route="{{rota}}" use-hash-as-path></app-location>
-       
+
         <iron-ajax id="chamado" handle-as="document" on-response="respostaAjax"></iron-ajax>
 
         <div class="preloader">
         	<div id="barra"></div>
         </div>
-       
+
        <template is="dom-if" if="{{isLoaded}}">
 	        <!--TOP-AREA-->
 			<div class="container">
@@ -229,16 +229,16 @@
 				</div>
 		    	<hover-container id="hoverContainer"></hover-container>
 		    </div>
-		    
-		    
+
+
 		    <!--VOLKSWAGEN E VOCE-->
 		    <vz-pagina pacote="{{allFiles.vwevc}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="vwevc1">
-				<hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
+		    		<hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
 			            <div class="contentText">Você nunca viu a Volkswagen por este ângulo. <br> <b>Ou melhor, por nenhum deles.</b></div>
 			        </hit-content>
 		    	</full-vr>
-		    	
+
 		    	<full-vr class="subContent" settings="vwevc2">
 		    		<vz-descricao class="overlay imageBL" side-image="assets/images/VWeVC/desc_image.png">
 		            	<div class="contentText">
@@ -247,16 +247,16 @@
 		            </vz-descricao>
 		    	</full-vr>
 		    </vz-pagina>
-		    
-		    
+
+
 		    <!--TSI IMMERSIVE-->
 		    <vz-pagina  pacote="{{allFiles.tsi}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="tsi1">
-				<hit-content logo="assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
+		    		<hit-content logo="assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
 			            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
 			        </hit-content>
 		    	</full-vr>
-		    	
+
 		    	<full-vr class="subContent" settings="tsi2">
 		    		<vz-descricao class="overlay imageTL" side-image="assets/images/TSI/desc_image.jpg">
 		            	<div class="contentText">
@@ -265,32 +265,32 @@
 		            </vz-descricao>
 		    	</full-vr>
 		    </vz-pagina>
-		    
-		    
+
+
 		    <!--DESAFIO CROSS-->
 		    <vz-pagina  pacote="{{allFiles.cross}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="cross">
-				<hit-content logo="assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
+		    		<hit-content logo="assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
 			            <div class="contentText">Desafie-se e prove que você é como a <b>Nova Saveiro Cross</b>: pronta pra tudo.</div>
 			        </hit-content>
 		    	</full-vr>
-		    	
+
 		    	<full-slider class="subContent" >
 	            	<div class="contentText">
 	            		A <b>Nova Saveiro Cross</b> é tão linda que você vai querer vê-la de perto. Mas para isso, precisa provar que tem um espírito aventureiro, como o da picape. Nesta experiência, o visitante é transportado para o alto de um canyon, onde um falcão roubou as chaves do carro. A tarefa é simples: alcance a ave no fim de uma ponte estreita e pegue as chaves de volta... a <b>40 metros de altura</b>. Topa o desafio?
 	            	</div>
 		    	</full-slider>
 		    </vz-pagina>
-		    
-		    
+
+
 		    <!--DIGITAL CONCIERGE-->
 		    <vz-pagina  pacote="{{allFiles.up}}" on-load="paginaCarregada">
 		    	<full-montagem class="topContent">
-				<hit-content logo="assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
+		    		<hit-content logo="assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
 			            <div class="contentText">O futuro que você imaginava, agora na sua cabeça. <b>Literalmente</b>.</div>
 			        </hit-content>
 		    	</full-montagem>
-	      
+
 	      		<full-vr class="subContent" settings="up">
 		    		<vz-descricao class="overlay">
 		            	<div class="contentText">
@@ -301,29 +301,29 @@
 		    </vz-pagina>
 		</template>
    </template>
-    
+
 </dom-module>
 
 <script>
     Polymer({
         is: "main-router",
-        
+
         properties: {
 			pathToLoad:{
 				type:String,
 				value:undefined,
 			},
-			
+
 			loadedFiles:{
 				type:Number,
 				value:0,
 			},
-			
+
 			isLoaded:{
 				type:Boolean,
 				value:false,
 			},
-            
+
             allFiles:{
                 type:Object,
                 value:{
@@ -334,41 +334,41 @@
                 			"assets/images/home/bgsAreas/bg2.jpg",
                 			"assets/images/home/bgsAreas/bg3.jpg",
                 			"assets/images/home/bgsAreas/bg4.jpg",
-                			
+
                 			"assets/images/home/bordas/Corner_BL.png",
                 			"assets/images/home/bordas/Corner_BR.png",
                 			"assets/images/home/bordas/Corner_TL.png",
                 			"assets/images/home/bordas/Corner_TR.png",
-                			
+
                 			"assets/images/home/bordas/Linha_B.png",
                 			"assets/images/home/bordas/Linha_T.png",
                 			"assets/images/home/bordas/Linha_R.png",
                 			"assets/images/home/bordas/Linha_L.png",
-                			
+
                 			"assets/images/home/logo.png",
                 			"assets/images/home/linkImage.png",
-                			
+
                 			"assets/images/home/hoverImages/1_vw_e_vc.png",
                 			"assets/images/home/hoverImages/2_tsi_xtreme.png",
                 			"assets/images/home/hoverImages/3_cross.png",
                 			"assets/images/home/hoverImages/4_holo_view.png",
                 		]
                 	},
-                	
+
                     vwevc:{
                         rota:"vwevc",
                         index:1,
                         files:[
                             "assets/images/VWeVC/desc_image.png",
                             "assets/images/shared/hitArea/logos/VWeVC.png",
-                            
+
                             "assets/images/360s/fabrica/tela 1/_Front_Fabrica.jpg",
     	                    "assets/images/360s/fabrica/tela 1/_Right_Fabrica.jpg",
     	                    "assets/images/360s/fabrica/tela 1/_Back_Fabrica.jpg",
     	                    "assets/images/360s/fabrica/tela 1/_Left_Fabrica.jpg",
     	                    "assets/images/360s/fabrica/tela 1/_Top_Fabrica.jpg",
     	                    "assets/images/360s/fabrica/tela 1/_Bottom_Fabrica.jpg",
-    
+
                             "assets/images/360s/fabrica/tela 2/_Front_Autostadt.jpg",
     	                    "assets/images/360s/fabrica/tela 2/_Right_Autostadt.jpg",
     	                    "assets/images/360s/fabrica/tela 2/_Back_Autostadt.jpg",
@@ -377,20 +377,20 @@
     	                    "assets/images/360s/fabrica/tela 2/_Bottom_Autostadt.jpg"
                         ]
                     },
-                    
+
                     tsi:{
                         rota:"tsi",
                         index:2,
                         files:[
                             "assets/images/shared/hitArea/logos/TSI.png",
-                            
+
                             "assets/images/360s/tsi/tela1/front.jpg",
 		                    "assets/images/360s/tsi/tela1/back.jpg",
 		                    "assets/images/360s/tsi/tela1/right.jpg",
 		                    "assets/images/360s/tsi/tela1/left.jpg",
 		                    "assets/images/360s/tsi/tela1/top.jpg",
 		                    "assets/images/360s/tsi/tela1/bottom.jpg",
-    
+
                             "assets/images/360s/tsi/tela2/front.jpg",
 		                    "assets/images/360s/tsi/tela2/right.jpg",
 		                    "assets/images/360s/tsi/tela2/back.jpg",
@@ -399,30 +399,30 @@
 		                    "assets/images/360s/tsi/tela2/bottom.jpg",
                         ]
                     },
-                    
+
                     cross:{
                         rota:"cross",
                         index:3,
                         files:[
                             "assets/images/shared/hitArea/logos/Cross.png",
-                            
+
                             "assets/images/360s/saveiro/left.jpg",
 		                    "assets/images/360s/saveiro/front.jpg",
 		                    "assets/images/360s/saveiro/right.jpg",
 		                    "assets/images/360s/saveiro/back.jpg",
 		                    "assets/images/360s/saveiro/top.jpg",
 		                    "assets/images/360s/saveiro/bottom.jpg",
-		                    
+
 		                    "assets/images/CROSS/slider.jpg",
 		                    "assets/images/CROSS/slider/1.png",
 		                    "assets/images/CROSS/slider/2.png",
 		                    "assets/images/CROSS/slider/3.png",
 		                    "assets/images/CROSS/slider/4.png",
-		                    
+
 
                         ]
                     },
-                    
+
                     up:{
                         rota:"up",
                         index:4,
@@ -431,7 +431,7 @@
                             "assets/images/Concierge/montagem_disco.png",
                             "assets/images/Concierge/montagem_freio.png",
                             "assets/images/Concierge/montagem.jpg",
-                            
+
                             "assets/images/360s/Concierge/front.jpg",
 		                    "assets/images/360s/Concierge/right.jpg",
 		                    "assets/images/360s/Concierge/back.jpg",
@@ -443,22 +443,22 @@
                 }
             }
         },
-        
+
         ready:function(){
         	this.$.chamado.url=this.allFiles.home.files[0];
-        	
+
         	if(this.rota && this.rota.path){
 	        	var p=this.rota.path.toLowerCase();
-	        	
+
 	        	if(p=="vwevc" || p=="tsi" || p=="cross" || p=="up"){
 	        		this.pathToLoad=p;
 	        		this.allFiles.home.files=this.allFiles.home.files.concat(this.allFiles[p].files)
 	        	}
         	}
-        	
+
 	        this.$.chamado.auto=true;
         },
-        
+
         paginaCarregada:function(e){
         	if(e.detail.progress){
         		this.$$("#hoverContainer").progress(e.detail);
@@ -470,61 +470,61 @@
         				if(i!=myIndex){
         					ps[i].carregar=true;
         				}
-        				
+
         			}
         			var p=ps[myIndex];
         			p.preLoad=true;
         			if(p.filesReady){
         				p.show();
         			}
-        			
+
         			this.async(function(){
 	        			this.classList.add("ativo")
 	        		}.bind(this), 1500);
         		}
-        		
-        		
+
+
         		this.$$("#hoverContainer").loadArea(e.detail.pageNum);
         	}
         },
-        
+
         respostaAjax:function(){
         	this.loadedFiles++;
         	if(this.loadedFiles==this.allFiles.home.files.length){
         		this.isLoaded=true;
-        		
+
         		if(!this.pathToLoad){// se não for pra carregar nenhum path especifico
-        			
-        			
+
+
         			this.async(function(){
         				var ps=document.querySelectorAll("vz-pagina")
 	        			for(var i=0; i<ps.length; i++){
 	        				ps[i].carregar=true;
 	        			}
         			}.bind(this), 1000);
-        		
+
 	        		this.async(function(){
 	        			this.classList.add("ativo")
 	        		}.bind(this), 1500);
-	        		
+
         		}else{// carregar path especifico antes]
-        			
-        			
+
+
         			this.async(function(){
 	        			var p=document.querySelectorAll("vz-pagina")[this.allFiles[this.pathToLoad].index -1];
-	        			
+
 						var ps=document.querySelectorAll("vz-pagina");
 						ps[this.allFiles[this.pathToLoad].index -1].carregar=true
-						
+
         			}.bind(this), 100);
         		}
         	}else{
         		this.$.chamado.url=this.allFiles.home.files[this.loadedFiles]
         	}
-        	
+
         	this.loadProgress(this.loadedFiles/this.allFiles.home.files.length);
         },
-        
+
         loadProgress:function(progress){
         	this.$.barra.style.width=(progress*100)+"%";
         	if(progress==1){
@@ -533,5 +533,5 @@
         		}.bind(this),1500)
         	}
         }
-    });       
+    });
 </script>
