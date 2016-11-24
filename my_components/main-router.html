@@ -18,35 +18,35 @@
             top:0px;
             left:0px;
         }
-        
+
         :host.ativo .container{
         	opacity:1;
         	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
         }
-        
+
         .container{
         	-webkit-transition:opacity .5s ease-in-out;
         	transition:opacity .5s ease-in-out;
         	opacity: 0;
         	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         }
-        
+
         .container{
     	    display: table;
 		    width: 100%;
 		    height: 100%;
 		    position: relative;
         }
-        
+
         .container .topArea{
     	    display: table-row;
 		    height: auto;
-		    background-image: url(../assets/images/home/bgsAreas/bg0.jpg);
+		    background-image: url(assets/images/home/bgsAreas/bg0.jpg);
 		    background-size: cover;
 		    background-position: center center;
 		    height:0px;
         }
-        
+
         .container .topArea .topContent{
     	    max-width: 1012px;
 		    position: relative;
@@ -86,8 +86,8 @@
             
             box-sizing:border-box;
             padding-right:150px;
-            
-            background-image: url(../assets/images/home/linkImage.png);
+
+            background-image: url(assets/images/home/linkImage.png);
 		    background-size: 95px;
 		    background-repeat: no-repeat;
 		    background-position: calc(100% - 30px) center;
@@ -105,7 +105,7 @@
         	left:0px;
         	width:100%;
         	height:100%;
-        	background-image: url(../assets/images/home/logo.png);
+		background-image: url(assets/images/home/logo.png);
         	background-repeat:no-repeat;
         	background-size:contain;
         	background-position:center center;
@@ -117,8 +117,8 @@
         	width:100%;
         	top:0px;
         	left:0px;
-        	
-        	background-image: url(../assets/images/home/logo.png);
+
+		background-image: url(assets/images/home/logo.png);
         	background-repeat:no-repeat;
         	background-size: auto 235px;
         	background-position:center bottom;
@@ -234,7 +234,7 @@
 		    <!--VOLKSWAGEN E VOCE-->
 		    <vz-pagina pacote="{{allFiles.vwevc}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="vwevc1">
-		    		<hit-content logo="../assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
+				<hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay" style="pointer-events:none">
 			            <div class="contentText">Você nunca viu a Volkswagen por este ângulo. <br> <b>Ou melhor, por nenhum deles.</b></div>
 			        </hit-content>
 		    	</full-vr>
@@ -252,7 +252,7 @@
 		    <!--TSI IMMERSIVE-->
 		    <vz-pagina  pacote="{{allFiles.tsi}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="tsi1">
-		    		<hit-content logo="../assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
+				<hit-content logo="assets/images/shared/hitArea/logos/TSI.png" class="overlay"  style="pointer-events:none">
 			            <div class="contentText">O motor <b>TSI</b> por seu lado mais potente: por todos.</div>
 			        </hit-content>
 		    	</full-vr>
@@ -270,7 +270,7 @@
 		    <!--DESAFIO CROSS-->
 		    <vz-pagina  pacote="{{allFiles.cross}}" on-load="paginaCarregada">
 		    	<full-vr class="topContent" settings="cross">
-		    		<hit-content logo="../assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
+				<hit-content logo="assets/images/shared/hitArea/logos/Cross.png" class="overlay"  style="pointer-events:none">
 			            <div class="contentText">Desafie-se e prove que você é como a <b>Nova Saveiro Cross</b>: pronta pra tudo.</div>
 			        </hit-content>
 		    	</full-vr>
@@ -286,7 +286,7 @@
 		    <!--DIGITAL CONCIERGE-->
 		    <vz-pagina  pacote="{{allFiles.up}}" on-load="paginaCarregada">
 		    	<full-montagem class="topContent">
-		    		<hit-content logo="../assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
+				<hit-content logo="assets/images/shared/hitArea/logos/Concierge.png" class="overlay">
 			            <div class="contentText">O futuro que você imaginava, agora na sua cabeça. <b>Literalmente</b>.</div>
 			        </hit-content>
 		    	</full-montagem>

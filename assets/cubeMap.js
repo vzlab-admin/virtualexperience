@@ -5,12 +5,12 @@ function Cubemap(array, container, options)
 	options = options || {};
 
 	this.interacting=false;
-	
+
 	this.pitch = 0;
 	this.yaw = 0;
 	//this.fov = 70;
 	this.perspective = options.perspective || 300;
-	this.speed = 0.25;
+	this.speed = 0.125;
 	this.faces = {};
 	this.box_size = 1024;
 	this.border_margin = 0.4;
