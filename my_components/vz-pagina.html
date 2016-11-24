@@ -12,16 +12,16 @@
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             position:fixed;
             width:100%;
-            height:calc(100% - 110px);
+            height:calc(100% - 80px);
             overflow:hidden;
-            top:110px;
+            top:80px;
             left:0px;
             -webkit-transition:opacity .5s ease-in-out;
             transition:opacity .5s ease-in-out;
             overflow:hidden;
             pointer-event:none;
         }
-        
+
         :host.ativo{
             opacity:1;
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
@@ -34,19 +34,19 @@
             height:100%;
             top:0px;
             left:0px;
-            
+
             display:block;
         }
-        
+
         @media (max-width:768px){
             :host{
                 top:66px;
                 height:calc(100% - 66px);
             }
         }
-        
+
     </style>
-    
+
    <template>
         <iron-ajax handle-as="document" on-response="respostaAjax" id="chamado"></iron-ajax>
 
@@ -54,94 +54,94 @@
             <div class="myContent">
                 <content select=".topContent" id="topContent"></content>
             </div>
-            
+
             <sub-pagina id="info" meu-bg$="{{subBg}}">
                 <content select=".subContent" id="subContent"></content>
             </sub-pagina>
-            
+
             <exit-button  on-tap="hide"></exit-button>
         </template>
    </template>
-    
+
 </dom-module>
 
 <script>
     Polymer({
         is: "vz-pagina",
-        
+
         properties: {
             cascade:{
                 type:Array,
                 value:[],
             },
-            
+
             subBg:{
                 type:String,
                 value:undefined,
             },
-            
+
             pacote:{
                 type:Object,
                 notify:true,
             },
-            
+
             loadedFiles:{
                 type:Number,
                 value:0,
             },
-            
+
             filesReady:{
                 type:Boolean,
                 value:false,
             },
-            
+
             docReady:{
                 type:Boolean,
                 value: false,
                 notify:true,
             },
-            
+
             carregar:{
                 type:Boolean,
                 value: false,
                 observer:"verifica"
             },
-            
+
             preLoad:{
                 type:Boolean,
                 value:false,
             }
         },
-        
-        
+
+
         hide:function(){
             if(this.style.display=="block"){
                 this.classList.remove("ativo");
-                
+
                 this.async(function(){
                     this.style.display="none";
                     this.querySelector("#info").classList.remove("ativo")
                 },500);
             }
-            
+
             this.forwardFunction("close");
             window.location.hash="#"
         },
-        
+
         show:function(){
             if(this.filesReady && this.classList.contains("ativo")==false){
                 this.style.display="block";
-                
+
                 this.async(function(){
                     this.classList.add("ativo");
                 },50)
             }
-            
+
             window.location.hash=this.pacote.rota;
 
             this.forwardFunction("update");
         },
-        
+
         forwardFunction:function(nome, args){
             var cascade=this.getCascadeElements();
             for(var i=0; i<cascade.length; i++){
@@ -154,12 +154,12 @@
         getCascadeElements:function(){
             return [this.querySelector(".topContent"),this.querySelector(".subContent")]
         },
-        
+
         respostaAjax:function(e){
-            
+
             this.loadedFiles++;
             if(this.loadedFiles==this.pacote.files.length){
-                
+
                 this.filesReady=true;
                 if(this.preLoad){
                     this.show();
@@ -167,10 +167,10 @@
             }else{
                 this.$.chamado.url=this.pacote.files[this.loadedFiles];
             }
-            
+
             this.fire('load', {pageNum:this.pacote.index, progress:this.loadedFiles/this.pacote.files.length});
         },
-        
+
         adicionou:function(){
             if(this.filesReady==true){
                 this.forwardFunction("update");
@@ -184,6 +184,6 @@
                 this.$.chamado.auto=true;
             }
         }
-  
-    });       
+
+    });
 </script>
