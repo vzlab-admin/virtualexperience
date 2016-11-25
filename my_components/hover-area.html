@@ -5,21 +5,23 @@
         :host{
             display:block;
             position:relative;
-            height:25%;
+            /*height:25%;*/
             background-size: cover;
-            overflow: hidden;
+            /*overflow: hidden;*/
             background-position:center center;
-            
             cursor:pointer;
-            
-            min-height:120px;
+            /*min-height:120px;*/
+
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 120px;
         }
-        
+
         :host:hover .container{
             opacity:0;
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         }
-        
+
         .container{
             -webkit-transition:opacity .3s;
             transition: opacity .3s;
@@ -29,8 +31,8 @@
             height:100%;
             background-color:rgba(0,0,0,.5);
         }
-        
-        
+
+
         /*// corners*/
         :host:hover .borders{
             opacity:1;
@@ -39,70 +41,70 @@
             height:100%;
             top: 0px;
             left: 0px;
-            
+
             background-size: auto 40px;
         }
-        
+
         .borders{
             pointer-events:none;
             opacity:0;
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
             -webkit-transition:all .3s;
             transition: all .3s;
-            
+
             display:block;
             position:absolute;
             top:15px;
             left: 15px;
             width:calc(100% - 30px);
             height:calc(100% - 30px);
-            
+
             background-image: var(--hover-image, none);
             background-size: auto 45px;
             background-position: center center;
             background-repeat: no-repeat;
         }
-        
+
         .borders div{
             position:absolute;
             display:block;
             background-position: center center;
             background-size: 100% 100%;
         }
-        
+
         .borders .corner{
             width:35px;
             height:35px;
         }
-        
+
         .borders .horizo{
             width:calc(100% - 35px * 2);
             height:13px;
             left:35px;
         }
-        
+
         .borders .vertic{
             width:13px;
             height:calc(100% - 35px * 2);
             top:35px;
         }
-        
+
         .borders .top{
             top:0px;
         }
-        
+
         .borders .right{
             right:0px;
         }
-        
+
         .borders .bottom{
             bottom:0px;
         }
-        
+
         .borders .left{
             left:0px;
         }
-        
+
         #carregando{
             display:block;
             width:0px;
@@ -115,12 +117,12 @@
             -webkit-transition:all .5s ease-in-out;
             transition: all .5s ease-in-out;
         }
-        
+
         #carregando.inativo{
             opacity:0;
             -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
         }
-        
+
         @media (max-width: 640px) {
             .borders, :host:hover .borders{
                 opacity:1;
@@ -129,34 +131,34 @@
                 height:100%;
                 top: 0px;
                 left: 0px;
-                
+
                 background-size: auto 25px;
                 opacity:1;
             }
-            
+
             .borders .corner{
                 width:5vw;
                 height:5vw;
             }
-        
+
             .borders .horizo{
                 width:calc(100% - 5vw * 2);
                 height:calc(5vw / 35 * 13);
                 left:5vw;
             }
-            
+
             .borders .vertic{
                 width:calc(5vw / 35 * 13);
                 height:calc(100% - 5vw * 2);
                 top:5vw;
             }
-            
+
             .container{
-                opacity:1;   
+                opacity:1;
             }
         }
     </style>
-    
+
    <template>
        <div class="container"></div>
        <div class="borders">
@@ -169,30 +171,30 @@
            <div class="corner bottom left"  style="background-image:url(../assets/images/home/bordas/Corner_BL.png)"></div>
            <div class="vertic left"         style="background-image:url(../assets/images/home/bordas/Linha_L.png)"></div>
         </div>
-       
+
         <div id="carregando" class="ativo"></div>
    </template>
-    
+
 </dom-module>
 
 <script>
     Polymer({
         is: "hover-area",
-        
+
         properties: {
 
         },
-        
-        
-        
+
+
+
         loadArea:function(){
             this.async(function(){
-              this.$.carregando.classList.add("inativo");  
+              this.$.carregando.classList.add("inativo");
             }.bind(this),500)
         },
-        
+
         progress:function(p){
             this.$.carregando.style.width=(p*100)+"%"
         }
-    });       
+    });
 </script>

@@ -4,13 +4,15 @@
 <dom-module id="hover-container">
     <style>
         :host{
-            display:table-row;
-            /*position:relative;*/
-            height:auto;
-            background-color:gray;
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        
+        :host > * {
+            flex-grow: 1;
+            flex-shrink: 0;
+            flex-basis: 200px;
+        }
+
         :host:hover{
             background-color:#ffc500;
         }
@@ -20,59 +22,59 @@
             background-image: url(../assets/images/home/bgsAreas/bg1.jpg);
             --hover-image: url(../assets/images/home/hoverImages/1_vw_e_vc.png);
         }
-        
+
         #parte2{
             background-image: url(../assets/images/home/bgsAreas/bg2.jpg);
             --hover-image:url(../assets/images/home/hoverImages/2_tsi_xtreme.png);
             --hover-image: url(../assets/images/home/hoverImages/2_tsi_xtreme.png);
         }
-        
+
         #parte3{
             background-image: url(../assets/images/home/bgsAreas/bg3.jpg);
             --hover-image: url(../assets/images/home/hoverImages/3_cross.png);
         }
-        
+
         #parte4{
             background-image: url(../assets/images/home/bgsAreas/bg4.jpg);
             --hover-image: url(../assets/images/home/hoverImages/4_holo_view.png);
         }
     </style>
-    
-    
+
+
     <template>
         <hover-area id="parte1" data="0" on-tap="openPagina"></hover-area>
         <hover-area id="parte2" data="1" on-tap="openPagina"></hover-area>
         <hover-area id="parte3" data="2" on-tap="openPagina"></hover-area>
         <hover-area id="parte4" data="3" on-tap="openPagina"></hover-area>
     </template>
-    
+
 </dom-module>
 
 <script>
     Polymer({
         is: "hover-container",
-    
+
         properties: {
             loadedPages:{
                 type:Object,
                 notify:true,
             }
         },
-        
+
         openPagina:function(e) {
             var alvo=e.target;
             if(e.target.tagName!="HOVER-AREA"){
                 alvo=e.target.parentElement
             }
-            
+
             var pagina=document.querySelectorAll("vz-pagina")[parseInt(alvo.getAttribute("data"))];
             pagina.show()
         },
-        
+
         loadArea:function(pageNum){
             this.$["parte"+pageNum].loadArea();
         },
-        
+
         progress:function(e){
             this.$["parte"+e.pageNum].progress(e.progress)
         }
