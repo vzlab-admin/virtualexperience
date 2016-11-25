@@ -22,12 +22,41 @@
     html, body {
         margin: 0;
         padding: 0;
+    }
+
+    /**
+     * Layout
+     */
+    .layout {
+        display: flex;
+        flex-direction: column;
         min-height: 100vh;
-        overflow: auto;
+    }
+    .layout__header {
+        height: 66px;
+    }
+    .layout__body {
+        flex-grow: 1;
+    }
+    .layout__footer {
+        min-height: 50px;
+    }
+    .layout__header, .layout__footer {
+        background: whitesmoke; /* debug */
+    }
+    @media screen and (min-width: 768px) {
+        .layout__header { height: 80px }
     }
     </style>
 </head>
 <body>
-    <virtualexperience-app></virtualexperience-app>
+    <div class="layout">
+        <div class="layout__header"></div>
+        <div class="layout__body">
+            <virtualexperience-app></virtualexperience-app>
+        </div>
+        <div class="layout__footer"></div>
+    </div>
+    <!-- @TODO add analytics -->
 </body>
 </html>
