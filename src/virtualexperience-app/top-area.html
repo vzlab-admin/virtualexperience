@@ -4,9 +4,13 @@
     <template>
         <style>
         :host {
-            outline: 2px solid olive;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bgsAreas/bg0.jpg);
+            background-position: center top;
+            background-size: cover;
+            background-repeat: repeat-x;
+            padding: 2rem;
         }
-        :host .container {
+        .top-area__container {
             max-width: 1000px;
             min-height: 280px;
             margin: 0 auto;
@@ -18,10 +22,18 @@
             width: 200px;
         }
         .top-area__copy {
-            margin: 0 2rem 2rem;
+            margin: 0 2rem;
+        }
+        .top-area__press-link {
+            padding: 1rem 0;
+            display: block;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/linkImage.png);
+            background-repeat: no-repeat;
+            background-position: right center;
+            background-size: auto 100%;
         }
         @media screen and (min-width: 768px) {
-            :host .container {
+            .top-area__container {
                 flex-direction: row;
             }
             .top-area__logo {
@@ -29,19 +41,28 @@
                 flex: 1 0 auto;
             }
             .top-area__copy {
-                outline: 2px solid yellowgreen;
                 flex-grow: 1 1 auto;
             }
         }
         </style>
 
 
-        <div class="container">
+        <div class="top-area__container">
             <div class="top-area__logo">
                 <img src="http://virtualexperience.vw.com.br/assets/images/home/logo.png" alt="Volkawagen Virtual Experience" class="full-width">
             </div>
             <div class="top-area__copy">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                <p>
+                    A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
+                </p>
+
+                <p>
+                    <a href="#" class="top-area__press-link">
+                        Possui um óculos de realidade Virtual?
+                        <br>
+                        Clique aqui e veja uma prévia das experiências.
+                    </a>
+                </p>
             </div>
         </div>
     </template>
