@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="pt_BR">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
 
@@ -11,10 +11,23 @@
     <link rel="manifest" href="/manifest.json">
 
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-
     <link rel="import" href="src/virtualexperience-app/virtualexperience-app.html">
-  </head>
-  <body>
+
+    <style media="screen">
+    html {
+        font: 16px/1.414 sans-serif;
+        background-color: #02070b;
+        color: #ffffff;
+    }
+    html, body {
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        overflow: auto;
+    }
+    </style>
+</head>
+<body>
     <virtualexperience-app></virtualexperience-app>
-  </body>
+</body>
 </html>
