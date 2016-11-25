@@ -15,13 +15,18 @@
 
     <style media="screen">
     html {
-        font: 16px/1.414 sans-serif;
+        font: 13px/1.414 sans-serif;
         background-color: #02070b;
         color: #ffffff;
     }
     html, body {
         margin: 0;
         padding: 0;
+    }
+    @media screen and (min-width: 768px) {
+        html {
+            font-size: 16px;
+        }
     }
 
     /**
@@ -47,13 +52,21 @@
     @media screen and (min-width: 768px) {
         .layout__header { height: 80px }
     }
+
+    /**
+     * Utility classes
+     */
+    img.full-width {
+        width: 100%;
+        height: auto;
+    }
     </style>
 </head>
 <body>
     <div class="layout">
         <div class="layout__header"></div>
         <div class="layout__body">
-            <virtualexperience-app></virtualexperience-app>
+            <virtualexperience-app />
         </div>
         <div class="layout__footer"></div>
     </div>

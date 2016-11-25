@@ -1,0 +1,55 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="top-area">
+    <template>
+        <style>
+        :host {
+            outline: 2px solid olive;
+        }
+        :host .container {
+            max-width: 1000px;
+            min-height: 280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .top-area__logo {
+            width: 200px;
+        }
+        .top-area__copy {
+            margin: 0 2rem 2rem;
+        }
+        @media screen and (min-width: 768px) {
+            :host .container {
+                flex-direction: row;
+            }
+            .top-area__logo {
+                width: 400px;
+                flex: 1 0 auto;
+            }
+            .top-area__copy {
+                outline: 2px solid yellowgreen;
+                flex-grow: 1 1 auto;
+            }
+        }
+        </style>
+
+
+        <div class="container">
+            <div class="top-area__logo">
+                <img src="http://virtualexperience.vw.com.br/assets/images/home/logo.png" alt="Volkawagen Virtual Experience" class="full-width">
+            </div>
+            <div class="top-area__copy">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+        </div>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'top-area',
+        properties: {},
+    });
+    </script>
+</dom-module>
