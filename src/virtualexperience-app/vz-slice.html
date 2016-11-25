@@ -1,0 +1,158 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="vz-slice">
+    <template>
+        <style>
+        :host {
+            flex: 1 0 200px;
+            position: relative;
+        }
+
+        /**
+         * Content
+         */
+         .vz-slice__content {
+             position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             background-position: center;
+             background-size: cover;
+         }
+        img.vz-slice__title {
+            will-change: opacity, transform;
+            transition: all 300ms ease-in-out;
+            height: 45px; width: auto;
+            opacity: 0;
+        }
+        :host:hover img.vz-slice__title {
+            opacity: 1;
+        }
+
+        /**
+         * Smoked overlay
+         */
+        .vz-slice__overlay {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 1;
+            will-change: opacity;
+            transition: opacity 300ms ease-in-out;
+            z-index: 3;
+        }
+        :host:hover .vz-slice__overlay {
+            opacity: 0;
+        }
+
+        /**
+         * Deco
+         */
+        .vz-slice__deco {
+            position: absolute; top: 0; right: 0; bottom: 0; left: 0;
+            z-index: 2;
+            opacity: 0;
+            transform: scaleX(.99) scaleY(.9);
+            will-change: opacity, transform;
+            transition: all 300ms ease-in-out;
+        }
+        :host:hover .vz-slice__deco {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .vz-slice__deco-t,
+        .vz-slice__deco-tr,
+        .vz-slice__deco-r,
+        .vz-slice__deco-br,
+        .vz-slice__deco-b,
+        .vz-slice__deco-bl,
+        .vz-slice__deco-l,
+        .vz-slice__deco-tl {
+            position: absolute;
+        }
+        /**
+         * Corners
+         */
+        .vz-slice__deco-tl, .vz-slice__deco-tr, .vz-slice__deco-br, .vz-slice__deco-bl {
+            width: 35px;
+            height: 35px;
+            background-size: 35px 35px;
+            background-repeat: no-repeat;
+        }
+        .vz-slice__deco-tl {
+            top: 0; left: 0;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Corner_TL.png);
+        }
+        .vz-slice__deco-tr {
+            top: 0; right: 0;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Corner_TR.png);
+        }
+        .vz-slice__deco-br {
+            bottom: 0; right: 0;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Corner_BR.png);
+        }
+        .vz-slice__deco-bl {
+            bottom: 0; left: 0;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Corner_BL.png);
+        }
+        /**
+         * Sides
+         */
+        .vz-slice__deco-t, .vz-slice__deco-r, .vz-slice__deco-b, .vz-slice__deco-l {
+            background-size: 13px 13px;
+        }
+        .vz-slice__deco-t {
+            left: 35px; top: 0; right: 35px;
+            height: 13px;
+            background-repeat: repeat-x;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Linha_T.png);
+        }
+        .vz-slice__deco-r {
+            right: 0; bottom: 35px; top: 35px;
+            width: 13px;
+            background-repeat: repeat-y;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Linha_R.png);
+        }
+        .vz-slice__deco-b {
+            left: 35px; bottom: 0; right: 35px;
+            height: 13px;
+            background-repeat: repeat-x;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Linha_B.png);
+        }
+        .vz-slice__deco-l {
+            left: 0; bottom: 35px; top: 35px;
+            width: 13px;
+            background-repeat: repeat-y;
+            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Linha_L.png);
+        }
+        </style>
+
+        <div class="vz-slice__content" style="background-image: url([[bgsrc]])">
+            <img src="[[titlesrc]]" alt="[[title]]" class="vz-slice__title" />
+        </div>
+        <div class="vz-slice__deco">
+            <b class="vz-slice__deco-t"></b>
+            <b class="vz-slice__deco-tr"></b>
+            <b class="vz-slice__deco-r"></b>
+            <b class="vz-slice__deco-br"></b>
+            <b class="vz-slice__deco-b"></b>
+            <b class="vz-slice__deco-bl"></b>
+            <b class="vz-slice__deco-l"></b>
+            <b class="vz-slice__deco-tl"></b>
+        </div>
+        <div class="vz-slice__overlay"></div>
+    </template>
+
+
+    <script>
+    Polymer({
+        is: 'vz-slice',
+        properties: {
+            bgsrc: String,
+            titlesrc: String,
+            title: String,
+        },
+    });
+
+
+    </script>
+</dom-module>
