@@ -21,17 +21,17 @@
         .top-area__logo {
             width: 200px;
         }
-        .top-area__copy {
-            margin: 0 2rem;
-        }
         .top-area__press-link {
-            padding: 1rem 0;
-            display: block;
-            background-image: url(http://virtualexperience.vw.com.br/assets/images/home/linkImage.png);
-            background-repeat: no-repeat;
-            background-position: right center;
-            background-size: 8rem auto;
-            padding-right: 10rem;
+            display: flex;
+            align-items: center;
+        }
+        .top-area__press-link-text {
+            flex: 1 1 auto;
+        }
+        .top-area__press-link-image {
+            width: 5rem;
+            padding-left: .5rem;
+            flex: 0 0 auto;
         }
         @media screen and (min-width: 768px) {
             .top-area__container {
@@ -42,7 +42,12 @@
                 flex: 1 0 auto;
             }
             .top-area__copy {
+                padding-left: 2rem;
                 flex-grow: 1 1 auto;
+            }
+            .top-area__press-link-image {
+                width: 8rem;
+                padding-left: 1rem;
             }
         }
         </style>
@@ -57,13 +62,17 @@
                     A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
                 </p>
 
-                <p>
-                    <a href="#" class="top-area__press-link">
-                        Possui um óculos de realidade Virtual?
-                        <br>
-                        Clique aqui e veja uma prévia das experiências.
-                    </a>
-                </p>
+                <a href="#" class="top-area__press-link">
+                    <div class="top-area__press-link-text">
+                        <p>
+                            Possui um óculos de realidade Virtual?
+                            <br>Clique aqui e veja uma prévia das experiências.
+                        </p>
+                    </div>
+                    <div class="top-area__press-link-image">
+                        <img src="http://virtualexperience.vw.com.br/assets/images/home/linkImage.png" alt="" class="full-width">
+                    </div>
+                </a>
             </div>
         </div>
     </template>
