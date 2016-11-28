@@ -105,13 +105,20 @@
     .panel[active] {
         transform: translateY(0);
     }
-    .panel__toggle {
+    .panel__toggle, .page__close {
         position: absolute;
         top: 0; right: 0; left: 0;
         transition: transform 500ms ease-in-out;
+        padding: 2rem;
+        z-index: 9999;
+    }
+    .panel__toggle {
         transform: translateY(-100%);
         text-align: center;
-        padding: 2rem;
+    }
+    .page__close {
+        text-align: right;
+        left: auto;
     }
     .panel__toggle .panel__toggle-close { display: none; }
     .panel[active] .panel__toggle {
