@@ -127,9 +127,10 @@
         </style>
 
         <a href="[[url]]">
-            <div class="vz-slice__content" style="background-image: url([[bgsrc]])">
-                <img src="[[titlesrc]]" alt="[[title]]" class="vz-slice__title" />
+            <div class="vz-slice__content" style$="{{getBgStyles(bgsrc)}}">
+                <img src="[[titlesrc]]" alt="Alt: [[title]]" class="vz-slice__title" />
             </div>
+
             <div class="vz-slice__deco">
                 <b class="vz-slice__deco-t"></b>
                 <b class="vz-slice__deco-tr"></b>
@@ -154,6 +155,9 @@
             titlesrc: String,
             title: String,
             url: String,
+        },
+        getBgStyles: function (bgsrc) {
+            return 'background-image: url(' + JSON.stringify(bgsrc) + ')'
         },
     });
 
