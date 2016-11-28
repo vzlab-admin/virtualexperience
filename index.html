@@ -68,6 +68,7 @@
         height: 66px;
     }
     .layout__body {
+        position: relative;
         flex-grow: 1;
     }
     .layout__footer {
@@ -86,6 +87,23 @@
     img.full-width {
         width: 100%;
         height: auto;
+    }
+
+    /**
+     * Panels
+     */
+    .panel {
+        display: block;
+        position: absolute;
+        top: 0; right: 0; bottom: 0; left: 0;
+        transition: transform 500ms ease-in-out;
+        background: orangered;
+    }
+    .panel + .panel {
+        transform: translateY(100%);
+    }
+    .panel[active] {
+        transform: translateY(0);
     }
     </style>
 </head>

@@ -9,10 +9,15 @@
         <app-route route="{{route}}" pattern="/autostadt" active="{{autostadt}}"></app-route>
 
         <style>
+        :host {
+            overflow: hidden;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+        }
         </style>
 
-        <panel-tour active={{tour}}></panel-tour>
-        <panel-autostadt active={{autostadt}}></panel-autostadt>
+        <panel-tour active={{tour}} class="panel"></panel-tour>
+        <panel-autostadt active={{autostadt}} class="panel"></panel-autostadt>
     </template>
     <script>
     Polymer({
