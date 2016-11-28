@@ -1,0 +1,115 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="page-press">
+    <template>
+        <style>
+            :host {
+                text-align: center;
+                font-size: 1.2em;
+            }
+            .page-press__container {
+                width: 60rem;
+                max-width: 100%;
+                padding: 2rem;
+                margin: 0 auto;
+            }
+            .page-press__container > section {
+                margin-bottom: 8rem;
+            }
+            .page-press__logo {
+                text-align: center;
+                padding: 0 4rem;
+                margin-bottom: 4rem;
+            }
+            .page-press__logo img {
+                width: 100%;
+                max-width: 25rem;
+            }
+            .page-press__headline {
+                text-transform: uppercase;
+                font-weight: bolder;
+            }
+            .page-press__instructions {
+                color: #2c5c81;
+            }
+            .page-press__section-header {
+                margin-bottom: 4rem;
+                padding-bottom: 1rem;
+                color: #e86623;
+                font-size: 1.1em;
+                border-bottom: 2px solid currentColor;
+                text-transform: uppercase;
+                text-align: left;
+            }
+            .page-press__yt-link {
+                position: relative;
+            }
+            .page-press__yt-link::after {
+                position: absolute;
+                width: 4.96%;
+                height: 10.08%;
+                content: " ";
+                display: block;
+                /* background-color: red; */
+                top: calc(100% - 31px);
+                left: calc(100% - 20px);
+                background-image: url(http://virtualexperience.vw.com.br/imprensa/assets/+.png);
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                background-position: center center;
+            }
+
+
+        </style>
+
+        <div class="page-press__container">
+            <h1 class="page-press__logo">
+                <img src="http://virtualexperience.vw.com.br/imprensa/assets/logo.png" alt="Volkswagen Virtual Experience">
+            </h1>
+
+            <section class="page-press__teaser">
+                <p class="page-press__headline">
+                    Aqui você encontra todas experiências virtuais da Volkswagen.
+                </p>
+
+                <p class="page-press__instructions">
+                    Ao clicar na experiência, você será redirecionado para o app do YouTube. No vídeo, clique no ícone de óculos 360º ou selecione a opção para entrar em modo de Realidade Virtual (a tela do celular mostra imagens ou vídeos espelhados lado-a-lado)
+                </p>
+
+                <p class="page-press__yt-link">
+                    <a href="https://youtu.be/Di9z6pFqpaY" target="_new">
+                        <img src="http://virtualexperience.vw.com.br/imprensa/assets/1.png" alt="Salão do Automóvel 2016 &mdash; Teaser" class="full-width">
+                    </a>
+                </p>
+
+                <p>
+                    A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente.
+                    <a href="#/" >Saiba mais.</a>
+                </p>
+            </section>
+
+            <section class="page-press__more">
+                <h2 class="page-press__section-header">Mais experiências</h2>
+
+                <p class="page-press__yt-link">
+                    <a href="https://www.youtube.com/watch?v=OhmvTVYpZMk" target="_new">
+                        <img src="http://virtualexperience.vw.com.br/imprensa/assets/2.png" alt="Jetta TSI 1.4 150cv com Rubens Barrichello" class="full-width">
+                    </a>
+                </p>
+
+                <p class="page-press__yt-link">
+                    <a href="https://www.youtube.com/watch?v=rv1klcdTQ7Y" target="_new">
+                        <img src="http://virtualexperience.vw.com.br/imprensa/assets/3.png" alt="Virtual Experience &mdash; Concessionária Volkswagen" class="full-width">
+                    </a>
+                </p>
+            </section>
+        </div>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'page-press',
+        properties: {},
+    });
+    </script>
+</dom-module>
