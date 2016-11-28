@@ -11,14 +11,26 @@
     <link rel="manifest" href="/manifest.json">
 
     <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
     <link rel="import" href="src/virtualexperience-app/virtualexperience-app.html">
+    <link rel="stylesheet" href="assets/fonts/font.css">
 
     <style media="screen">
+    @font-face {
+
+    }
     html {
         font: 13px/1.618 sans-serif;
         background-color: #02070b;
         color: #ffffff;
         box-sizing: border-box;
+    }
+    html, .font-text {
+        font-family: 'VW Text', sans-serif;
+    }
+    h1, h2, h3, h4, h5, h6, .font-head {
+        font-family: 'VW Head', sans-serif;
+        font-weight: lighter;
     }
     html * {
         box-sizing: inherit;
