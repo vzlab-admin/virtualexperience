@@ -1,0 +1,22 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="panel-tour.html">
+<link rel="import" href="panel-autostadt.html">
+
+<dom-module id="page-vw-e-vc">
+    <template>
+        <app-route route="{{route}}" pattern="/tour" active="{{tour}}"></app-route>
+        <app-route route="{{route}}" pattern="/autostadt" active="{{autostadt}}"></app-route>
+
+        <style>
+        </style>
+
+        <panel-tour active={{tour}}></panel-tour>
+        <panel-autostadt active={{autostadt}}></panel-autostadt>
+    </template>
+    <script>
+    Polymer({
+        is: 'page-vw-e-vc',
+    })
+    </script>
+</dom-module>
