@@ -1,44 +1,39 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="top-area.html">
-<link rel="import" href="vz-slice.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="page-home.html">
+<link rel="import" href="page-press.html">
+<link rel="import" href="page-vw-e-vc.html">
+<link rel="import" href="page-tsi-extreme.html">
+<link rel="import" href="page-desafio-cross.html">
+<link rel="import" href="page-up.html">
 
 <dom-module id="virtualexperience-app">
     <template>
-        <style>
-        :host {
-            display: flex;
-            flex-direction: column;
-            min-height: 800px;
-            min-height: 100vh;
-             /* subtract header and footer from desktop version */
-            min-height: calc(100vh - 80px - 50px);
-        }
-        </style>
+        <app-location route="{{route}}" use-hash-as-path></app-location>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subRoute}}"></app-route>
 
-        <top-area></top-area>
-        <vz-slice
-            bgsrc="http://virtualexperience.vw.com.br/assets/images/home/bgsAreas/bg1.jpg"
-            titlesrc="http://virtualexperience.vw.com.br/assets/images/home/hoverImages/1_vw_e_vc.png"
-        ></vz-slice>
-        <vz-slice
-            bgsrc="http://virtualexperience.vw.com.br/assets/images/home/bgsAreas/bg2.jpg"
-            titlesrc="http://virtualexperience.vw.com.br/assets/images/home/hoverImages/2_tsi_xtreme.png"
-        ></vz-slice>
-        <vz-slice
-            bgsrc="http://virtualexperience.vw.com.br/assets/images/home/bgsAreas/bg3.jpg"
-            titlesrc="http://virtualexperience.vw.com.br/assets/images/home/hoverImages/3_cross.png"
-        ></vz-slice>
-        <vz-slice
-            bgsrc="http://virtualexperience.vw.com.br/assets/images/home/bgsAreas/bg4.jpg"
-            titlesrc="http://virtualexperience.vw.com.br/assets/images/home/hoverImages/4_holo_view.png"
-        ></vz-slice>
+        <iron-pages attr-for-selected="data-route" selected="{{routeData.page}}">
+            <page-home data-route=""></page-home>
+            <page-press data-route="imprensa"></page-press>
+            <page-vw-e-vc data-route="vw-e-vc"></page-vw-e-vc>
+            <page-tsi-extreme data-route="tsi-extreme"></page-tsi-extreme>
+            <page-desafio-cross data-route="desafio-cross"></page-desafio-cross>
+            <page-up data-route="up"></page-up>
+        </iron-pages>
     </template>
-
 
     <script>
     Polymer({
         is: 'virtualexperience-app',
         properties: {},
+        attached: function () {
+            if (!this.routeData.page) {
+                this.set('route.path', '/');
+            }
+            console.log(this.routeData.page)
+        }
     });
     </script>
 </dom-module>

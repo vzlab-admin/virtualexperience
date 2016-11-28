@@ -126,30 +126,34 @@
         }
         </style>
 
-        <div class="vz-slice__content" style="background-image: url([[bgsrc]])">
-            <img src="[[titlesrc]]" alt="[[title]]" class="vz-slice__title" />
-        </div>
-        <div class="vz-slice__deco">
-            <b class="vz-slice__deco-t"></b>
-            <b class="vz-slice__deco-tr"></b>
-            <b class="vz-slice__deco-r"></b>
-            <b class="vz-slice__deco-br"></b>
-            <b class="vz-slice__deco-b"></b>
-            <b class="vz-slice__deco-bl"></b>
-            <b class="vz-slice__deco-l"></b>
-            <b class="vz-slice__deco-tl"></b>
-        </div>
-        <div class="vz-slice__overlay"></div>
+        <a href="[[url]]">
+            <div class="vz-slice__content" style="background-image: url([[bgsrc]])">
+                <img src="[[titlesrc]]" alt="[[title]]" class="vz-slice__title" />
+            </div>
+            <div class="vz-slice__deco">
+                <b class="vz-slice__deco-t"></b>
+                <b class="vz-slice__deco-tr"></b>
+                <b class="vz-slice__deco-r"></b>
+                <b class="vz-slice__deco-br"></b>
+                <b class="vz-slice__deco-b"></b>
+                <b class="vz-slice__deco-bl"></b>
+                <b class="vz-slice__deco-l"></b>
+                <b class="vz-slice__deco-tl"></b>
+            </div>
+            <div class="vz-slice__overlay"></div>
+        </a>
     </template>
 
 
     <script>
     Polymer({
         is: 'vz-slice',
+        // extends: 'a',
         properties: {
             bgsrc: String,
             titlesrc: String,
             title: String,
+            url: String,
         },
     });
 
