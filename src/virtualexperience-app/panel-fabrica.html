@@ -1,0 +1,58 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<script src="../../bower_components/pannellum/js/libpannellum.js"></script>
+<script src="../../bower_components/pannellum/js/pannellum.js"></script>
+<link rel="stylesheet" href="../../bower_components/pannellum/css/pannellum.css">
+
+<dom-module id="panel-fabrica">
+    <template>
+        <style>
+        #panorama {
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+        }
+        </style>
+
+        <div class="panel-tour__container">
+            <h1>fabrica</h1>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </div>
+
+        <div id="panorama"></div>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'panel-fabrica',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            }
+        },
+        attached: function () {
+            pannellum.viewer('panorama', {
+                "type": "cubemap",
+                "autoRotate": true,
+                "autoLoad": true,
+                "orientationOnByDefault": true,
+                "showZoomCtrl": false,
+                "keyboardZoom": false,
+                "mouseZoom": false,
+                "showFullscreenCtrl": false,
+                "showControls": false,
+                "cubeMap": [
+                    'assets/images/panoramas/fabrica/front.jpg',
+                    'assets/images/panoramas/fabrica/right.jpg',
+                    'assets/images/panoramas/fabrica/back.jpg',
+                    'assets/images/panoramas/fabrica/left.jpg',
+                    'assets/images/panoramas/fabrica/top.jpg',
+                    'assets/images/panoramas/fabrica/bottom.jpg',
+                ]
+            });
+        }
+    })
+    </script>
+</dom-module>

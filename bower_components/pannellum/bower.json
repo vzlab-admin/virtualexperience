@@ -1,0 +1,23 @@
+{
+  "name": "pannellum",
+  "version": "0.1.0",
+  "authors": [
+    "Heri Setiawan <hello@kedaipixel.com>"
+  ],
+  "description": "360° panorama viewer by Matthew Petroff",
+  "main": "js/libpannellum.js,js/RequestAnimationFrame.js,js/pannellum.js,css/pannellum.css",
+  "keywords": [
+    "pannellum",
+    "panorama"
+  ],
+  "license": "MIT",
+  "homepage": "http://pannellum.org",
+  "private": false,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
