@@ -16,13 +16,14 @@
     Polymer({
         is: 'el-panorama',
         properties: {
-            name: String,
+            name: { type: String },
+            autoload: { type: Boolean, value: true },
         },
-        attached: function () {
+        ready: function () {
             pannellum.viewer(this, {
                 "type": "cubemap",
                 "autoRotate": true,
-                "autoLoad": true,
+                "autoLoad": this.autoload,
                 "orientationOnByDefault": true,
                 "showZoomCtrl": false,
                 "keyboardZoom": false,
