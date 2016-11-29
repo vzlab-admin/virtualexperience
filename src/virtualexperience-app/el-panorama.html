@@ -21,7 +21,7 @@
             autoload: { type: Boolean, value: true },
         },
         ready: function () {
-            pannellum.viewer(this.$.panorama, {
+            var panorama = pannellum.viewer(this.$.panorama, {
                 "type": "cubemap",
                 "autoRotate": true,
                 "autoLoad": this.autoload,
@@ -39,6 +39,12 @@
                     'assets/images/panoramas/' + this.name + '/bottom.jpg',
                 ]
             })
+            setInterval(function () {
+                var renderer = panorama.getRenderer()
+                if (renderer) {
+                    renderer.resize()
+                }
+            }, 500)
         },
     })
     </script>
