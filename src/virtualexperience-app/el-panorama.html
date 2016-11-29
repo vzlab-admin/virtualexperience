@@ -1,0 +1,44 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="stylesheet" href="../../bower_components/pannellum/css/pannellum.css">
+<script src="../../bower_components/pannellum/js/libpannellum.js"></script>
+<script src="../../bower_components/pannellum/js/pannellum.js"></script>
+
+<dom-module id="el-panorama">
+    <template>
+        <style media="screen">
+            :host {
+                position: absolute;
+                top: 0; right: 0; bottom: 0; left: 0;
+            }
+        </style>
+    </template>
+    <script>
+    Polymer({
+        is: 'el-panorama',
+        properties: {
+            name: String,
+        },
+        attached: function () {
+            pannellum.viewer(this, {
+                "type": "cubemap",
+                "autoRotate": true,
+                "autoLoad": true,
+                "orientationOnByDefault": true,
+                "showZoomCtrl": false,
+                "keyboardZoom": false,
+                "mouseZoom": false,
+                "showFullscreenCtrl": false,
+                "showControls": false,
+                "cubeMap": [
+                    'assets/images/panoramas/' + this.name + '/front.jpg',
+                    'assets/images/panoramas/' + this.name + '/right.jpg',
+                    'assets/images/panoramas/' + this.name + '/back.jpg',
+                    'assets/images/panoramas/' + this.name + '/left.jpg',
+                    'assets/images/panoramas/' + this.name + '/top.jpg',
+                    'assets/images/panoramas/' + this.name + '/bottom.jpg',
+                ]
+            })
+        },
+    })
+    </script>
+</dom-module>

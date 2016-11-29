@@ -1,19 +1,9 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-
-<script src="../../bower_components/pannellum/js/libpannellum.js"></script>
-<script src="../../bower_components/pannellum/js/pannellum.js"></script>
-<link rel="stylesheet" href="../../bower_components/pannellum/css/pannellum.css">
+<link rel="import" href="el-panorama.html">
 
 <dom-module id="panel-fabrica">
     <template>
-        <style>
-        #panorama {
-            position: absolute;
-            top: 0; right: 0; bottom: 0; left: 0;
-        }
-        </style>
-
-        <div id="panorama-fabrica"></div>
+        <el-panorama name="fabrica"></el-panorama>
     </template>
 
     <script>
@@ -26,28 +16,6 @@
                 reflectToAttribute: true
             }
         },
-        attached: function () {
-            pannellum.viewer('panorama-fabrica', {
-                "type": "cubemap",
-                "autoRotate": true,
-                "pitch": 0,
-                "autoLoad": true,
-                "orientationOnByDefault": true,
-                "showZoomCtrl": false,
-                "keyboardZoom": false,
-                "mouseZoom": false,
-                "showFullscreenCtrl": false,
-                "showControls": false,
-                "cubeMap": [
-                    'assets/images/panoramas/fabrica/front.jpg',
-                    'assets/images/panoramas/fabrica/right.jpg',
-                    'assets/images/panoramas/fabrica/back.jpg',
-                    'assets/images/panoramas/fabrica/left.jpg',
-                    'assets/images/panoramas/fabrica/top.jpg',
-                    'assets/images/panoramas/fabrica/bottom.jpg',
-                ]
-            });
-        }
     })
     </script>
 </dom-module>
