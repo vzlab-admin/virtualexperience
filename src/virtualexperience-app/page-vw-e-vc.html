@@ -2,6 +2,7 @@
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="panel-fabrica.html">
 <link rel="import" href="panel-autostadt.html">
+<link rel="import" href="el-close.html">
 
 <dom-module id="page-vw-e-vc">
     <template>
@@ -16,11 +17,7 @@
         }
         </style>
 
-        <div class="page__close">
-            <a href="#/">
-                <img src="http://virtualexperience.vw.com.br/assets/images/shared/bt_fechar.png" alt="Voltar para a página inicial" width="45px" height="45px">
-            </a>
-        </div>
+        <el-close></el-close>
 
         <panel-fabrica active={{fabrica}} class="panel"></panel-fabrica>
         <panel-autostadt active={{autostadt}} class="panel"></panel-autostadt>

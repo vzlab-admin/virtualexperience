@@ -105,9 +105,9 @@
     .panel[active] {
         transform: translateY(0);
     }
-    .panel__toggle, .page__close {
+    .panel__toggle {
         position: absolute;
-        top: 0; right: 0; left: 0;
+        top: 0; left: 0; right: 0;
         transition: transform 500ms ease-in-out;
         padding: 2rem;
         z-index: 9999;
@@ -117,8 +117,15 @@
         text-align: center;
     }
     .page__close {
+        position: fixed;
+        top: 66px; right: 0;
+        padding: 2rem;
         text-align: right;
         left: auto;
+        z-index: 9999;
+    }
+    @media screen and (min-width: 768px) {
+        .page__close { top: 80px }
     }
     .panel__toggle .panel__toggle-close { display: none; }
     .panel[active] .panel__toggle {
