@@ -6,11 +6,12 @@
 <dom-module id="el-panorama">
     <template>
         <style media="screen">
-            :host {
+            #panorama {
                 position: absolute;
                 top: 0; right: 0; bottom: 0; left: 0;
             }
         </style>
+        <div id="panorama"></div>
     </template>
     <script>
     Polymer({
@@ -20,11 +21,10 @@
             autoload: { type: Boolean, value: true },
         },
         ready: function () {
-            pannellum.viewer(this, {
+            pannellum.viewer(this.$.panorama, {
                 "type": "cubemap",
                 "autoRotate": true,
                 "autoLoad": this.autoload,
-                "orientationOnByDefault": true,
                 "showZoomCtrl": false,
                 "keyboardZoom": false,
                 "mouseZoom": false,
