@@ -1,0 +1,20 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="panel-canyon">
+    <template>
+        <el-panorama name="canyon"></el-panorama>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'panel-canyon',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            }
+        },
+    })
+    </script>
+</dom-module>

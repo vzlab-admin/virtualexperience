@@ -1,0 +1,21 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="el-panorama.html">
+
+<dom-module id="panel-concierge">
+    <template>
+        <el-panorama name="concierge"></el-panorama>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'panel-concierge',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            }
+        },
+    })
+    </script>
+</dom-module>
