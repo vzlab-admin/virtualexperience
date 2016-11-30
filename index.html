@@ -107,7 +107,8 @@
     }
     .panel__toggle {
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 0; left: 50%;
+        margin-left: -56px;
         transition: transform 500ms ease-in-out;
         padding: 2rem;
         z-index: 9999;
@@ -124,8 +125,20 @@
         left: auto;
         z-index: 9999;
     }
+    .panel__toggle-open img,
+    .panel__toggle-close img,
+    .page__close img {
+        width: 2rem;
+        height: 2rem;
+    }
     @media screen and (min-width: 768px) {
         .page__close { top: 80px }
+        .panel__toggle-open img,
+        .panel__toggle-close img,
+        .page__close img {
+            width: 3rem;
+            height: 3rem;
+        }
     }
     .panel__toggle .panel__toggle-close { display: none; }
     .panel[active] .panel__toggle {
