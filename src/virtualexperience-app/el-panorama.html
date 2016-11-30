@@ -10,20 +10,66 @@
                 position: absolute;
                 top: 0; right: 0; bottom: 0; left: 0;
             }
+            #overlay {
+                pointer-events: none;
+                border: 1rem solid gold;
+                position: absolute;
+                top: 0; right: 0; bottom: 0; left: 0;
+                /* center content */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                opacity: 1;
+                transition: opacity 500ms ease-in-out;
+                will-change: opacity;
+            }
+            #overlay.hidden {
+                opacity: 0;
+            }
         </style>
+
         <div id="panorama"></div>
+        <div id="overlay">
+            <div class="overlay">
+
+
+                <!-- <hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay style-scope main-router x-scope hit-content-0" style="pointer-events:none"> -->
+                    <div class="borders style-scope hit-content">
+                        <div class="corner top leFt style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_TL.png')"></div>
+                        <div class="horizo top style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_T.png')"></div>
+                        <div class="corner top right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_TR.png')"></div>
+                        <div class="vertic right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_R.png')"></div>
+                        <div class="corner bottom right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_BR.png')"></div>
+                        <div class="horizo bottom style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_B.png')"></div>
+                        <div class="corner bottom left style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_BL.png')"></div>
+                        <div class="vertic left style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_L.png')"></div>
+                        <div class="meio style-scope hit-content"></div>
+                    </div>
+
+                    <div class="content style-scope hit-content">
+                        <div class="contentText style-scope main-router">Você nunca viu a Volkswagen por este ângulo. <br class="style-scope main-router"> <b class="style-scope main-router">Ou melhor, por nenhum deles.</b></div>
+                        <div class="previa style-scope hit-content">Clique e veja uma prévia da experiência.</div>
+                    </div>
+                <!-- </hit-content> -->
+
+
+            </div>
+        </div>
     </template>
     <script>
     Polymer({
         is: 'el-panorama',
+        overlayHiddenTimeout: undefined,
         properties: {
             name: { type: String },
             autoload: { type: Boolean, value: true },
+            autorotate: { type: Boolean, value: false },
+            inactivity: { type: Number, value: 500 },
         },
         ready: function () {
             var panorama = pannellum.viewer(this.$.panorama, {
                 "type": "cubemap",
-                "autoRotate": true,
+                "autoRotate": this.autorotate,
                 "autoLoad": this.autoload,
                 "showZoomCtrl": false,
                 "keyboardZoom": false,
@@ -39,13 +85,22 @@
                     'assets/images/panoramas/' + this.name + '/bottom.jpg',
                 ]
             })
-            setInterval(function () {
-                var renderer = panorama.getRenderer()
-                if (renderer) {
-                    renderer.resize()
-                }
-            }, 500)
         },
+        // refreshHiddenOverlay: function () {
+        //     if (this.overlayHiddenTimeout) {
+        //         clearTimeout(this.overlayHiddenTimeout)
+        //     }
+        //     this.hideOverlay()
+        //     this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), 1000)
+        // },
+        // showOverlay: function () {
+        //     console.log('show overlay')
+        //     if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
+        // },
+        // hideOverlay: function () {
+        //     console.log('hide overlay')
+        //     if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
+        // },
     })
     </script>
 </dom-module>
