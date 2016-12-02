@@ -31,8 +31,6 @@
         <div id="panorama"></div>
         <div id="overlay">
             <div class="overlay">
-
-
                 <!-- <hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay style-scope main-router x-scope hit-content-0" style="pointer-events:none"> -->
                     <div class="borders style-scope hit-content">
                         <div class="corner top leFt style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_TL.png')"></div>
@@ -85,8 +83,13 @@
                     'assets/images/panoramas/' + this.name + '/bottom.jpg',
                 ]
             })
-
             this.refreshMe()
+
+            // import prototype functions to object
+            this._mouseDownHandler = this._mouseDownHandler.bind(this)
+            this._mouseUpHandler = this._mouseUpHandler.bind(this)
+            this._touchStartHandler = this._touchStartHandler.bind(this)
+            this._touchEndHandler = this._touchEndHandler.bind(this)
         },
         refreshMe: function () {
             var renderer = this.panorama.getRenderer()
@@ -96,22 +99,44 @@
             if (window.requestAnimationFrame !== undefined) window.requestAnimationFrame(this.refreshMe.bind(this))
             else setTimeout(this.refreshMe.bind(this), 1000/60)
         },
+        attached: function () {
+            // mouse events
+            this.addEventListener('mousedown', this._mouseDownHandler)
 
-        // refreshHiddenOverlay: function () {
-        //     if (this.overlayHiddenTimeout) {
-        //         clearTimeout(this.overlayHiddenTimeout)
-        //     }
-        //     this.hideOverlay()
-        //     this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), 1000)
-        // },
-        // showOverlay: function () {
-        //     console.log('show overlay')
-        //     if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
-        // },
-        // hideOverlay: function () {
-        //     console.log('hide overlay')
-        //     if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
-        // },
+            // touch events
+            this.addEventListener('touchstart', this._touchStartHandler, { passive: true })
+            this.addEventListener('touchstart', this._touchEndHandler, { passive: true })
+        },
+        _mouseDownHandler: function (e) {
+            window.addEventListener('mouseup', this._mouseUpHandler)
+            this.hideOverlay()
+        },
+        _mouseUpHandler: function (e) {
+            window.removeEventListener('mouseup', this._mouseUpHandler)
+            this.refreshHiddenOverlay()
+        },
+        _touchStartHandler: function (e) {
+            this.hideOverlay()
+        },
+        _touchEndHandler: function (e) {
+            this.refreshHiddenOverlay()
+        },
+
+        refreshHiddenOverlay: function () {
+            if (this.overlayHiddenTimeout) {
+                clearTimeout(this.overlayHiddenTimeout)
+            }
+            this.hideOverlay()
+            this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), 1000)
+        },
+        showOverlay: function () {
+            console.log('show overlay')
+            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
+        },
+        hideOverlay: function () {
+            console.log('hide overlay')
+            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
+        },
     })
     </script>
 </dom-module>
