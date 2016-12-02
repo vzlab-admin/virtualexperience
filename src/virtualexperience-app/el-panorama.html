@@ -102,10 +102,9 @@
         attached: function () {
             // mouse events
             this.addEventListener('mousedown', this._mouseDownHandler)
-
             // touch events
             this.addEventListener('touchstart', this._touchStartHandler, { passive: true })
-            this.addEventListener('touchstart', this._touchEndHandler, { passive: true })
+            this.addEventListener('touchend', this._touchEndHandler, { passive: true })
         },
         _mouseDownHandler: function (e) {
             window.addEventListener('mouseup', this._mouseUpHandler)
@@ -130,11 +129,9 @@
             this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), this.overlayReappearTimer)
         },
         showOverlay: function () {
-            console.log('show overlay')
             if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
         },
         hideOverlay: function () {
-            console.log('hide overlay')
             if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
         },
     })
