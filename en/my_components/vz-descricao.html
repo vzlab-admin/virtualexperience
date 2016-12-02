@@ -1,0 +1,195 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+<link rel="import" href="vz-slider.html" />
+
+
+<dom-module id="vz-descricao">
+    <style>
+        :host{
+            opacity:1;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            position: relative;
+            font-size: 16px;
+            font-family: "VW Text";
+            line-height: 1.55;
+            color:white;
+            display: block;
+            font-weight: lighter;
+            max-width:80%;
+            width:1010px;
+            background-color: #214e5c;
+            
+            padding: 45px 35px 45px 35px;
+            
+            left: 50%;
+            top: 50%;
+            
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            
+                    transform: translateX(-50%) translateY(-50%);
+            
+            text-align:justify;
+            box-sizing:border-box;
+            
+            -webkit-transition:opacity .5s ease-in-out;
+            
+            transition: opacity .5s ease-in-out;
+            pointer-events:none;
+        }
+        
+        :host.inativo{
+            opacity:0;
+            -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        }
+
+        :host:after{
+            content:" ";
+            width:100%;
+            position:absolute;
+            height:10px;
+            top:100%;
+            left:0px;
+            display:block;
+            
+            border-bottom:2px solid #e86623;
+        }
+        
+        :host.comSlider{
+            pointer-events:auto;
+        }
+        
+        :host.comSlider:after{
+            display:none;
+        }
+        
+        :host.sideImage{
+            display:table;
+            padding:0px;
+        }
+        
+        :host.sideImage ::content .contentText{
+            padding: 45px 35px 45px 35px;
+            box-sizing:border-box;
+            display:table-cell;
+        }
+        
+        .image{
+            display:none;
+            width:30px;
+            height:30px;
+            position:relative;
+        }
+        
+        :host.sideImage .image{
+            display:table-cell;
+            background-size: contain;
+            background-position:center center;
+            background-repeat: no-repeat;
+            width:30%;
+        }
+        
+        :host.sideImage.imageBL .image{
+            background-position: bottom left;
+        }
+        
+        :host.sideImage.imageTL .image{
+            /*background-position: top left;*/
+            background-size: cover;
+        }
+        
+        vz-slider{
+            position:absolute;
+            width:100%;
+            top:calc(100% + 3px);
+            left:0px;
+        }
+        
+        @media (max-width:768px){
+            :host{
+                display:block !important;
+                padding: 20px 20px 20px 20px !important;
+            }
+            
+        	.image{
+        	    display: none !important;
+        	}
+        	
+        	::content.contentText{
+        	    font-size: 13px;
+        	    padding:0px !important;
+        	}
+        }
+        
+        @media (max-height:400px){
+            :host.some ::content.contentText{
+                display:none; 
+            }
+            
+            :host.some{
+                padding:0px !important;   
+            }
+        }
+    </style>
+    
+
+    
+    <template>
+        <div class="image" style$="background-image:url([[sideImage]]);"></div>
+        <content select=".contentText"></content>
+        
+        <template is="dom-if" if="{{comSlider}}">
+            <vz-slider on-slide="slideUpdate" info="Clique e arraste"></vz-slider>
+        </template>
+    </template>
+    
+</dom-module>
+
+<script>
+    Polymer({
+        is: "vz-descricao",
+    
+        properties: {
+            sideImage:{
+                type:String,
+            },
+            
+            comSlider:{
+                type:Boolean,
+                value:false,
+            }
+        },
+        
+        ready:function(){
+            if(this.sideImage!=undefined){
+                this.classList.add("sideImage")
+            }
+            
+            if(this.comSlider==true){
+                this.classList.add("comSlider")
+            }
+        },
+        
+        slideUpdate:function(e){
+            this.fire('slide', e.detail);
+        },
+        
+        show:function(){
+            
+            if(this.style.display=="none"){
+                this.style.display="block";
+                
+                this.async(function(){
+                    this.classList.remove("inativo");    
+                },50)
+            }
+        },
+        
+        hide:function(){
+            if(this.classList.contains("inativo")==false){
+                this.classList.add("inativo");  
+                 this.async(function(){
+                     this.style.display="none"; 
+                },500)
+            }
+        }
+    });
+</script>

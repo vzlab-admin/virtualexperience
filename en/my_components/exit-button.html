@@ -1,0 +1,55 @@
+<link rel="import" href="../bower_components/polymer/polymer.html" />
+
+<dom-module id="exit-button">
+    <style>
+        :host{
+            display:block;
+            position:absolute;
+            height:45px;
+            width:45px;
+            top:25px;
+            right:25px;
+            /*background-color:rgba(255,0,0,.5);*/
+            
+            cursor:pointer;
+            
+            background-image:url(../assets/images/shared/bt_fechar.png);
+            background-size:100% 100%;
+            background-position: center center;
+            background-repeat: no-repeat;
+            
+        }
+        
+        @media (max-width:768px){
+            :host{
+                height:30px;
+                width:30px;
+                top:15px;
+                right:15px;
+            }
+        }
+    
+    </style>
+    
+
+    
+   <template>
+        
+   </template>
+    
+</dom-module>
+
+<script>
+    
+    Polymer({
+        is: "exit-button",
+    
+        properties: {
+
+        },
+        
+        ready:function(){
+
+        }
+    });
+</script>
