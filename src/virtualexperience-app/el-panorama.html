@@ -62,7 +62,7 @@
             name: { type: String },
             autoload: { type: Boolean, value: true },
             autorotate: { type: Boolean, value: true },
-            inactivity: { type: Number, value: 500 },
+            overlayReappearTimer: { type: Number, value: 2000 }, // ms
         },
         ready: function () {
             this.panorama = pannellum.viewer(this.$.panorama, {
@@ -127,7 +127,7 @@
                 clearTimeout(this.overlayHiddenTimeout)
             }
             this.hideOverlay()
-            this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), 1000)
+            this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), this.overlayReappearTimer)
         },
         showOverlay: function () {
             console.log('show overlay')
