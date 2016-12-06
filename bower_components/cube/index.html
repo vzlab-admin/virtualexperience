@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cubefaces</title>
+
+        <style>
+            html {
+                background: #333;
+                box-sizing: border-box;
+            }
+            html * {
+                box-sizing: inherit;
+            }
+            html, body {
+                margin: 0; padding: 0;
+            }
+            section {
+                width: 100vw; height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+            }
+            section > * {
+                flex: 0 0 auto;
+            }
+        </style>
+
+        <!-- webcomponents -->
+        <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+        <link rel="import" href="static/webcomponents/vz-cube.html">
+    </head>
+    <body>
+        <section>
+            <vz-cube>
+                <vz-cubepivot>
+                    <vz-cubeface data-face="top" style="background-image: url(static/images/cubes/01/top.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="bottom" style="background-image: url(static/images/cubes/01/bottom.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="front" style="background-image: url(static/images/cubes/01/front.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="back" style="background-image: url(static/images/cubes/01/back.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="left" style="background-image: url(static/images/cubes/01/left.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="right" style="background-image: url(static/images/cubes/01/right.jpg)"></vz-cubeface>
+                </vz-cubepivot>
+            </vz-cube>
+        </section>
+
+        <section>
+            <vz-cube>
+                <vz-cubepivot>
+                    <vz-cubeface data-face="top" style="background-image: url(static/images/cubes/02/top.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="bottom" style="background-image: url(static/images/cubes/02/bottom.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="front" style="background-image: url(static/images/cubes/02/front.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="back" style="background-image: url(static/images/cubes/02/back.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="left" style="background-image: url(static/images/cubes/02/left.jpg)"></vz-cubeface>
+                    <vz-cubeface data-face="right" style="background-image: url(static/images/cubes/02/right.jpg)"></vz-cubeface>
+                </vz-cubepivot>
+            </vz-cube>
+        </section>
+    </body>
+</html>

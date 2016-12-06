@@ -1,14 +1,16 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="stylesheet" href="../../bower_components/pannellum/css/pannellum.css">
-<script src="../../bower_components/pannellum/js/libpannellum.js"></script>
-<script src="../../bower_components/pannellum/js/pannellum.js"></script>
+<link rel="import" href="../../bower_components/cube/static/webcomponents/vz-cube.html">
 
 <dom-module id="el-panorama">
     <template>
         <style media="screen">
-            #panorama {
+            :host {
                 position: absolute;
                 top: 0; right: 0; bottom: 0; left: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
             }
             #overlay {
                 pointer-events: none;
@@ -28,111 +30,27 @@
             }
         </style>
 
-        <div id="panorama"></div>
-        <div id="overlay">
-            <div class="overlay">
-                <!-- <hit-content logo="assets/images/shared/hitArea/logos/VWeVC.png" class="overlay style-scope main-router x-scope hit-content-0" style="pointer-events:none"> -->
-                    <div class="borders style-scope hit-content">
-                        <div class="corner top leFt style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_TL.png')"></div>
-                        <div class="horizo top style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_T.png')"></div>
-                        <div class="corner top right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_TR.png')"></div>
-                        <div class="vertic right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_R.png')"></div>
-                        <div class="corner bottom right style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_BR.png')"></div>
-                        <div class="horizo bottom style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_B.png')"></div>
-                        <div class="corner bottom left style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Corner_BL.png')"></div>
-                        <div class="vertic left style-scope hit-content" style="background-image:url('http://virtualexperience.vw.com.br/assets/images/shared/hitArea/Linha_L.png')"></div>
-                        <div class="meio style-scope hit-content"></div>
-                    </div>
+        <vz-cube>
+            <vz-cubepivot>
 
-                    <div class="content style-scope hit-content">
-                        <div class="contentText style-scope main-router">Você nunca viu a Volkswagen por este ângulo. <br class="style-scope main-router"> <b class="style-scope main-router">Ou melhor, por nenhum deles.</b></div>
-                        <div class="previa style-scope hit-content">Clique e veja uma prévia da experiência.</div>
-                    </div>
-                <!-- </hit-content> -->
+                <vz-cubeface data-face="top" style="background-image: url(assets/images/panoramas/[[name]]/top.jpg)"></vz-cubeface>
+                <vz-cubeface data-face="bottom" style="background-image: url(assets/images/panoramas/[[name]]/bottom.jpg)"></vz-cubeface>
+                <vz-cubeface data-face="front" style="background-image: url(assets/images/panoramas/[[name]]/front.jpg)"></vz-cubeface>
+                <vz-cubeface data-face="back" style="background-image: url(assets/images/panoramas/[[name]]/back.jpg)"></vz-cubeface>
+                <vz-cubeface data-face="left" style="background-image: url(assets/images/panoramas/[[name]]/left.jpg)"></vz-cubeface>
+                <vz-cubeface data-face="right" style="background-image: url(assets/images/panoramas/[[name]]/right.jpg)"></vz-cubeface>
+            </vz-cubepivot>
+        </vz-cube>
 
-
-            </div>
-        </div>
     </template>
     <script>
     Polymer({
         is: 'el-panorama',
-        overlayHiddenTimeout: undefined,
         properties: {
             name: { type: String },
             autoload: { type: Boolean, value: true },
             autorotate: { type: Boolean, value: true },
             overlayReappearTimer: { type: Number, value: 2000 }, // ms
-        },
-        ready: function () {
-            this.panorama = pannellum.viewer(this.$.panorama, {
-                "type": "cubemap",
-                "autoRotate": this.autorotate,
-                "autoLoad": this.autoload,
-                "showZoomCtrl": false,
-                "keyboardZoom": false,
-                "mouseZoom": false,
-                "showFullscreenCtrl": false,
-                "showControls": false,
-                "cubeMap": [
-                    'assets/images/panoramas/' + this.name + '/front.jpg',
-                    'assets/images/panoramas/' + this.name + '/right.jpg',
-                    'assets/images/panoramas/' + this.name + '/back.jpg',
-                    'assets/images/panoramas/' + this.name + '/left.jpg',
-                    'assets/images/panoramas/' + this.name + '/top.jpg',
-                    'assets/images/panoramas/' + this.name + '/bottom.jpg',
-                ]
-            })
-            this.refreshMe()
-
-            // import prototype functions to object
-            this._mouseDownHandler = this._mouseDownHandler.bind(this)
-            this._mouseUpHandler = this._mouseUpHandler.bind(this)
-            this._touchStartHandler = this._touchStartHandler.bind(this)
-            this._touchEndHandler = this._touchEndHandler.bind(this)
-        },
-        refreshMe: function () {
-            var renderer = this.panorama.getRenderer()
-            if (renderer) {
-                renderer.resize()
-            }
-            if (window.requestAnimationFrame !== undefined) window.requestAnimationFrame(this.refreshMe.bind(this))
-            else setTimeout(this.refreshMe.bind(this), 1000/60)
-        },
-        attached: function () {
-            // mouse events
-            this.addEventListener('mousedown', this._mouseDownHandler)
-            // touch events
-            this.addEventListener('touchstart', this._touchStartHandler, { passive: true })
-            this.addEventListener('touchend', this._touchEndHandler, { passive: true })
-        },
-        _mouseDownHandler: function (e) {
-            window.addEventListener('mouseup', this._mouseUpHandler)
-            this.hideOverlay()
-        },
-        _mouseUpHandler: function (e) {
-            window.removeEventListener('mouseup', this._mouseUpHandler)
-            this.refreshHiddenOverlay()
-        },
-        _touchStartHandler: function (e) {
-            this.hideOverlay()
-        },
-        _touchEndHandler: function (e) {
-            this.refreshHiddenOverlay()
-        },
-
-        refreshHiddenOverlay: function () {
-            if (this.overlayHiddenTimeout) {
-                clearTimeout(this.overlayHiddenTimeout)
-            }
-            this.hideOverlay()
-            this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), this.overlayReappearTimer)
-        },
-        showOverlay: function () {
-            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
-        },
-        hideOverlay: function () {
-            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
         },
     })
     </script>
