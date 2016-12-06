@@ -32,7 +32,6 @@
 
         <vz-cube>
             <vz-cubepivot>
-
                 <vz-cubeface data-face="top" style="background-image: url(assets/images/panoramas/[[name]]/top.jpg)"></vz-cubeface>
                 <vz-cubeface data-face="bottom" style="background-image: url(assets/images/panoramas/[[name]]/bottom.jpg)"></vz-cubeface>
                 <vz-cubeface data-face="front" style="background-image: url(assets/images/panoramas/[[name]]/front.jpg)"></vz-cubeface>
@@ -41,6 +40,13 @@
                 <vz-cubeface data-face="right" style="background-image: url(assets/images/panoramas/[[name]]/right.jpg)"></vz-cubeface>
             </vz-cubepivot>
         </vz-cube>
+        <div id="overlay">
+            <div>
+                <p>Se você quer saber, o que se passa aqui dentro:<br>
+                Eu vou mostrar pra você;</p>
+                <p>Você vai entender a <strong>força do pensamento.</strong></p>
+            </div>
+        </div>
 
     </template>
     <script>
@@ -52,6 +58,52 @@
             autorotate: { type: Boolean, value: true },
             overlayReappearTimer: { type: Number, value: 2000 }, // ms
         },
+        ready: function () {
+            // import prototype functions to object
+            this._mouseDownHandler = this._mouseDownHandler.bind(this)
+            this._mouseUpHandler = this._mouseUpHandler.bind(this)
+            this._touchStartHandler = this._touchStartHandler.bind(this)
+            this._touchEndHandler = this._touchEndHandler.bind(this)
+        },
+        attached: function () {
+            // mouse events
+            this.addEventListener('mousedown', this._mouseDownHandler)
+            // touch events
+            this.addEventListener('touchstart', this._touchStartHandler, { passive: true })
+            this.addEventListener('touchend', this._touchEndHandler, { passive: true })
+            this.addEventListener('touchcancel', this._touchEndHandler, { passive: true })
+        },
+
+        delayedShowOverlay: function () {
+            if (this.overlayHiddenTimeout) clearTimeout(this.overlayHiddenTimeout)
+
+            this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), this.overlayReappearTimer)
+        },
+        showOverlay: function () {
+            console.log('show')
+            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
+        },
+        hideOverlay: function () {
+            if (this.overlayHiddenTimeout) clearTimeout(this.overlayHiddenTimeout)
+            
+            if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.add('hidden')
+        },
+
+        _mouseDownHandler: function (e) {
+            window.addEventListener('mouseup', this._mouseUpHandler)
+            this.hideOverlay()
+        },
+        _mouseUpHandler: function (e) {
+            window.removeEventListener('mouseup', this._mouseUpHandler)
+            this.delayedShowOverlay()
+        },
+        _touchStartHandler: function (e) {
+            this.hideOverlay()
+        },
+        _touchEndHandler: function (e) {
+            this.delayedShowOverlay()
+        },
+
     })
     </script>
 </dom-module>
