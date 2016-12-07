@@ -15,43 +15,43 @@
             :host > * {
                 flex: 0 0 auto;
             }
-            #overlay {
+            .overlay {
                 pointer-events: none;
                 position: absolute;
                 top: 0; right: 0; bottom: 0; left: 0;
                 /* center content */
                 display: flex;
-                align-items: center;
+                flex-direction: column;
                 justify-content: center;
                 opacity: 1;
-                transition: opacity 500ms ease-in-out;
+                transition: opacity 1000ms ease-in-out;
                 will-change: opacity;
             }
-            #overlay.hidden {
+            .overlay.hidden {
                 opacity: 0;
+                transition-duration: 300ms;
             }
+
         </style>
 
         <!-- <img src="../../assets/images/panoramas/fabrica/back.jpg" alt="Olar" width="400" height="400"> -->
 
         <vz-cube>
             <vz-cubepivot>
-                <vz-cubeface data-face="top" style$="{{olar(name, 'top')}}"></vz-cubeface>
-                <vz-cubeface data-face="bottom" style$="{{olar(name, 'bottom')}}"></vz-cubeface>
-                <vz-cubeface data-face="front" style$="{{olar(name, 'front')}}"></vz-cubeface>
-                <vz-cubeface data-face="back" style$="{{olar(name, 'back')}}"></vz-cubeface>
-                <vz-cubeface data-face="left" style$="{{olar(name, 'left')}}"></vz-cubeface>
-                <vz-cubeface data-face="right" style$="{{olar(name, 'right')}}"></vz-cubeface>
+                <vz-cubeface data-face="top" style$="{{getFaceStyle(name, 'top')}}"></vz-cubeface>
+                <vz-cubeface data-face="bottom" style$="{{getFaceStyle(name, 'bottom')}}"></vz-cubeface>
+                <vz-cubeface data-face="front" style$="{{getFaceStyle(name, 'front')}}"></vz-cubeface>
+                <vz-cubeface data-face="back" style$="{{getFaceStyle(name, 'back')}}"></vz-cubeface>
+                <vz-cubeface data-face="left" style$="{{getFaceStyle(name, 'left')}}"></vz-cubeface>
+                <vz-cubeface data-face="right" style$="{{getFaceStyle(name, 'right')}}"></vz-cubeface>
             </vz-cubepivot>
         </vz-cube>
-        <div id="overlay">
-            <div>
-                <p>Se você quer saber, o que se passa aqui dentro:<br>
-                Eu vou mostrar pra você;</p>
-                <p>Você vai entender a <strong>força do pensamento.</strong></p>
+
+        <div id="overlay" class="overlay">
+            <div class="overlay__content">
+                <content select="[role=overlay]"></content>
             </div>
         </div>
-
     </template>
     <script>
     Polymer({
@@ -60,9 +60,9 @@
             name: { type: String },
             autoload: { type: Boolean, value: true },
             autorotate: { type: Boolean, value: true },
-            overlayReappearTimer: { type: Number, value: 2000 }, // ms
+            overlayReappearTimer: { type: Number, value: 1000 }, // ms
         },
-        olar: function (name, side) {
+        getFaceStyle: function (name, side) {
             return "background-image: url(assets/images/panoramas/" + name + "/" + side + ".jpg)"
         },
         ready: function () {
