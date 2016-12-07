@@ -63,7 +63,6 @@
             overlayReappearTimer: { type: Number, value: 2000 }, // ms
         },
         olar: function (name, side) {
-            console.log()
             return "background-image: url(assets/images/panoramas/" + name + "/" + side + ".jpg)"
         },
         ready: function () {
@@ -87,7 +86,6 @@
             this.overlayHiddenTimeout = setTimeout(this.showOverlay.bind(this), this.overlayReappearTimer)
         },
         showOverlay: function () {
-            console.log('show')
             if (this.$.overlay && this.$.overlay.classList) this.$.overlay.classList.remove('hidden')
         },
         hideOverlay: function () {
