@@ -1,14 +1,13 @@
 {
   "name": "cube",
   "homepage": "https://github.com/felds/cube",
-  "_release": "2dbc1aa618",
+  "_release": "f463b5d435",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "2dbc1aa618f4207c9c8b3028ae0d76567d8b94bb"
+    "commit": "f463b5d435710788e5d8cefef621603fea2585ea"
   },
   "_source": "https://github.com/felds/cube.git",
   "_target": "*",
-  "_originalSource": "https://github.com/felds/cube.git",
-  "_direct": true
+  "_originalSource": "https://github.com/felds/cube.git"
 }
