@@ -149,6 +149,46 @@
     }
     .panel[active] .panel__toggle .panel__toggle-close { display: inline-block; }
     .panel[active] .panel__toggle .panel__toggle-open { display: none; }
+
+    /**
+     * Overlays
+     */
+    overlay-plain {
+        position: relative;
+        display: block;
+        background-color: gold;
+        width: 60rem;
+        max-width: 80%;
+        margin: 0 auto;
+        background-color: #214e5c;
+    }
+    overlay-plain::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%; height: 2px;
+        bottom: -0.5rem; right: 0;
+        background: #e86623;
+    }
+    .overlay__content-text {
+        padding: 2rem;
+    }
+    .overlay__content-columns {
+        display: flex;
+    }
+    .overlay__content-image {
+        display: none;
+    }
+    .overlay__content-text {
+    }
+    @media screen and (min-width: 768px) {
+        .overlay__content-image {
+            display: flex;
+            flex: 0 0 25%;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+    }
     </style>
 </head>
 <body>

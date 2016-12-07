@@ -3,6 +3,9 @@
 
 <dom-module id="panel-autostadt">
     <template>
+        <style>
+        </style>
+
         <div class="panel__toggle">
             <a href="#/vw-e-vc/autostadt" class="panel__toggle-open">
                 <img src="http://virtualexperience.vw.com.br/assets/images/shared/seta.png" width="50px" height="50px" style="transform: rotate(180deg)" alt="Abrir">
@@ -12,7 +15,18 @@
             </a>
         </div>
 
-        <el-panorama name="autostadt"></el-panorama>
+        <el-panorama name="autostadt">
+            <overlay-plain role="overlay">
+                <div class="overlay__content-columns">
+                    <div class="overlay__content-image">
+                        <img src="http://virtualexperience.vw.com.br/assets/images/VWeVC/desc_image.png" alt="" class="full-width">
+                    </div>
+                    <div class="overlay__content-text">
+                        Utilizando <strong>realidade virtual</strong> e <strong>cinema 4D</strong>, o visitante é transportado para o universo da montadora, começando por um tour no nascimento dos seus carros, passando pela <strong>Autostadt</strong>, prédio ícone da Volkswagen na Alemanha. E ainda dá uma voltinha entre os pilares da marca, com direito a uma surpresa no final da experiência. Um passeio lúdico e divertido, onde o convidado pode sentir o gostinho de estar, mais do que nunca, próximo da marca <strong>inspirada na sua vida</strong>.
+                    </div>
+                </div>
+            </overlay-plain>
+        </el-panorama>
     </template>
 
     <script>

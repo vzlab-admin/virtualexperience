@@ -3,28 +3,6 @@
 
 <dom-module id="panel-concierge">
     <template>
-        <style>
-        overlay-plain {
-            position: relative;
-            display: block;
-            background-color: gold;
-            width: 60rem;
-            max-width: 90%;
-            margin: 0 auto;
-            background-color: #214e5c;
-            padding: 2rem;
-        }
-        overlay-plain::after {
-            content: '';
-            position: absolute;
-            display: block;
-            width: 100%; height: 2px;
-            bottom: -0.5rem; right: 0;
-            background: tomato;
-
-        }
-        </style>
-
         <div class="panel__toggle">
             <a href="#/up/concierge" class="panel__toggle-open">
                 <img src="http://virtualexperience.vw.com.br/assets/images/shared/seta.png" width="50px" height="50px" style="transform: rotate(180deg)" alt="Abrir">
@@ -34,10 +12,11 @@
             </a>
         </div>
 
-
         <el-panorama name="concierge">
             <overlay-plain role="overlay">
-                Na <strong>área VIP</strong> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <strong>up! TSI</strong> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <strong>hologramas</strong> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <strong>HoloLens</strong>. Essa experiência vai mudar sua visão sobre tecnologia.
+                <div class="overlay__content-text">
+                    Na <strong>área VIP</strong> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <strong>up! TSI</strong> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <strong>hologramas</strong> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <strong>HoloLens</strong>. Essa experiência vai mudar sua visão sobre tecnologia.
+                </div>
             </overlay-plain>
         </el-panorama>
     </template>
