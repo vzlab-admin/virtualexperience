@@ -1,8 +1,19 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="el-overlay-octagon.html">
 
 <dom-module id="panel-canyon">
     <template>
-        <el-panorama name="canyon"></el-panorama>
+        <el-panorama name="canyon">
+            <el-overlay-octagon role="overlay" logo-src="assets/images/logos/Cross.png" logo-alt="VW e VC">
+                <p>
+                    Desafie-se e prove que você é como a <strong>Nova Saveiro Cross</strong>: pronta pra tudo.
+                </p>
+
+                <p>
+                    <em>Clique e veja uma prévia da experiência.</em>
+                </p>
+            </el-overlay-octagon>
+        </el-panorama>
     </template>
 
     <script>
