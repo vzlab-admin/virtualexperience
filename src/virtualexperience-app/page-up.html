@@ -1,11 +1,12 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="panel-concierge.html">
+<link rel="import" href="panel-up-slider.html">
 <link rel="import" href="el-close.html">
 
 <dom-module id="page-up">
     <template>
-        <app-route route="{{route}}" pattern="/pistao" active="{{pistao}}"></app-route>
+        <app-route route="{{route}}" pattern="/slider" active="{{slider}}"></app-route>
         <app-route route="{{route}}" pattern="/concierge" active="{{concierge}}"></app-route>
 
         <style>
@@ -18,7 +19,7 @@
 
         <el-close></el-close>
 
-        <panel-motor active={{pistao}} class="panel"></panel-motor>
+        <panel-up-slider active={{slider}} class="panel"></panel-up-slider>
         <panel-concierge active={{concierge}} class="panel"></panel-concierge>
     </template>
     <script>
