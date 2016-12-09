@@ -6,36 +6,16 @@
         :host {
             display: block;
             width: 960px;
-            max-width: 80%;
-            /*background-color: rgba(200, 0, 100, .5);
-            border: 2px solid rgba(200, 0, 100, .8);*/
+            max-width: 90%;
             margin: auto;
         }
         .overlay-octagon__container {
             position: relative;
         }
 
-
-
         /**
          * BG
          */
-        /*.overlay-octagon__bg {
-            display: block;
-            position: absolute;
-
-            width: 100%; height: 100%;
-            top: 0; right: 0; bottom: 0; left: 0;
-        }
-        .overlay-octagon__bg tr:nth-child(1) { height: 95px }
-        .overlay-octagon__bg tr:nth-child(1) td { background-size: auto 95px }
-        .overlay-octagon__bg tr:nth-child(3) { height: 112px }
-        .overlay-octagon__bg tr:nth-child(3) td { background-size: auto 112px }
-
-        .overlay-octagon__bg td:nth-child(1) { width: 257px; background-size: 257px auto; }
-        .overlay-octagon__bg td:nth-child(2) {}
-        .overlay-octagon__bg td:nth-child(3) { width: 259px; background-size: 259px auto; }*/
-
         .overlay-octagon__bg {
             position: absolute;
             left: 0; top: 0;
@@ -43,48 +23,80 @@
             display: flex;
             flex-direction: column;
         }
-        .overlay-octagon__bg-r1,
-        .overlay-octagon__bg-r2,
-        .overlay-octagon__bg-r3 { display: flex }
-        .overlay-octagon__bg-r1 { flex: 0 0 95px }
-        .overlay-octagon__bg-r2 { flex: 1 1 65px }
-        .overlay-octagon__bg-r3 { flex: 0 0 112px }
-        .overlay-octagon__bg-c1 { flex: 0 0 257px }
-        .overlay-octagon__bg-c2 { flex: 1 1 430px }
-        .overlay-octagon__bg-c3 { flex: 0 0 259px }
-        .overlay-octagon__bg-r1 .overlay-octagon__bg-c1 { background-size: 257px 95px }
-        .overlay-octagon__bg-r1 .overlay-octagon__bg-c2 { background-size: 430px 95px; background-repeat: repeat-x; }
-        .overlay-octagon__bg-r1 .overlay-octagon__bg-c3 { background-size: 259px 95px }
-        .overlay-octagon__bg-r2 .overlay-octagon__bg-c1 { background-size: 257px 65px; background-repeat: repeat-y; }
-        .overlay-octagon__bg-r2 .overlay-octagon__bg-c2 { background-size: 430px 65px }
-        .overlay-octagon__bg-r2 .overlay-octagon__bg-c3 { background-size: 259px 65px; background-repeat: repeat-y; }
-        .overlay-octagon__bg-r3 .overlay-octagon__bg-c1 { background-size: 257px 112px }
-        .overlay-octagon__bg-r3 .overlay-octagon__bg-c2 { background-size: 430px 112px; background-repeat: repeat-x; }
-        .overlay-octagon__bg-r3 .overlay-octagon__bg-c3 { background-size: 259px 112px }
 
         .overlay-octagon__fg {
             position: relative;
-            z-index: 1;
-            padding: 0 109px 60px 0;
+            padding: 30px 55px 40px;
             display: flex;
+            z-index: 1;
         }
         .overlay-octagon__logo {
-            width: 40%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
-            padding: 0 0 1rem;
+            display: none;
         }
         .overlay-octagon__copy {
-            margin-top: 45px;
             padding: 1rem;
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             text-align: center;
-            font-size: 1.25rem;
+        }
+
+
+
+        .overlay-octagon__bg-r1,
+        .overlay-octagon__bg-r2,
+        .overlay-octagon__bg-r3 { display: flex }
+        .overlay-octagon__bg-r1 { flex: 0 0 47.5px }
+        .overlay-octagon__bg-r2 { flex: 1 1 32.5px }
+        .overlay-octagon__bg-r3 { flex: 0 0 56px }
+        .overlay-octagon__bg-c1 { flex: 0 0 128.5px }
+        .overlay-octagon__bg-c2 { flex: 1 1 215px }
+        .overlay-octagon__bg-c3 { flex: 0 0 129.5px }
+        .overlay-octagon__bg-r1 .overlay-octagon__bg-c1 { background-size: 128.5px 47.5px }
+        .overlay-octagon__bg-r1 .overlay-octagon__bg-c2 { background-size: 215px 47.5px; background-repeat: repeat-x; }
+        .overlay-octagon__bg-r1 .overlay-octagon__bg-c3 { background-size: 129.5px 47.5px }
+        .overlay-octagon__bg-r2 .overlay-octagon__bg-c1 { background-size: 128.5px 32.5px; background-repeat: repeat-y; }
+        .overlay-octagon__bg-r2 .overlay-octagon__bg-c2 { background-size: 215px 32.5px }
+        .overlay-octagon__bg-r2 .overlay-octagon__bg-c3 { background-size: 129.5px 32.5px; background-repeat: repeat-y; }
+        .overlay-octagon__bg-r3 .overlay-octagon__bg-c1 { background-size: 128.5px 56px }
+        .overlay-octagon__bg-r3 .overlay-octagon__bg-c2 { background-size: 215px 56px; background-repeat: repeat-x; }
+        .overlay-octagon__bg-r3 .overlay-octagon__bg-c3 { background-size: 129.5px 56px }
+        @media screen and (min-width: 640px) {
+            :host {
+                max-width: 80%;
+            }
+            .overlay-octagon__copy {
+                margin-top: 45px;
+                font-size: 125%;
+            }
+            .overlay-octagon__fg { padding: 0 109px 60px 0 }
+            .overlay-octagon__logo {
+                width: 40%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 0 0 1rem;
+            }
+            .overlay-octagon__bg-r1,
+            .overlay-octagon__bg-r2,
+            .overlay-octagon__bg-r3 { display: flex }
+            .overlay-octagon__bg-r1 { flex: 0 0 95px }
+            .overlay-octagon__bg-r2 { flex: 1 1 65px }
+            .overlay-octagon__bg-r3 { flex: 0 0 112px }
+            .overlay-octagon__bg-c1 { flex: 0 0 257px }
+            .overlay-octagon__bg-c2 { flex: 1 1 430px }
+            .overlay-octagon__bg-c3 { flex: 0 0 259px }
+            .overlay-octagon__bg-r1 .overlay-octagon__bg-c1 { background-size: 257px 95px }
+            .overlay-octagon__bg-r1 .overlay-octagon__bg-c2 { background-size: 430px 95px; background-repeat: repeat-x; }
+            .overlay-octagon__bg-r1 .overlay-octagon__bg-c3 { background-size: 259px 95px }
+            .overlay-octagon__bg-r2 .overlay-octagon__bg-c1 { background-size: 257px 65px; background-repeat: repeat-y; }
+            .overlay-octagon__bg-r2 .overlay-octagon__bg-c2 { background-size: 430px 65px }
+            .overlay-octagon__bg-r2 .overlay-octagon__bg-c3 { background-size: 259px 65px; background-repeat: repeat-y; }
+            .overlay-octagon__bg-r3 .overlay-octagon__bg-c1 { background-size: 257px 112px }
+            .overlay-octagon__bg-r3 .overlay-octagon__bg-c2 { background-size: 430px 112px; background-repeat: repeat-x; }
+            .overlay-octagon__bg-r3 .overlay-octagon__bg-c3 { background-size: 259px 112px }
         }
         </style>
 
