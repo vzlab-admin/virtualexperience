@@ -124,6 +124,19 @@
             background-repeat: repeat-y;
             background-image: url(http://virtualexperience.vw.com.br/assets/images/home/bordas/Linha_L.png);
         }
+
+        @media screen and (max-width: 768px) {
+            :host img.vz-slice__title {
+                opacity: 1;
+            }
+            :host .vz-slice__overlay {
+                opacity: 0;
+            }
+            :host .vz-slice__deco {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
         </style>
 
         <a href="[[url]]">
