@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="panel-motor.html">
+<link rel="import" href="panel-pistao.html">
+<link rel="import" href="el-close.html">
+
+<dom-module id="page-tsi-extreme">
+    <template>
+        <app-route route="{{route}}" pattern="/motor" active="{{motor}}"></app-route>
+        <app-route route="{{route}}" pattern="/pistao" active="{{pistao}}"></app-route>
+
+        <style>
+        :host {
+            overflow: hidden;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+        }
+        </style>
+
+        <el-close></el-close>
+
+        <panel-motor active={{motor}} class="panel"></panel-motor>
+        <panel-pistao active={{pistao}} class="panel"></panel-pistao>
+    </template>
+    <script>
+    Polymer({
+        is: 'page-tsi-extreme',
+    })
+    </script>
+</dom-module>

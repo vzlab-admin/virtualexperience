@@ -1,0 +1,137 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="panel-cross-slider">
+    <template>
+        <style>
+        :host {
+            display: block;
+        }
+        vz-slider {
+            position: absolute;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: #304c8b url('../../assets/old-images/CROSS/slider.jpg') no-repeat scroll center bottom;
+            background-size: 100% auto;
+        }
+        .vz-slider__viewer {
+            position: absolute;
+            height: calc(100vw * 0.475 / 1.4183);
+            width: 47.5%;
+            display: block;
+            bottom: 5.9vw;
+            left: 3.2%;
+            pointer-events: none;
+        }
+        .vz-slider__viewer-slide {
+            position: absolute;
+            top: 0px; left: 0px;
+            width: 100%; height: 100%;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-position: center center;
+            opacity: 0;
+        }
+
+        .vz-slider__range {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+        }
+        .vz-slider__overlay {
+            position: absolute;
+            top: 22%; left: 0; width: 100%;
+        }
+        .vz-slider__overlay overlay-plain::after {
+            display: none;
+        }
+        </style>
+
+        <vz-slider>
+            <div class="vz-slider__overlay">
+                <overlay-plain>
+                    <div class="overlay__content-text">
+                        Na <strong>área VIP</strong> do stand da Volkswagen no Salão do Automóvel, o visitante pode conhecer a performance do <strong>up! TSI</strong> de um jeito único: uma concierge inteiramente digital apresenta o melhor do carro através de sofisticados <strong>hologramas</strong> sobre a miniatura do up! TSI. Para isso é utilizado o mais moderno equipamento de realidade mista atualmente, o <strong>HoloLens</strong>. Essa experiência vai mudar sua visão sobre tecnologia.
+
+                        <input type="range" class="vz-slider__range" value=0 min="0" max="1" step="0.001" id="slider">
+                    </div>
+                </overlay-plain>
+            </div>
+
+            <div class="vz-slider__viewer" id="sliderViewer">
+                <div class="vz-slider__viewer-slide" style="background-image: url(../../assets/old-images/CROSS/slider/1.png)"></div>
+                <div class="vz-slider__viewer-slide" style="background-image: url(../../assets/old-images/CROSS/slider/2.png)"></div>
+                <div class="vz-slider__viewer-slide" style="background-image: url(../../assets/old-images/CROSS/slider/3.png)"></div>
+                <div class="vz-slider__viewer-slide" style="background-image: url(../../assets/old-images/CROSS/slider/4.png)"></div>
+            </div>
+        </vz-slider>
+
+        <div class="panel__toggle">
+            <a href="#/desafio-cross/slider" class="panel__toggle-open">
+                <img src="../../assets/old-images/shared/seta.png" width="50px" height="50px" style="transform: rotate(180deg)" alt="Abrir">
+            </a>
+            <a href="#/desafio-cross/canyon" class="panel__toggle-close">
+                <img src="../../assets/old-images/shared/seta.png" width="50px" height="50px" alt="Fechar">
+            </a>
+        </div>
+    </template>
+
+    <script>
+    var constraintNumber = function constraintNumber(n) {
+        var min = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+        var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+        return Math.min(Math.max(n, min), max);
+    }
+    var mapNumber = function mapNumber(n, start1, stop1) {
+        var start2 = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
+        var stop2 = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 1;
+        return (n - start1) / (stop1 - start1) * (stop2 - start2) + start2;
+    }
+
+    Polymer({
+        is: 'panel-cross-slider',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            },
+            value: {
+                type: Number,
+                value: 0,
+                reflectToAttribute: true,
+            }
+        },
+        ready: function () {
+            this._onChangeSlider = this._onChangeSlider.bind(this)
+
+            if (this.$.slider && this.$.sliderViewer) {
+                this.$.slider.addEventListener('input', this._onChangeSlider)
+                this.$.slider.addEventListener('change', this._onChangeSlider)
+            }
+
+            this.setSlides()
+        },
+        setSlides: function () {
+            var children = this.$.sliderViewer.children
+            for (var i = 0; i < children.length; i++) {
+                children[i].style.opacity = 0
+            }
+
+            if (this.value < .333) {
+                children[0].style.opacity = mapNumber(this.value, .333, 0)
+                children[1].style.opacity = mapNumber(this.value, 0, .333)
+            } else if (this.value >= .333 && this.value < .666) {
+                children[1].style.opacity = mapNumber(this.value, .666, .333)
+                children[2].style.opacity = mapNumber(this.value, .333, .666)
+            } else {
+                children[2].style.opacity = mapNumber(this.value, 1, .666)
+                children[3].style.opacity = mapNumber(this.value, .666, 1)
+            }
+        },
+        _onChangeSlider(e) {
+            this.value = e.target.value
+            this.setSlides()
+        }
+    })
+    </script>
+</dom-module>

@@ -1,0 +1,26 @@
+{
+  "name": "vz-cube",
+  "version": "1.0.0",
+  "description": "A dummy project for testing a cubeface script",
+  "main": "index.html",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "babel": "babel --presets=es2015,stage-0 --source-maps --watch static/js --out-dir static/js-compat"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felds/cube.git"
+  },
+  "author": "Felds Liscia <dev@felds.com.br>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felds/cube/issues"
+  },
+  "homepage": "https://github.com/felds/cube#readme"
+}

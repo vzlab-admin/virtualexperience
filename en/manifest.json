@@ -1,0 +1,6 @@
+{
+  "name": "virtualexperience",
+  "short_name": "virtualexperience",
+  "start_url": "/",
+  "display": "standalone"
+}

@@ -1,0 +1,51 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="panel-pistao">
+    <template>
+        <style>
+        .overlay__content-image {
+            flex: 1 0 25%;
+            background-size: cover;
+            background-position: center;
+        }
+        .overlay__content-image img {
+            height: 260px;
+            width: 260px;
+        }
+        </style>
+
+        <div class="panel__toggle">
+            <a href="#/tsi-extreme/pistao" class="panel__toggle-open">
+                <img src="../../assets/old-images/shared/seta.png" width="50px" height="50px" style="transform: rotate(180deg)" alt="Abrir">
+            </a>
+            <a href="#/tsi-extreme/motor" class="panel__toggle-close">
+                <img src="../../assets/old-images/shared/seta.png" width="50px" height="50px" alt="Fechar">
+            </a>
+        </div>
+
+        <el-panorama name="tsi-2">
+            <overlay-plain role="overlay">
+                <div class="overlay__content-columns">
+                    <div class="overlay__content-image" style="background-image: url(../../assets/images/tsi/desc_image.jpg)">
+                    </div>
+                    <div class="overlay__content-text">
+                        Motor TSI significa potência e tecnologia. E foi dessa forma que a Volkswagen decidiu mostrar toda sua performance nesta experiência imersiva. Usando óculos de realidade virtual dentro de um poderoso simulador de movimentos, o visitante é “encolhido” para uma viagem dentro do motor. O resultado não poderia ser diferente: uma aventura explosiva que vai mexer com a cabeça do visitante.
+                    </div>
+                </div>
+            </overlay-plain>
+        </el-panorama>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'panel-pistao',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            }
+        },
+    })
+    </script>
+</dom-module>

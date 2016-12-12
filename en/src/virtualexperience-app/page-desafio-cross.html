@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="panel-canyon.html">
+<link rel="import" href="panel-cross-slider.html">
+<link rel="import" href="el-close.html">
+
+<dom-module id="page-desafio-cross">
+    <template>
+        <app-route route="{{route}}" pattern="/canyon" active="{{motor}}"></app-route>
+        <app-route route="{{route}}" pattern="/slider" active="{{slider}}"></app-route>
+
+        <style>
+        :host {
+            overflow: hidden;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+        }
+        </style>
+
+        <el-close></el-close>
+
+        <panel-canyon active={{canyon}} class="panel"></panel-canyon>
+        <panel-cross-slider active={{slider}} class="panel"></panel-cross-slider>
+    </template>
+    <script>
+    Polymer({
+        is: 'page-desafio-cross',
+    })
+    </script>
+</dom-module>

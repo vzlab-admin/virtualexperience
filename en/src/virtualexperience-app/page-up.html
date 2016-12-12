@@ -1,0 +1,30 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="panel-concierge.html">
+<link rel="import" href="panel-up-slider.html">
+<link rel="import" href="el-close.html">
+
+<dom-module id="page-up">
+    <template>
+        <app-route route="{{route}}" pattern="/slider" active="{{slider}}"></app-route>
+        <app-route route="{{route}}" pattern="/concierge" active="{{concierge}}"></app-route>
+
+        <style>
+        :host {
+            overflow: hidden;
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+        }
+        </style>
+
+        <el-close></el-close>
+
+        <panel-up-slider active={{slider}} class="panel"></panel-up-slider>
+        <panel-concierge active={{concierge}} class="panel"></panel-concierge>
+    </template>
+    <script>
+    Polymer({
+        is: 'page-up',
+    })
+    </script>
+</dom-module>

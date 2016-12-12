@@ -1,0 +1,89 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="top-area">
+    <template>
+        <style>
+        :host {
+            background-image: url(../../assets/old-images/home/bgsAreas/bg0.jpg);
+            background-position: center top;
+            background-size: cover;
+            background-repeat: repeat-x;
+            padding: 2rem;
+        }
+        .top-area__container {
+            max-width: 1000px;
+            min-height: 280px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .top-area__logo {
+            width: 200px;
+        }
+        .top-area__press-link {
+            display: flex;
+            align-items: center;
+        }
+        .top-area__press-link-text {
+            flex: 1 1 auto;
+        }
+        .top-area__press-link-image {
+            width: 5rem;
+            padding-left: .5rem;
+            flex: 0 0 auto;
+        }
+        @media screen and (min-width: 768px) {
+            :host {
+                padding: 0 2rem;
+            }
+            .top-area__container {
+                flex-direction: row;
+            }
+            .top-area__logo {
+                width: 280px;
+                flex: 1 0 auto;
+            }
+            .top-area__copy {
+                padding-left: 2rem;
+                flex-grow: 1 1 auto;
+            }
+            .top-area__press-link-image {
+                width: 8rem;
+                padding-left: 1rem;
+            }
+        }
+        </style>
+
+
+        <div class="top-area__container">
+            <div class="top-area__logo">
+                <img src="../../assets/old-images/home/logo.png" alt="Volkawagen Virtual Experience" class="full-width">
+            </div>
+            <div class="top-area__copy">
+                <p>
+                    A Volkswagen apresenta, no Salão do Automóvel, quatro experiências virtuais e imersivas com equipamentos altamente tecnológicos e qualidade de imagem surpreendente. Saiba mais sobre cada uma delas e não deixe de visitá-las no evento.
+                </p>
+
+                <a href="#/imprensa" class="top-area__press-link">
+                    <div class="top-area__press-link-text">
+                        <p>
+                            Possui um óculos de realidade Virtual?
+                            <br>Clique aqui e veja uma prévia das experiências.
+                        </p>
+                    </div>
+                    <div class="top-area__press-link-image">
+                        <img src="../../assets/old-images/home/linkImage.png" alt="" class="full-width">
+                    </div>
+                </a>
+            </div>
+        </div>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'top-area',
+        properties: {},
+    });
+    </script>
+</dom-module>

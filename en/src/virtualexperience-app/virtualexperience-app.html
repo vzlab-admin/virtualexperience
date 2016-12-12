@@ -1,0 +1,38 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="page-home.html">
+<link rel="import" href="page-press.html">
+<link rel="import" href="page-vw-e-vc.html">
+<link rel="import" href="page-tsi-extreme.html">
+<link rel="import" href="page-desafio-cross.html">
+<link rel="import" href="page-up.html">
+
+<dom-module id="virtualexperience-app">
+    <template>
+        <app-location route="{{route}}" use-hash-as-path></app-location>
+        <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subRoute}}"></app-route>
+
+        <iron-pages attr-for-selected="data-route" selected="{{routeData.page}}">
+            <page-home data-route=""></page-home>
+            <page-press data-route="imprensa"></page-press>
+            <page-vw-e-vc data-route="vw-e-vc" route="{{subRoute}}"></page-vw-e-vc>
+            <page-tsi-extreme data-route="tsi-extreme" route="{{subRoute}}"></page-tsi-extreme>
+            <page-desafio-cross data-route="desafio-cross" route="{{subRoute}}"></page-desafio-cross>
+            <page-up data-route="up" route="{{subRoute}}"></page-up>
+        </iron-pages>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'virtualexperience-app',
+        properties: {},
+        attached: function () {
+            if (!this.routeData.page) {
+                this.set('route.path', '/')
+            }
+        },
+    })
+    </script>
+</dom-module>

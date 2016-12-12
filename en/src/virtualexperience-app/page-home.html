@@ -1,0 +1,48 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="top-area.html">
+<link rel="import" href="vz-slice.html">
+
+<dom-module id="page-home">
+    <template>
+        <style>
+        :host {
+            display: flex;
+            flex-direction: column;
+            min-height: 800px;
+            min-height: 100vh;
+            /* subtract header and footer from desktop version */
+            min-height: calc(100vh - 80px - 50px);
+        }
+        </style>
+
+        <top-area></top-area>
+        <vz-slice bgsrc="assets/old-images/home/bgsAreas/bg1.jpg"
+                  titlesrc="assets/old-images/home/hoverImages/1_vw_e_vc.png"
+                  title="Volkswagen e Você"
+                  url="#/vw-e-vc/fabrica"
+        ></vz-slice>
+        <vz-slice bgsrc="assets/old-images/home/bgsAreas/bg2.jpg"
+                  titlesrc="assets/old-images/home/hoverImages/2_tsi_xtreme.png"
+                  title="TSI Extreme"
+                  url="#/tsi-extreme/motor"
+        ></vz-slice>
+        <vz-slice bgsrc="assets/old-images/home/bgsAreas/bg3.jpg"
+                  titlesrc="assets/old-images/home/hoverImages/3_cross.png"
+                  title="Desafio Cross"
+                  url="#/desafio-cross/1"
+        ></vz-slice>
+        <vz-slice bgsrc="assets/old-images/home/bgsAreas/bg4.jpg"
+                  titlesrc="assets/old-images/home/hoverImages/4_holo_view.png"
+                  title="Up Hololens"
+                  url="#/up/slider"
+        ></vz-slice>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'page-home',
+        properties: {
+        },
+    });
+    </script>
+</dom-module>

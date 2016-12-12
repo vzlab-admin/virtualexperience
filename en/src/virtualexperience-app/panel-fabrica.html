@@ -1,0 +1,35 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="el-panorama.html">
+<link rel="import" href="el-overlay-octagon.html">
+
+<dom-module id="panel-fabrica">
+    <template>
+        <style>
+        </style>
+        <el-panorama name="fabrica">
+            <el-overlay-octagon role="overlay" logo-src="assets/images/logos/VWeVC.png" logo-alt="VW e VC">
+                <p>
+                    Você nunca viu a Volkswagen por este ângulo.<br>
+                    <strong>Ou melhor, por nenhum deles.</strong>
+                </p>
+
+                <p>
+                    <em>Clique e veja uma prévia da experiência.</em>
+                </p>
+            </el-overlay-octagon>
+        </el-panorama>
+    </template>
+
+    <script>
+    Polymer({
+        is: 'panel-fabrica',
+        properties: {
+            active: {
+                type: Boolean,
+                value: false,
+                reflectToAttribute: true
+            }
+        },
+    })
+    </script>
+</dom-module>
